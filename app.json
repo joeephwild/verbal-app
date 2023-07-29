@@ -1,4 +1,13 @@
 {
-  "name": "MyVideoConfApp",
-  "displayName": "MyVideoConfApp"
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "verbal-app",
+    "slug": "verbal-app",
+    "plugins": [
+      "expo-router"
+    ]
+  }
 }
