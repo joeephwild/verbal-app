@@ -4,18 +4,15 @@ import React, { useEffect, Component } from "react";
 import { supabase } from "./lib/supabase";
 import Auth from "./components/Auth";
 import Account from "./components/Account";
+import ChatBox from "./components/ChatBox";
 
 export default function Page() {
   const [session, setSession] = React.useState(0);
-
-  console.log(session);
 
   useEffect(() => {
     // setSession(supabase.auth.session());
 
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log("Auth state changed", event, session);
-
       if (session && session.user) {
         setSession(session);
       }
@@ -26,7 +23,7 @@ export default function Page() {
       {!session ? (
         <Auth />
       ) : (
-        <Account key={session.user.id} session={session} />
+        <ChatBox key={session.user.id} session={session} />
       )}
     </View>
   );
