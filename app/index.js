@@ -3,33 +3,30 @@ import { Text, View } from "react-native";
 import React, { useEffect, Component } from "react";
 import { supabase } from "./lib/supabase";
 import Auth from "./components/Auth";
+import Account from "./components/Account";
 
 export default function Page() {
   const [session, setSession] = React.useState(0);
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
+  console.log(session);
 
-    supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log("sessions", event, session, session && session.user);
+  useEffect(() => {
+    // setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log("Auth state changed", event, session);
+
       if (session && session.user) {
-        console.log("fetching");
-        const { data, error } = await supabase
-          .from("user_profiles")
-          .select("*")
-          .eq("id", session.user.id);
-        console.log(data, error);
+        setSession(session);
       }
     });
   }, []);
   return (
     <View>
-      {session && session.user ? (
-        <Account key={session.user.id} session={session} />
-      ) : (
+      {!session ? (
         <Auth />
+      ) : (
+        <Account key={session.user.id} session={session} />
       )}
     </View>
   );

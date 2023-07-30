@@ -11,13 +11,17 @@ export default function Account({ session }) {
   const [avatarUrl, setAvatarUrl] = React.useState("");
 
   useEffect(() => {
-    if (session) getProfile();
+    if (session) {
+      getProfile();
+    }
   }, [session]);
 
-  async function getProfile() {
+  const getProfile = async () => {
     try {
       setLoading(true);
-      if (!session?.user) throw new Error("No user on the session!");
+      if (!session?.user) {
+        throw new Error("No user on the session!");
+      }
 
       let { data, error, status } = await supabase
         .from("profiles")
@@ -40,12 +44,14 @@ export default function Account({ session }) {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-  async function updateProfile({ username, website, avatar_url }) {
+  const updateProfile = async ({ username, website, avatar_url }) => {
     try {
       setLoading(true);
-      if (!session?.user) throw new Error("No user on the session!");
+      if (!session?.user) {
+        throw new Error("No user on the session!");
+      }
 
       const updates = {
         id: session?.user.id,
@@ -67,7 +73,7 @@ export default function Account({ session }) {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>

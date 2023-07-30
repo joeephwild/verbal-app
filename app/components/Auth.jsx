@@ -8,27 +8,33 @@ export default function Auth() {
   const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
 
-  async function signInWithEmail() {
+  const signInWithEmail = async () => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
-
-    if (error) Alert.alert(error.message);
     setLoading(false);
-  }
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      Alert.alert("signed in");
+    }
+  };
 
-  async function signUpWithEmail() {
+  const signUpWithEmail = async () => {
     setLoading(true);
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
     });
-
-    if (error) Alert.alert(error.message);
     setLoading(false);
-  }
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      Alert.alert("signed Up");
+    }
+  };
 
   return (
     <View style={styles.container}>
