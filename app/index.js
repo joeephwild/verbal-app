@@ -1,17 +1,30 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, Text, View } from "react-native";
-import { Link, Stack, useRouter } from "expo-router";
+import { Text, View } from "react-native";
+import React, { useEffect, Component } from "react";
+import { supabase } from "./lib/supabase";
+import Auth from "./components/Auth";
+import Account from "./components/Account";
+import ChatBox from "./components/ChatBox";
 
 export default function Page() {
-  const router = useRouter()
+  const [session, setSession] = React.useState(0);
+
+  useEffect(() => {
+    // setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (session && session.user) {
+        setSession(session);
+      }
+    });
+  }, []);
   return (
-    <View className="flex-1  bg-[#010F15]">
-      <StatusBar style="light" />
-      <View className="bg-[#F70] h-[311.416px] rounded-b-[110px]">
-        <SafeAreaView>
-          <Text className="text-white">joseph web3 dev</Text>
-        </SafeAreaView>
-      </View>
+    <View>
+      {!session ? (
+        <Auth />
+      ) : (
+        <ChatBox key={session.user.id} session={session} />
+      )}
     </View>
   );
 }
