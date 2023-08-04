@@ -1,15 +1,15 @@
-import axios from "axios";
-import Constants from "expo-constants";
-import { getTokenFromHeaders } from "./sessionTokens";
+import axios from 'axios';
+import Constants from 'expo-constants';
+import { getTokenFromHeaders } from './sessionTokens';
 
 export default mindDbQueryCall = async (authorUsername, searchText) => {
   try {
     const loginResponse = await axios.post(
-      "https://cloud.mindsdb.com/cloud/login",
+      'https://cloud.mindsdb.com/cloud/login',
       {
-        email: "email",
-        password: "password$",
-      }
+        email: 'johnsonafuye@gmail.com',
+        password: process.env.EXPO_PUBLIC_MINDSDB_PASS,
+      },
     );
 
     const createAxiosInstance = () => {
@@ -18,8 +18,8 @@ export default mindDbQueryCall = async (authorUsername, searchText) => {
 
       return (axiosInstance = axios.create({
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${sessionToken}`,
         },
       }));
@@ -31,14 +31,14 @@ export default mindDbQueryCall = async (authorUsername, searchText) => {
       try {
         const axiosInstance = createAxiosInstance();
         const response = await axiosInstance.post(
-          "https://cloud.mindsdb.com/api/sql/query",
+          'https://cloud.mindsdb.com/api/sql/query',
           {
             query,
-          }
+          },
         );
         return response.data;
       } catch (error) {
-        console.error("Error:", error);
+        console.error('Error:', error);
         throw error;
       }
     };
@@ -50,9 +50,8 @@ export default mindDbQueryCall = async (authorUsername, searchText) => {
       const firstRow = data.data[0];
       console.log({ firstRow });
       return firstRow[0];
-    } else {
-      return null;
     }
+    return null;
   } catch (error) {
     throw error;
   }
