@@ -1,28 +1,24 @@
-import { Link, router } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Dimensions, Image, Pressable, TouchableOpacity } from "react-native";
+import { Image, Pressable } from "react-native";
 import { Text, View, SafeAreaView } from "react-native";
-import { Button } from "react-native-elements";
-// import React, { useEffect, Component } from "react";
-// import { supabase } from "./lib/supabase";
-// import Auth from "../components/Auth";
-// import Account from "./components/Account";
-// import ChatBox from "./components/ChatBox";
-
-const { width, height } = Dimensions.get("window");
+import React, { useEffect, useState } from "react";
+import { supabase } from "../src/lib/supabase";
 
 export default function Page() {
-  // const [session, setSession] = React.useState(0);
+  const navigate = useNavigation();
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const checkUserSession = async () => {
+      const session = await supabase.auth.getSession();
+      setUser(session?.user || null);
+    };
+    checkUserSession();
 
-  // useEffect(() => {
-  //   // setSession(supabase.auth.session());
-
-  //   supabase.auth.onAuthStateChange((event, session) => {
-  //     if (session && session.user) {
-  //       setSession(session);
-  //     }
-  //   });
-  // }, []);
+    if (user) {
+      navigate.navigate("(tabs)");
+    }
+  }, []);
   return (
     <View className="flex-1  items-center bg-[#121214">
       <SafeAreaView className="mt-[90px] mx-[15px]">
@@ -42,7 +38,7 @@ export default function Page() {
           </Text>
           <View className="flex-1 mt-[40px] w-full space-y-[24px]">
             <Pressable
-              onPress={() => router.push("/Auth")}
+              onPress={() => router.push("/CreateAccount")}
               className="bg-[#F70] w-full py-[16px] rounded-[8px] items-center justify-center"
             >
               <Text className="text-[16px] text-white font-bold leading-normal">

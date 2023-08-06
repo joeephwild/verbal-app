@@ -6,9 +6,9 @@ const StepperControl = ({ handleClick, currentStep, steps }) => {
     <View>
       <Pressable
         onPress={() => handleClick("next")}
-        className="bg-[#F70] w-[342px] py-[16px] rounded-[8px] justify-center items-center"
+        className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
       >
-        <Text className="text-[16px] text-white  font-bold leading-normal">
+        <Text className="text-[16px] text-center text-white  font-bold leading-normal">
           Continue
         </Text>
       </Pressable>

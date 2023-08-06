@@ -12,24 +12,26 @@ const Card = ({ item }) => {
   return (
     <View
       style={{ backgroundColor: item.color }}
-      className="w-[340px] h-[228px] mb-[8x] space-y-[8px] rounded-[8px] px-[24px] tems-center justify-center"
+      className="w-[340px] h-[228px]  rounded-[8px] py-[24px] px-[24px] items-start justify-center"
     >
-      <Text className="text-[28px] text-[#ffffff] font-bold leading-normal">
-        {item.title}
-      </Text>
-      <Text className="text-[16px] text-[#ffffff]  font-semibold leading-normal">
-        {item.desc}
-      </Text>
+      <View className="space-y">
+        <Text className="text-[28px] text-[#ffffff] font-bold leading-normal">
+          {item.title}
+        </Text>
+        <Text className="text-[16px] text-[#ffffff]  font-semibold leading-normal">
+          {item.desc}
+        </Text>
+      </View>
     </View>
   );
 };
 
 const Intro = () => {
   return (
-    <View className="gap-[24px] mx-[24px] items-center justify-center">
+    <View className="gap-[24px]  items-center justify-center">
       {intro.map((item, i) => (
-        <View>
-          <Card key={i} item={item} />
+        <View key={i}>
+          <Card item={item} />
         </View>
       ))}
     </View>
