@@ -15,9 +15,40 @@ import {
   PaperAirplaneIcon,
 } from "react-native-heroicons/solid";
 import { Navigator, useNavigation } from 'expo-router'
+import { useEffect } from "react";
+import mindDb from "../../src/lib/mindDb";
 
 const Ai = () => {
   const navigate = useNavigation();
+  const [text, setText] = React.useState("");
+  const [user, setUser] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [response, setResponse] = React.useState("");
+
+  // useEffect(() => {
+  //   if (session) {
+  //     setUser(session?.user?.email);
+  //   }
+  // }, [session]);
+
+  // const queryAi = async () => {
+  //   try {
+  //     //   setLoading(true);
+  //     if (!session?.user) {
+  //       throw new Error("No user on the session!");
+  //     }
+
+  //     const response = await mindDb(user, text);
+  //     if (response) {
+  //       console.log(response);
+  //       setResponse(response);
+  //     }
+  //   } catch (error) {
+  //     if (error instanceof Error) {
+  //       Alert.alert(error.message);
+  //     }
+  //   }
+  // };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />

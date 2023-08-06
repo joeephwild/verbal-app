@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
+import { BottomSheet } from "react-native-elements";
 
 const upload = () => {
   return (
-    <View>
+    <BottomSheet>
       <Text>upload</Text>
-    </View>
-  )
-}
+    </BottomSheet>
+  );
+};
 
-export default upload
+export default upload;

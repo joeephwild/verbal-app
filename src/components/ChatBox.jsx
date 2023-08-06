@@ -19,11 +19,11 @@ const ChatBox = ({ session }) => {
   const queryAi = async () => {
     try {
       //   setLoading(true);
-      if (!session?.user) {
-        throw new Error("No user on the session!");
-      }
+      // if (!session?.user) {
+      //   throw new Error("No user on the session!");
+      // }
 
-      const response = await mindDb(user, text);
+      const response = await mindDb("joseph", text);
       if (response) {
         console.log(response);
         setResponse(response);
@@ -47,7 +47,7 @@ const ChatBox = ({ session }) => {
         />
       </View>
       <View style={styles.verticallySpaced}>
-        <Text> {response}</Text>
+        <Text className="text-[#fff]"> {response}</Text>
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 40,
     padding: 12,
+    color: "#fff"
   },
   verticallySpaced: {
     paddingTop: 4,

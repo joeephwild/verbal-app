@@ -15,7 +15,7 @@ export default function Page() {
     };
     checkUserSession();
 
-    if (user) {
+    if (!user) {
       navigate.navigate("(tabs)");
     }
   }, []);
