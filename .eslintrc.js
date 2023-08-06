@@ -23,7 +23,6 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
-        "unexpected token": false,
         "single-quote": true
     }
 }
