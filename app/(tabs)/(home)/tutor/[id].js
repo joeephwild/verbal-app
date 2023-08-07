@@ -69,7 +69,7 @@ const TutorDetails = () => {
           </Text>
         </View>
         <Pressable
-          onPress={() => router.push("/CreateAccount")}
+          onPress={() => router.push("/availablityform")}
           className="bg-[#F70] w-full py-[16px] mt-[9px] rounded-[8px] items-center justify-center"
         >
           <Text className="text-[16px] text-white font-bold leading-normal">
