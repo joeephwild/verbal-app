@@ -14,41 +14,41 @@ import {
   ChevronLeftIcon,
   PaperAirplaneIcon,
 } from "react-native-heroicons/solid";
-import { Navigator, useNavigation } from 'expo-router'
-import { useEffect } from "react";
-import mindDb from "../../src/lib/mindDb";
+// import { Navigator, useNavigation } from 'expo-router'
+// import { useEffect } from "react";
+// import mindDb from "../../../src/lib/mindDb";
 
 const Ai = () => {
-  const navigate = useNavigation();
-  const [text, setText] = React.useState("");
-  const [user, setUser] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
-  const [response, setResponse] = React.useState("");
+  // const navigate = useNavigation();
+  // const [text, setText] = React.useState("");
+  // const [user, setUser] = React.useState("");
+  // const [loading, setLoading] = React.useState(false);
+  // const [response, setResponse] = React.useState("");
 
-  // useEffect(() => {
-  //   if (session) {
-  //     setUser(session?.user?.email);
-  //   }
-  // }, [session]);
+  // // useEffect(() => {
+  // //   if (session) {
+  // //     setUser(session?.user?.email);
+  // //   }
+  // // }, [session]);
 
-  // const queryAi = async () => {
-  //   try {
-  //     //   setLoading(true);
-  //     if (!session?.user) {
-  //       throw new Error("No user on the session!");
-  //     }
+  // // const queryAi = async () => {
+  // //   try {
+  // //     //   setLoading(true);
+  // //     if (!session?.user) {
+  // //       throw new Error("No user on the session!");
+  // //     }
 
-  //     const response = await mindDb(user, text);
-  //     if (response) {
-  //       console.log(response);
-  //       setResponse(response);
-  //     }
-  //   } catch (error) {
-  //     if (error instanceof Error) {
-  //       Alert.alert(error.message);
-  //     }
-  //   }
-  // };
+  // //     const response = await mindDb(user, text);
+  // //     if (response) {
+  // //       console.log(response);
+  // //       setResponse(response);
+  // //     }
+  // //   } catch (error) {
+  // //     if (error instanceof Error) {
+  // //       Alert.alert(error.message);
+  // //     }
+  // //   }
+  // // };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
@@ -62,7 +62,7 @@ const Ai = () => {
         <View className="flex-1 items-center justify-center">
           <View className=" items-center justify-center">
             <Image
-              source={require("../../src/assets/Logo.png")}
+              source={require("../../../src/assets/Logo.png")}
               className="w-[32px] h-[30.659px] object-contain"
             />
             <Text className="text-[34px] pt-[16px] text-[#ffffff] font-normal leading-[41px]] text-center">

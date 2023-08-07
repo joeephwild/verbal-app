@@ -31,13 +31,13 @@ export default () => {
         }}
       >
         <Tabs.Screen
-          name="home"
+          name="(home)"
           options={{
             tabBarIcon: ({ color }) => <HomeIcon color={color} size={29} />,
           }}
         />
         <Tabs.Screen
-          name="Ai"
+          name="(ai)"
           options={{
             tabBarIcon: ({ color }) => (
               <ChatBubbleLeftRightIcon color={color} size={35} />
@@ -45,7 +45,7 @@ export default () => {
           }}
         />
         <Tabs.Screen
-          name="upload"
+          name="(upload)"
           options={{
             tabBarButton: () => {
               return <BottomSheet />;
@@ -53,7 +53,7 @@ export default () => {
           }}
         />
         <Tabs.Screen
-          name="community"
+          name="(community)"
           options={{
             tabBarIcon: ({ color }) => (
               <UserGroupIcon color={color} size={29} />
@@ -61,7 +61,7 @@ export default () => {
           }}
         />
         <Tabs.Screen
-          name="profile"
+          name="(profile)"
           options={{
             tabBarIcon: ({ color, focused, size }) => (
               <UserIcon color={color} size={size} />

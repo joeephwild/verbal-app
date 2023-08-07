@@ -3,7 +3,7 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid";
-import { Community, MyLessons, Speakers } from "../../src/components";
+import { Community, MyLessons, Speakers } from "../../../src/components";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
           <View className="flex-row items-center py-[20px] justify-between px-[24px] w-full">
             <View className="flex-row space-x-4 items-center">
               <Image
-                source={require("../../src/assets/profile.png")}
+                source={require("../../../src/assets/profile.png")}
                 className="w-[50px] h-[50px]"
               />
               <Text className="text-[24px] font-bold leading-normal text-[#fff]">

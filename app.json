@@ -6,6 +6,20 @@
     },
     "name": "verbal-app",
     "slug": "verbal-app",
-    "plugins": ["expo-router"]
+    "plugins": [
+      "expo-router",
+      "@config-plugins/react-native-webrtc"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c5e7f54c-4da5-4020-a6d1-ba3d52b9341f"
+      }
+    },
+    "android": {
+      "package": "com.josephomotade0.verbalapp"
+    }
   }
 }

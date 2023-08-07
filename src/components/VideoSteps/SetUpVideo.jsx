@@ -9,6 +9,7 @@ import {
 
 const SetUpVideo = ({ setEnterRoom }) => {
   const [muted, setMuted] = React.useState(false);
+ 
   return (
     <View className="items-center mt-[194px] space-y-[24px] justify-center mx-[24px]">
       <Text className="text-center text-[24px] font-bold text-[#fff] leading-[32px]">
