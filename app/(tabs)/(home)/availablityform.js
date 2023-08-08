@@ -5,12 +5,15 @@ import ConfirmBooking from "../../../src/components/availabilitystep/ConfirmBook
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ChevronLeftIcon } from "react-native-heroicons/solid";
+import ConfirmTime from "../../../src/components/availabilitystep/ConfirmTime";
 
-const availablityform = () => {
+const Availablityform = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [endReg, setEndReg] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [time, setTime] = useState("");
 
-  const steps = ["Intro", "Select Language"];
+  const steps = ["select time", "Confirm Time", "Book Call"];
 
   const handleClick = (direction) => {
     if (direction === "next") {
@@ -25,9 +28,29 @@ const availablityform = () => {
   const displayStep = (step) => {
     switch (step) {
       case 0:
-        return <PickDate handleClick={handleClick} />;
+        return (
+          <PickDate
+            handleClick={handleClick}
+            setSelectedDate={setSelectedDate}
+            setTime={setTime}
+          />
+        );
       case 1:
-        return <ConfirmBooking />;
+        return (
+          <ConfirmTime
+            handleClick={handleClick}
+            selectedDate={selectedDate}
+            time={time}
+          />
+        );
+        case 2:
+        return (
+          <ConfirmBooking
+            handleClick={handleClick}
+            selectedDate={selectedDate}
+            time={time}
+          />
+        );
       default:
         <PickDate />;
     }
@@ -40,4 +63,4 @@ const availablityform = () => {
   );
 };
 
-export default availablityform;
+export default Availablityform;

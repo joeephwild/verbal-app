@@ -3,7 +3,7 @@ import React from "react";
 import { ChevronLeftIcon } from "react-native-heroicons/solid";
 import { Calendar } from "react-native-calendars";
 
-const PickDate = ({ handleClick }) => {
+const PickDate = ({ handleClick, setSelectedDate, setTime }) => {
   return (
     <View className="mx-[24px]">
       <View className="flex-row items-center space-x-4 ">
@@ -19,6 +19,7 @@ const PickDate = ({ handleClick }) => {
         <Calendar
           onDayPress={(day) => {
             console.log("selected day", day);
+            setSelectedDate(day.dateString);
           }}
           date=""
           theme={{
@@ -47,7 +48,7 @@ const PickDate = ({ handleClick }) => {
             Available time slots
           </Text>
           <View className="flex-row flex-wrap pt-[16px] gap-2">
-            <Pressable className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]">
+            <Pressable onPress={() => setTime("8:00")}  className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]">
               <Text className="text-[16px] text-[#fff] font-black leading-normal">
                 8:00pm
               </Text>

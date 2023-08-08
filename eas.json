@@ -10,7 +10,18 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_MINDSDB": "johnsonafuye@gmail.com",
+        "EXPO_PUBLIC_MINDSDB_PASS": "Password"
+      }
+    },
+    "test": {
+      "env": {
+        "EXPO_PUBLIC_MINDSDB": "johnsonafuye@gmail.com",
+        "EXPO_PUBLIC_MINDSDB_PASS": "Password"
+      }
+    }
   },
   "submit": {
     "production": {}

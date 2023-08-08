@@ -11,64 +11,65 @@ import {
 } from "react-native-heroicons/solid";
 import BottomSheet from "../../src/components/BottomSheet";
 import { PortalProvider } from "@gorhom/portal";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default () => {
   return (
-    <PortalProvider>
-      <Tabs
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: "#FF7700",
-          tabBarInactiveTintColor: "#FFFFFF",
-          tabBarShowLabel: false,
-          tabBarHideOnKeyboard: true,
-          tabBarStyle: {
-            backgroundColor: "#000000",
-          },
-        }}
-        sceneContainerStyle={{
-          backgroundColor: "#000000",
-        }}
-      >
-        <Tabs.Screen
-          name="(home)"
-          options={{
-            tabBarIcon: ({ color }) => <HomeIcon color={color} size={29} />,
-          }}
-        />
-        <Tabs.Screen
-          name="(ai)"
-          options={{
-            tabBarIcon: ({ color }) => (
-              <ChatBubbleLeftRightIcon color={color} size={35} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name="(upload)"
-          options={{
-            tabBarButton: () => {
-              return <BottomSheet />;
+      <PortalProvider>
+        <Tabs
+          screenOptions={{
+            headerShown: false,
+            tabBarActiveTintColor: "#FF7700",
+            tabBarInactiveTintColor: "#FFFFFF",
+            tabBarShowLabel: false,
+            tabBarHideOnKeyboard: true,
+            tabBarStyle: {
+              backgroundColor: "#000000",
             },
           }}
-        />
-        <Tabs.Screen
-          name="(community)"
-          options={{
-            tabBarIcon: ({ color }) => (
-              <UserGroupIcon color={color} size={29} />
-            ),
+          sceneContainerStyle={{
+            backgroundColor: "#000000",
           }}
-        />
-        <Tabs.Screen
-          name="(profile)"
-          options={{
-            tabBarIcon: ({ color, focused, size }) => (
-              <UserIcon color={color} size={size} />
-            ),
-          }}
-        />
-      </Tabs>
-    </PortalProvider>
+        >
+          <Tabs.Screen
+            name="(home)"
+            options={{
+              tabBarIcon: ({ color }) => <HomeIcon color={color} size={29} />,
+            }}
+          />
+          <Tabs.Screen
+            name="(ai)"
+            options={{
+              tabBarIcon: ({ color }) => (
+                <ChatBubbleLeftRightIcon color={color} size={35} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="(upload)"
+            options={{
+              tabBarButton: () => {
+                return <BottomSheet />;
+              },
+            }}
+          />
+          <Tabs.Screen
+            name="(community)"
+            options={{
+              tabBarIcon: ({ color }) => (
+                <UserGroupIcon color={color} size={29} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="(profile)"
+            options={{
+              tabBarIcon: ({ color, focused, size }) => (
+                <UserIcon color={color} size={size} />
+              ),
+            }}
+          />
+        </Tabs>
+      </PortalProvider>
   );
 };

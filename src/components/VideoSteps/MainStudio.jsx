@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Image } from "react-native";
+import { View, Text, Pressable, Image, Alert } from "react-native";
 import React from "react";
 import {
   ArrowLeftOnRectangleIcon,
@@ -15,7 +15,7 @@ import {
 } from "react-native-heroicons/solid";
 
 const MainStudio = ({ setEnterRoom }) => {
-  const [muted, setMuted] = React.useState(false);
+
   return (
     <View>
       <View className="flex-row items-center justify-between px-[24px] pt-[8px]">

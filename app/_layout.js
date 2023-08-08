@@ -4,13 +4,13 @@ import "../global.css";
 
 export default function () {
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        contentStyle: {
-          backgroundColor: "#000000",
-        },
-      }}
-    />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            backgroundColor: "#000000",
+          },
+        }}
+      />
   );
 }
