@@ -12,6 +12,10 @@
   <uses-permission android:name="android.permission.VIBRATE"/>
   <uses-permission android:name="android.permission.WAKE_LOCK"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  
+    <!-- Needed to communicate with already-paired Bluetooth devices. (Android 12 upwards)-->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
   <queries>
     <intent>
       <action android:name="android.intent.action.VIEW"/>
