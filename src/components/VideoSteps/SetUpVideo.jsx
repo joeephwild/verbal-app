@@ -7,17 +7,9 @@ import {
   VideoCameraSlashIcon,
 } from "react-native-heroicons/outline";
 
-// import { useHuddle01 } from "@huddle01/react";
-
 const SetUpVideo = ({ setEnterRoom }) => {
   const [muted, setMuted] = React.useState(false);
-  // const { initialize, isInitialized } = useHuddle01();
 
-  // const handleClick = () => {
-  //   if (!isInitialized) {
-  //     Alert.alert("NOT INITIALIZED");
-  //   }
-  // };
   return (
     <View className="items-center mt-[194px] space-y-[24px] justify-center mx-[24px]">
       <Text className="text-center text-[24px] font-bold text-[#fff] leading-[32px]">

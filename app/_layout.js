@@ -1,5 +1,4 @@
-import { Slot, Stack } from "expo-router";
-
+import { Stack, SplashScreen } from "expo-router";
 import "../global.css";
 
 export default function () {

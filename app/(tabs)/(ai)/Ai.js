@@ -17,6 +17,7 @@ import {
 // import { Navigator, useNavigation } from 'expo-router'
 // import { useEffect } from "react";
 // import mindDb from "../../../src/lib/mindDb";
+import ChatBox from '../../../src/components/ChatBox'
 
 const Ai = () => {
   // const navigate = useNavigation();
@@ -51,7 +52,7 @@ const Ai = () => {
   // // };
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
+              <StatusBar style="light" />
       <View style={styles.header}>
         <ChevronLeftIcon onPress={() => navigate.goBack()} size={25} color="white" />
         <Text style={styles.headerText}>Learn with Ai</Text>

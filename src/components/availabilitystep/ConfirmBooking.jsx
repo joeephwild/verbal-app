@@ -7,7 +7,7 @@ import { Input } from "react-native-elements";
 
 const ConfirmBooking = ({ selectedDate, time }) => {
   return (
-    <View className="mx-[24px]">
+    <View className="mx-[24px] mt-[16px]">
       <View className="flex-row items-center space-x-4 ">
         <ChevronLeftIcon onPress={() => router.back()} color="#fff" size={25} />
         <Text className="text-[20px] font-semibold text-[#fff] leading-normal">
