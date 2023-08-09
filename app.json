@@ -6,10 +6,7 @@
     },
     "name": "verbal-app",
     "slug": "verbal-app",
-    "plugins": [
-      "expo-router",
-      "@config-plugins/react-native-webrtc"
-    ],
+    "plugins": ["expo-router"],
     "extra": {
       "router": {
         "origin": false

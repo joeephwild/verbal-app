@@ -1,18 +1,27 @@
-import axios from "axios";
-
-export const createroom = async () => {
-  const response = await axios.post(
-    "https://api.huddle01.com/api/v1/create-room",
-    {
-      title: "Huddle01-Test",
-      hostWallets: ["0x29f54719E88332e70550cf8737293436E9d7b10b"],
-    },
-    {
+export const token = process.env.EXPO_PUBLIC_HUDDLE01_APIKEY;
+// API call to create meeting
+export const createMeeting = async () => {
+  try {
+    //We will use VideoSDK rooms API endpoint to create a meetingId
+    const VIDEOSDK_API_ENDPOINT = `https://api.videosdk.live/v2/rooms`;
+    const options = {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "{{API_KEY}}", // Replace {{API_KEY}} with the actual API key
+        // We will pass the token in the headers
+        Authorization: token,
       },
-    }
-  );
-  return response.data; // Return the data from the response
+    };
+    const meetingId = await fetch(VIDEOSDK_API_ENDPOINT, options)
+      .then(async (result) => {
+        const { roomId } = await result.json();
+        return roomId;
+      })
+      .catch((error) => console.log("error", error));
+
+    //we will return the meetingId which we got from the response of the api
+    return alert(meetingId);
+  } catch (e) {
+    alert(e);
+  }
 };

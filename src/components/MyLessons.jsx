@@ -1,9 +1,8 @@
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, ScrollView } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Link, useNavigation, router } from "expo-router";
-import { ScrollView } from "react-native-gesture-handler";
 import { MyLesson } from "../utils";
 
 const MyLessons = () => {

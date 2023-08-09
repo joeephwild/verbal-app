@@ -24,6 +24,7 @@ export default () => {
           tabBarHideOnKeyboard: true,
           tabBarStyle: {
             backgroundColor: "#000000",
+            alignItems: "center",
           },
         }}
         sceneContainerStyle={{

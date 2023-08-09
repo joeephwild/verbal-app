@@ -1,3 +1,6 @@
+import { register } from '@videosdk.live/react-native-sdk';
 import "expo-router/entry";
-import "react-native-gesture-handler";
 import "expo-dev-client";
+
+// Register the service
+register();
