@@ -16,6 +16,7 @@
     "@rly-network/mobile-sdk": "^1.0.0",
     "@rneui/themed": "^4.0.0-rc.8",
     "@supabase/supabase-js": "^2.31.0",
+    "@videosdk.live/react-native-sdk": "^0.0.49",
     "axios": "^1.4.0",
     "dotenv": "^16.3.1",
     "expo": "^49.0.6",

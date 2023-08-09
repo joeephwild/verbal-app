@@ -143,6 +143,10 @@ dependencies {
     def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: "") == "true";
     def frescoVersion = rootProject.ext.frescoVersion
 
+    implementation project(':rnfgservice')
+    implementation project(':rnwebrtc')
+    implementation project(':rnincallmanager')
+
     // If your app supports Android versions before Ice Cream Sandwich (API level 14)
     if (isGifEnabled || isWebpEnabled) {
         implementation("com.facebook.fresco:fresco:${frescoVersion}")

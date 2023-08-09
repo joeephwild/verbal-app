@@ -2,6 +2,7 @@ import { View, Text, Pressable } from "react-native";
 import React from "react";
 import { ChevronLeftIcon } from "react-native-heroicons/solid";
 import { Calendar } from "react-native-calendars";
+import { createMeeting } from "../../utils/create-room";
 
 const PickDate = ({ handleClick, setSelectedDate, setTime }) => {
   return (
@@ -53,7 +54,7 @@ const PickDate = ({ handleClick, setSelectedDate, setTime }) => {
                 8:00pm
               </Text>
             </Pressable>
-            <Pressable className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]">
+            <Pressable onPress={createMeeting} className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]">
               <Text className="text-[16px] text-[#fff] font-black leading-normal">
                 8:00pm
               </Text>

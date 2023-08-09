@@ -16,6 +16,10 @@ import com.facebook.soloader.SoLoader;
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
 
+import live.videosdk.rnfgservice.ForegroundServicePackage;
+import live.videosdk.rnincallmanager.InCallManagerPackage;
+import live.videosdk.rnwebrtc.WebRTCModulePackage;
+
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
