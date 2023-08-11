@@ -16,7 +16,7 @@ import {
 import React, { useState, useRef } from "react";
 import { BottomSheet } from "react-native-elements";
 // import { Portal, PortalHost } from "@gorhom/portal";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { Modalize } from "react-native-modalize";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -29,9 +29,11 @@ const BottomSheets = () => {
   };
   return (
     <SafeAreaProvider>
-      <TouchableNativeFeedback onPress={onOpen} className="items-center">
+      <Link href="/(auth)/CreateAccount" asChild>
+      <TouchableNativeFeedback className="items-center">
         <PlusCircleIcon size={45} color="#FF7700" />
       </TouchableNativeFeedback>
+      </Link>
       <Modalize ref={modalizeRef}>
         <View className="items-start pl-[25px] pt-[71px] space-y-[40px]">
           <Pressable

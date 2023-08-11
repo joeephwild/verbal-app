@@ -13,8 +13,13 @@ import { StatusBar } from "expo-status-bar";
 import { StepperControl } from "../../components";
 import { useAuth } from "../../context/auth";
 import { router } from "expo-router";
+import {
+  WalletConnectModal,
+  useWalletConnectModal,
+} from "@walletconnect/modal-react-native";
 
 const CreateAccount = () => {
+  const { open, isConnected } = useWalletConnectModal();
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = React.useState([]);
   const [selectedLevel, setSelectedLevel] = React.useState("");
@@ -38,10 +43,10 @@ const CreateAccount = () => {
   const handleClick = async () => {
     if (currentStep === 1) {
       try {
-        if (!email || !password || password !== confirmPassword) {
-          return alert("You need to fill the form correctly.");
-        }
-        await signUp({ email, password });
+        // if (!email || !password || password !== confirmPassword) {
+        //   return alert("You need to fill the form correctly.");
+        // }
+        // await signUp({ email, password });
         nextStep(); // Move to the next step after successful sign-up
       } catch (error) {
         console.error("Error signing up:", error);
@@ -50,7 +55,7 @@ const CreateAccount = () => {
       // ... (your other code)
       nextStep(); // Move to the next step after successful sign-up
     } else if (currentStep === 3) {
-      alert("Connect wallet functionality here.");
+      await open();
       nextStep(); // Move to the next step after successful sign-up
     }
   };

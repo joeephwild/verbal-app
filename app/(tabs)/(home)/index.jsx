@@ -1,9 +1,10 @@
-import { View, Text, Image, ImageBackground, TextInput } from "react-native";
+import { View, Text, Image, ImageBackground, TextInput, TouchableNativeFeedback } from "react-native";
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid";
 import { Community, MyLessons, Speakers } from "../../../components";
+import { Link } from "expo-router";
 
 const Home = () => {
   return (
@@ -22,7 +23,11 @@ const Home = () => {
                 <Text className="text-[#000]"> Peter</Text>
               </Text>
             </View>
-            <BellIcon size={35} color="white" />
+            <Link href="/(auth)/CreateAccount" asChild>
+              <TouchableNativeFeedback className="items-center">
+                <BellIcon size={25} color="#fff" />
+              </TouchableNativeFeedback>
+            </Link>
           </View>
           <View className="bg-[#fff] w-[338px] h-[48px] rounded-[5px] border border-[#706C6C] flex-row px-[20px] items-center mx-[28px] justify-center ">
             <MagnifyingGlassIcon size={15} color="#000" />

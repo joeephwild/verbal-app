@@ -8,6 +8,7 @@ import { useFonts } from "expo-font";
 import { Slot, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { Provider } from "../context/auth";
+import { WalletConnectModal } from "@walletconnect/modal-react-native";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -46,9 +47,24 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const providerMetadata = {
+  name: "Verbal-Dapp",
+  description: "A web3 space to grow and learn a language, with NFTS and token rewards",
+  url: "http://localhost:8081/",
+  icons: ["https://your-project-logo.com/"],
+  redirect: {
+    native: "YOUR_APP_SCHEME://",
+    universal: "YOUR_APP_UNIVERSAL_LINK.com",
+  },
+};
+
 function RootLayoutNav() {
   return (
     <Provider>
+      <WalletConnectModal
+        projectId={process.env.EXPO_PUBLIC_WALLETCONNECT_PROJECTID}
+        providerMetadata={providerMetadata}
+      />
       <Stack
         screenOptions={{
           headerShown: false,
@@ -56,10 +72,7 @@ function RootLayoutNav() {
             backgroundColor: "#000000",
           },
         }}
-      >
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(tabs)" />
-      </Stack>
+      />
     </Provider>
   );
 }
