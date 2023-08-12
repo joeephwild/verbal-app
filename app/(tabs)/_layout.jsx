@@ -37,7 +37,7 @@ export default function TabLayout() {
         name="(ai)"
         options={{
           tabBarIcon: ({ color }) => (
-            <ChatBubbleLeftRightIcon color={color} size={35} />
+            <ChatBubbleLeftRightIcon color={color} size={29} />
           ),
         }}
       />

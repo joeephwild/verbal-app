@@ -21,7 +21,8 @@ export const MyLesson = [
     course: "Korean Language",
     tutor: "Shin Lee",
     period: "15: 00 EST",
-    image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    image:
+      "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
   },
   {
     course: "Spanish Language",
@@ -45,7 +46,8 @@ export const Mentors = [
     languages: ["English", "Spanish"],
     availability: ["08:00", "08:30", "09:00", "09:30", "10:00"],
     additionalInfo: "Specializes in conversational English.",
-    profileImage: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    profileImage:
+      "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
     coverImage: "https://example.com/john_smith_cover.jpg",
   },
   {
@@ -69,7 +71,8 @@ export const Mentors = [
     availability: ["08:00", "08:30", "09:00", "09:30", "10:00"],
     additionalInfo:
       "Former translator and skilled in simplifying complex grammar.",
-    profileImage: "https://images.pexels.com/photos/3970083/pexels-photo-3970083.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    profileImage:
+      "https://images.pexels.com/photos/3970083/pexels-photo-3970083.jpeg?auto=compress&cs=tinysrgb&w=1600",
     coverImage: "https://example.com/hiroshi_tanaka_cover.jpg",
   },
   {
@@ -80,8 +83,10 @@ export const Mentors = [
     availability: ["08:00", "08:30", "09:00", "09:30", "10:00"],
     additionalInfo:
       "Focuses on practical language use and business communication.",
-    profileImage: "https://images.pexels.com/photos/1559086/pexels-photo-1559086.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    coverImage: "https://images.pexels.com/photos/8364026/pexels-photo-8364026.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    profileImage:
+      "https://images.pexels.com/photos/1559086/pexels-photo-1559086.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    coverImage:
+      "https://images.pexels.com/photos/8364026/pexels-photo-8364026.jpeg?auto=compress&cs=tinysrgb&w=1600",
   },
   {
     name: "Amir Khan",
@@ -91,7 +96,53 @@ export const Mentors = [
     availability: ["08:00", "08:30", "09:00", "09:30", "10:00"],
     additionalInfo:
       "Teaches with a focus on regional dialects and cultural nuances.",
-    profileImage: "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    profileImage:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
     coverImage: "https://example.com/amir_khan_cover.jpg",
+  },
+];
+
+export const languageCommunity = [
+  {
+    name: "English",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 1200000000,
+  },
+  {
+    name: "Mandarin Chinese",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 1100000000,
+  },
+  {
+    name: "Spanish",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 460000000,
+  },
+  {
+    name: "Hindi",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 600000000,
+  },
+  {
+    name: "Arabic",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 310000000,
+  },
+  {
+    name: "French",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 280000000,
+  },
+  {
+    name: "Russian",
+    image:
+      "https://images.pexels.com/photos/4307884/pexels-photo-4307884.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    num_people: 260000000,
   },
 ];
