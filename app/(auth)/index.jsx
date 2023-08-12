@@ -39,7 +39,7 @@ const index = () => {
               className="bg-[#F70] mt-[30px] mb-[24px] w-full py-[16px] rounded-[8px] items-center justify-center"
             >
               <Text className="text-[16px] text-white  font-bold leading-normal">
-                Lets Begin
+                Get Started
               </Text>
             </Pressable>
           </Link>

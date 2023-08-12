@@ -14,7 +14,7 @@ import {
   ChevronLeftIcon,
   PaperAirplaneIcon,
 } from "react-native-heroicons/solid";
-// import { Navigator, useNavigation } from 'expo-router'
+// import { Navigator, useNavigation } from 'expo-router's
 // import { useEffect } from "react";
 // import mindDb from "../../../src/lib/mindDb";
 

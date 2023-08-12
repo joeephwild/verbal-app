@@ -1,8 +1,17 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Pressable,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Button, Input } from "react-native-elements";
+import { useAuth } from "../../context/auth";
+import { supabase } from "../../lib/supabase";
 
 const SetProfile = ({
   setEmail,
@@ -11,16 +20,22 @@ const SetProfile = ({
   setPassword,
   setConfirmPassword,
   confirmPassword,
+  nextStep,
 }) => {
-  const [age, setAge] = useState("");
-  const [selectedTimeframe, setSelectedTimeframe] = useState([]);
-  const [image, setImage] = useState(null);
-  const ageLevels = [
-    { key: "1", value: "11-15" },
-    { key: "2", value: "16-20" },
-    { key: "3", value: "21-26" },
-    { key: "4", value: "26-above" },
-  ];
+  const { signup, session } = useAuth();
+
+  const signUpWithEmail = async () => {
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      Alert.alert("signed Up");
+      nextStep()
+    }
+  };
 
   return (
     <SafeAreaView className="">
@@ -85,6 +100,16 @@ const SetProfile = ({
             />
           </View>
         </View>
+      </View>
+      <View className="items-center my-5 justify-center">
+        <Pressable
+          onPress={signUpWithEmail}
+          className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
+        >
+          <Text className="text-[16px] text-center text-white  font-bold leading-normal">
+            Continue
+          </Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );

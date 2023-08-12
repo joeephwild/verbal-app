@@ -1,15 +1,31 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Alert } from "react-native";
 import React, { useState } from "react";
 import { Input } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { Link, router } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
 import { useAuth } from "../../context/auth";
+import { supabase } from "../../lib/supabase";
 
 const Login = () => {
-  const { signIn } = useAuth();
+  const { signin, session } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = React.useState(false);
+  const navigate = useNavigation();
+
+  const signInWithEmail = async () => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+    if (error) {
+      Alert.alert(error.message);
+    } else {
+      Alert.alert("signed in");
+      navigate.navigate("(tabs)");
+    }
+  };
   return (
     <SafeAreaView style={{ flex: 1, marginTop: 36 }}>
       <View className="mt-[77px] mx-[24px] space-y-[8px]">
@@ -60,7 +76,7 @@ const Login = () => {
       <View className="items-center mt-[174px] justify-center">
         <Pressable
           disabled={!email && !password}
-          onPress={() => signIn({ email, password })}
+          onPress={signInWithEmail}
           className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
         >
           <Text className="text-[16px] text-center text-white  font-bold leading-normal">

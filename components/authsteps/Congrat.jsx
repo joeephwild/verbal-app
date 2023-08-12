@@ -1,7 +1,7 @@
 import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 const Congrat = () => {
   return (
@@ -21,16 +21,17 @@ const Congrat = () => {
             learning journey enriched with Web 3 benefits and rewarding
             achievements. Let the learning adventure begin!
           </Text>
-          <View className="items-center my-5 justify-center">
-            <Link href={"/home"} asChild>
-              <Pressable className="bg-[#F70] w-full py-[16px] rounded-[8px] items-center justify-center">
-                <Text className="text-[16px] text-white  font-bold leading-normal">
-                  Lets Begin
-                </Text>
-              </Pressable>
-            </Link>
-          </View>
         </View>
+      </View>
+      <View className="items-center my-5 justify-center">
+        <Pressable
+          onPress={() => router.push("/(tabs)/(home)")}
+          className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
+        >
+          <Text className="text-[16px] text-center text-white  font-bold leading-normal">
+            Continue
+          </Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );

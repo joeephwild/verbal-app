@@ -21,7 +21,7 @@ export const MyLesson = [
     course: "Korean Language",
     tutor: "Shin Lee",
     period: "15: 00 EST",
-    image: require("../assets/images/image1.png"),
+    image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
   },
   {
     course: "Spanish Language",

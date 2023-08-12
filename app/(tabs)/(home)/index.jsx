@@ -5,8 +5,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid";
 import { Community, MyLessons, Speakers } from "../../../components";
 import { Link } from "expo-router";
+import { useEnsName, useEnsAvatar } from 'wagmi'
 
 const Home = () => {
+  const { data: name} = useEnsName({
+    address: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
+  })
+  const { data: avatar } = useEnsAvatar({
+    name: 'jxom.eth',
+  })
   return (
     <View className="flex-1">
       <StatusBar style="light" />
@@ -15,12 +22,14 @@ const Home = () => {
           <View className="flex-row items-center py-[20px] justify-between px-[24px] w-full">
             <View className="flex-row space-x-4 items-center">
               <Image
-                source={require("../../../assets/images/profile.png")}
-                className="w-[50px] h-[50px]"
+                source={{
+                  uri: avatar
+                }}
+                className="w-[50px] h-[50px] rounded-full"
               />
               <Text className="text-[24px] font-bold leading-normal text-[#fff]">
                 Hi
-                <Text className="text-[#000]"> Peter</Text>
+                <Text className="text-[#000]"> {name}</Text>
               </Text>
             </View>
             <Link href="/(auth)/CreateAccount" asChild>

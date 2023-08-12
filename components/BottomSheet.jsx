@@ -19,6 +19,11 @@ import { BottomSheet } from "react-native-elements";
 import { Link, router } from "expo-router";
 import { Modalize } from "react-native-modalize";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { Portal } from "@gorhom/portal";
 
 const BottomSheets = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,50 +34,64 @@ const BottomSheets = () => {
   };
   return (
     <SafeAreaProvider>
-      <Link href="/(auth)/CreateAccount" asChild>
-      <TouchableNativeFeedback className="items-center">
-        <PlusCircleIcon size={45} color="#FF7700" />
-      </TouchableNativeFeedback>
-      </Link>
-      <Modalize ref={modalizeRef}>
-        <View className="items-start pl-[25px] pt-[71px] space-y-[40px]">
-          <Pressable
-            onPress={() => router.push("/createcommunity")}
-            className="flex-row items-center space-x-[16px]"
-          >
-            <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
-              <UserGroupIcon color="#fff" size={25} />
+      <Pressable>
+        <TouchableNativeFeedback onPress={onOpen} className="items-center">
+          <PlusCircleIcon size={45} color="#FF7700" />
+        </TouchableNativeFeedback>
+      </Pressable>
+      <Portal>
+        <Modalize
+          modalStyle={{
+            width: wp(100),
+            height: hp(50)
+          }}
+
+          adjustToContentHeight={true}
+          ref={modalizeRef}
+        >
+          <View className="items-start pl-[25px] pt-[31px] space-y-[40px]">
+            <Pressable
+              onPress={() => router.push("/createcommunity")}
+              className="flex-row items-center space-x-[16px]"
+            >
+              <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
+                <UserGroupIcon color="#fff" size={25} />
+              </Pressable>
+
+              <Text className="text-[16px] font-normal ">
+                Create a community
+              </Text>
             </Pressable>
 
-            <Text className="text-[16px] font-normal ">Create a community</Text>
-          </Pressable>
+            <Pressable
+              onPress={() => router.push("/uploadPodcast")}
+              className="flex-row items-center space-x-[16px]"
+            >
+              <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
+                <MicrophoneIcon color="#fff" size={25} />
+              </Pressable>
 
-          <Pressable
-            onPress={() => router.push("/uploadPodcast")}
-            className="flex-row items-center space-x-[16px]"
-          >
-            <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
-              <MicrophoneIcon color="#fff" size={25} />
+              <Text className="text-[16px] font-normal ">Upload Podcast</Text>
             </Pressable>
+            <View className="flex-row items-center space-x-[16px]">
+              <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
+                <SignalIcon color="#fff" size={25} />
+              </Pressable>
 
-            <Text className="text-[16px] font-normal ">Upload Podcast</Text>
-          </Pressable>
-          <View className="flex-row items-center space-x-[16px]">
-            <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
-              <SignalIcon color="#fff" size={25} />
-            </Pressable>
+              <Text className="text-[16px] font-normal ">Go Live</Text>
+            </View>
+            <View className="flex-row items-center space-x-[16px]">
+              <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
+                <CalendarDaysIcon color="#fff" size={25} />
+              </Pressable>
 
-            <Text className="text-[16px] font-normal ">Go Live</Text>
+              <Text className="text-[16px] font-normal ">
+                Schedule Live Call
+              </Text>
+            </View>
           </View>
-          <View className="flex-row items-center space-x-[16px]">
-            <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">
-              <CalendarDaysIcon color="#fff" size={25} />
-            </Pressable>
-
-            <Text className="text-[16px] font-normal ">Schedule Live Call</Text>
-          </View>
-        </View>
-      </Modalize>
+        </Modalize>
+      </Portal>
     </SafeAreaProvider>
   );
 };

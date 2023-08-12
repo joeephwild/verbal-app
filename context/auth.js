@@ -22,10 +22,10 @@
 //       !inAuthGroup
 //     ) {
 //       // Redirect to the sign-in page.
-//       router.replace("/(tabs)/(home)");
+//       router.replace("/(auth)");
 //     } else if (session && inAuthGroup) {
 //       // Redirect away from the sign-in page.
-//       router.replace("/(auth)");
+//       router.replace("/(tabs)/(home)");
 //     }
 //   }, [session, segments]);
 // }
@@ -35,7 +35,7 @@
 
 //   // Fetch the user session from Supabase
 //   React.useEffect(() => {
-//     const session = supabase.auth.getUser();
+//     const session = supabase.auth.getSession();
 //     setSession(session);
 
 //     // Listen for auth changes
@@ -92,10 +92,14 @@
 //     </AuthContext.Provider>
 //   );
 // }
-import { router, useSegments } from "expo-router";
+import { supabase } from "../lib/supabase";
+import { router, useNavigation, useSegments } from "expo-router";
 import React from "react";
+import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
+import { Alert } from "react-native";
 
 const AuthContext = React.createContext(null);
+
 
 // This hook can be used to access the user info.
 export function useAuth() {
@@ -103,37 +107,49 @@ export function useAuth() {
 }
 
 // This hook will protect the route access based on user authentication.
-function useProtectedRoute(user) {
+function useProtectedRoute(session) {
   const segments = useSegments();
+  const navigate = useNavigation();
 
   React.useEffect(() => {
     const inAuthGroup = segments[0] === "(auth)";
 
     if (
       // If the user is not signed in and the initial segment is not anything in the auth group.
-      !user &&
+      !session &&
       !inAuthGroup
     ) {
       // Redirect to the sign-in page.
-      router.replace("/(auth)");
-    } else if (user && inAuthGroup) {
+      navigate.navigate("(auth)");
+    } else if (session && inAuthGroup) {
       // Redirect away from the sign-in page.
-      router.replace("/(tabs)/(home)");
+      navigate.navigate("(tabs)");
     }
-  }, [user, segments]);
+  }, [session, segments]);
 }
 
 export function Provider(props) {
-  const [user, setAuth] = React.useState(null);
+  const [session, setSession] = React.useState(null);
+  console.log(session);
 
-  useProtectedRoute(user);
+  React.useEffect(() => {
+    const checkUserSession = async () => {
+      const {data, error} = await supabase.auth.getSession();
+      if(error){
+        setSession(null)
+      }else{
+        setSession(data.session)
+      }
+    };
+    checkUserSession();
+  }, []);
+
+  useProtectedRoute(session);
 
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => setAuth({}),
-        signOut: () => setAuth(null),
-        user,
+        session
       }}
     >
       {props.children}

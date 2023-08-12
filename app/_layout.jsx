@@ -9,6 +9,21 @@ import { Slot, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { Provider } from "../context/auth";
 import { WalletConnectModal } from "@walletconnect/modal-react-native";
+import { WagmiConfig, configureChains, createConfig, mainnet } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
+import { avalanche, bsc, lineaTestnet, linea } from "wagmi/chains";
+import { PortalProvider } from "@gorhom/portal";
+
+const { chains, publicClient, webSocketPublicClient } = configureChains(
+  [mainnet, avalanche, bsc, lineaTestnet, linea],
+  [publicProvider()]
+);
+
+const config = createConfig({
+  autoConnect: true,
+  publicClient,
+  webSocketPublicClient,
+});
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -49,7 +64,8 @@ export default function RootLayout() {
 
 const providerMetadata = {
   name: "Verbal-Dapp",
-  description: "A web3 space to grow and learn a language, with NFTS and token rewards",
+  description:
+    "A web3 space to grow and learn a language, with NFTS and token rewards",
   url: "http://localhost:8081/",
   icons: ["https://your-project-logo.com/"],
   redirect: {
@@ -60,19 +76,32 @@ const providerMetadata = {
 
 function RootLayoutNav() {
   return (
-    <Provider>
-      <WalletConnectModal
-        projectId={process.env.EXPO_PUBLIC_WALLETCONNECT_PROJECTID}
-        providerMetadata={providerMetadata}
-      />
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: {
-            backgroundColor: "#000000",
-          },
-        }}
-      />
-    </Provider>
+    <PortalProvider>
+      <Provider>
+        <WagmiConfig config={config}>
+          <WalletConnectModal
+            projectId={process.env.EXPO_PUBLIC_WALLETCONNECT_PROJECTID}
+            providerMetadata={providerMetadata}
+          />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              contentStyle: {
+                backgroundColor: "#000000",
+              },
+            }}
+          >
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen
+              name="PodcastPlayer"
+              options={{
+                presentation: "modal",
+              }}
+            />
+          </Stack>
+        </WagmiConfig>
+      </Provider>
+    </PortalProvider>
   );
 }

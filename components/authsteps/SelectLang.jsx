@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Pressable } from "react-native";
 import React, { useState } from "react";
 import {
   MultipleSelectList,
@@ -11,6 +11,7 @@ const SelectLang = ({
   setSelectedLanguage,
   setSelectedLevel,
   selectedLevel,
+  nextStep,
 }) => {
   const data = [
     { key: "1", value: "Spanish" },
@@ -59,8 +60,8 @@ const SelectLang = ({
         </Text>
         <Text className="text-[16px] font-semibold text-[#CCCCCCAA]">
           Tell us your current skill level in{" "}
-          {selectedLanguage ? selectedLanguage : "Selected langugae"}. We'll personalize your
-          learning experience accordingly.
+          {selectedLanguage ? selectedLanguage : "Selected langugae"}. We'll
+          personalize your learning experience accordingly.
         </Text>
         <View className="rounded-[8px] mt-[24px]">
           <SelectList
@@ -78,6 +79,16 @@ const SelectLang = ({
             placeholder="Newbie"
           />
         </View>
+      </View>
+      <View className="items-center my-5 justify-center">
+        <Pressable
+          onPress={nextStep}
+          className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
+        >
+          <Text className="text-[16px] text-center text-white  font-bold leading-normal">
+            Continue
+          </Text>
+        </Pressable>
       </View>
     </View>
   );

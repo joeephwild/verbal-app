@@ -1,11 +1,11 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Pressable } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { ChevronDownIcon, PlusIcon } from "react-native-heroicons/solid";
 import { SelectList } from "react-native-dropdown-select-list";
 
-const SetupPreference = () => {
+const SetupPreference = ({ nextStep }) => {
   const [age, setAge] = useState("");
   const ageLevels = [
     { key: "1", value: "11-15" },
@@ -19,7 +19,7 @@ const SetupPreference = () => {
       <View>
         <View className="space-y-[9px] items-start">
           <Text className="text-[34px] font-bold text-[#fff] leading-normal">
-           Select Preference
+            Select Preference
           </Text>
         </View>
         <Text className="text-[16px] w-[342px] h-[69px] font-normal text-[#AAAAAAAA]">
@@ -46,7 +46,7 @@ const SetupPreference = () => {
               dropdownItemStyles={{
                 borderColor: "#AAAAAAAA",
                 backgroundColor: "#000",
-                marginTop: 8
+                marginTop: 8,
               }}
               search={false}
               arrowicon={<ChevronDownIcon size={25} color="#fff" />}
@@ -106,6 +106,16 @@ const SetupPreference = () => {
             />
           </View>
         </View>
+      </View>
+      <View className="items-center my-5 justify-center">
+        <Pressable
+          onPress={nextStep}
+          className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
+        >
+          <Text className="text-[16px] text-center text-white  font-bold leading-normal">
+            Continue
+          </Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
