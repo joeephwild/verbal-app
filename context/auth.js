@@ -162,8 +162,6 @@ export function Provider(props) {
   }, []);
 
   if (id) {
-    const userProfile = getUserDetails(id);
-    const allCommunities = getAllCommunities();
   }
 
   useProtectedRoute(session);
