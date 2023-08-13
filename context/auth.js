@@ -97,9 +97,13 @@ import { router, useNavigation, useSegments } from "expo-router";
 import React from "react";
 import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
 import { Alert } from "react-native";
+import {
+  getUserDetails,
+  getAllCommunities,
+  createCommunity,
+} from "./../lib/controllers.js";
 
 const AuthContext = React.createContext(null);
-
 
 // This hook can be used to access the user info.
 export function useAuth() {
@@ -130,26 +134,44 @@ function useProtectedRoute(session) {
 
 export function Provider(props) {
   const [session, setSession] = React.useState(null);
-  console.log(session);
+  const [id, setId] = React.useState(null);
+  // console.log(session);
 
   React.useEffect(() => {
     const checkUserSession = async () => {
-      const {data, error} = await supabase.auth.getSession();
-      if(error){
-        setSession(null)
-      }else{
-        setSession(data.session)
+      const { data, error } = await supabase.auth.getSession();
+      if (error) {
+        setSession(null);
+      } else {
+        setSession(data.session);
       }
     };
     checkUserSession();
   }, []);
+
+  React.useEffect(() => {
+    const checkUserProfile = async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (error) {
+        setId(null);
+      } else {
+        setId(data.user.id);
+      }
+    };
+    checkUserProfile();
+  }, []);
+
+  if (id) {
+    const userProfile = getUserDetails(id);
+    const allCommunities = getAllCommunities();
+  }
 
   useProtectedRoute(session);
 
   return (
     <AuthContext.Provider
       value={{
-        session
+        session,
       }}
     >
       {props.children}
