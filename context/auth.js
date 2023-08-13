@@ -97,11 +97,7 @@ import { router, useNavigation, useSegments } from "expo-router";
 import React from "react";
 import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
 import { Alert } from "react-native";
-import {
-  getUserDetails,
-  getAllCommunities,
-  createCommunity,
-} from "./../lib/controllers.js";
+import { getUserDetails, getAllCommunities } from "./../lib/controllers.js";
 
 const AuthContext = React.createContext(null);
 
@@ -162,8 +158,6 @@ export function Provider(props) {
   }, []);
 
   if (id) {
-    const userProfile = getUserDetails(id);
-    const allCommunities = getAllCommunities();
   }
 
   useProtectedRoute(session);
