@@ -101,7 +101,7 @@ import {
   getUserDetails,
   getAllCommunities,
   createCommunity,
-} from "./../lib/controllers.js";
+} from "../lib/supabaseService.js/index.js";
 
 const AuthContext = React.createContext(null);
 
