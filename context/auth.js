@@ -97,7 +97,11 @@ import { router, useNavigation, useSegments } from "expo-router";
 import React from "react";
 import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
 import { Alert } from "react-native";
-import { getUserDetails, getAllCommunities } from "./../lib/controllers.js";
+import {
+  getUserDetails,
+  getAllCommunities,
+  createCommunity,
+} from "../lib/supabaseService.js/index.js";
 
 const AuthContext = React.createContext(null);
 
