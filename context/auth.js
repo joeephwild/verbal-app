@@ -1,107 +1,13 @@
-// import { router, useSegments } from "expo-router";
-// import React from "react";
-// import { supabase } from "../lib/supabase";
-
-// const AuthContext = React.createContext(null);
-
-// // This hook can be used to access the user info.
-// export function useAuth() {
-//   return React.useContext(AuthContext);
-// }
-
-// // This hook will protect the route access based on user authentication.
-// function useProtectedRoute(session) {
-//   const segments = useSegments();
-
-//   React.useEffect(() => {
-//     const inAuthGroup = segments[0] === "(auth)";
-
-//     if (
-//       // If the user is not signed in and the initial segment is not anything in the auth group.
-//       !session &&
-//       !inAuthGroup
-//     ) {
-//       // Redirect to the sign-in page.
-//       router.replace("/(auth)");
-//     } else if (session && inAuthGroup) {
-//       // Redirect away from the sign-in page.
-//       router.replace("/(tabs)/(home)");
-//     }
-//   }, [session, segments]);
-// }
-
-// export function Provider(props) {
-//   const [session, setSession] = React.useState(null);
-
-//   // Fetch the user session from Supabase
-//   React.useEffect(() => {
-//     const session = supabase.auth.getSession();
-//     setSession(session);
-
-//     // Listen for auth changes
-//     const { data: listener } = supabase.auth.onAuthStateChange(
-//       (event, newSession) => {
-//         if (event === "SIGNED_IN" || event === "SIGNED_OUT") {
-//           setSession(newSession);
-//         }
-//       }
-//     );
-
-//     return () => {
-//       listener.unsubscribe();
-//     };
-//   }, []);
-
-//   useProtectedRoute(session);
-
-//   return (
-//     <AuthContext.Provider
-//       value={{
-//         signIn: async (email, password) => {
-//           const { error } = await supabase.auth.signInWithPassword({
-//             email,
-//             password,
-//           });
-//           if (error) {
-//             console.error("Error signing in:", error.message);
-//           } else {
-//             router.replace("/(tabs)/(home)");
-//           }
-//         },
-//         signOut: async () => {
-//           const { error } = await supabase.auth.signOut();
-//           if (error) {
-//             console.error("Error signing out:", error.message);
-//           }
-//         },
-//         signUp: async (email, password) => {
-//           const { error } = await supabase.auth.signUp({
-//             email,
-//             password,
-//           });
-//           if (error) {
-//             console.error("Error signing out:", error.message);
-//           } else {
-//             router.replace("/(tabs)/(home)");
-//           }
-//         },
-//         session,
-//       }}
-//     >
-//       {props.children}
-//     </AuthContext.Provider>
-//   );
-// }
 import { supabase } from "../lib/supabase";
 import { router, useNavigation, useSegments } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
 import { Alert } from "react-native";
 import {
   getUserDetails,
   getAllCommunities,
   createCommunity,
-} from "../lib/supabaseService.js/index.js";
+} from "../lib/supabaseService";
 
 const AuthContext = React.createContext(null);
 
@@ -135,7 +41,7 @@ function useProtectedRoute(session) {
 export function Provider(props) {
   const [session, setSession] = React.useState(null);
   const [id, setId] = React.useState(null);
-  // console.log(session);
+  const [community, setCommunity] = React.useState([]);
 
   React.useEffect(() => {
     const checkUserSession = async () => {
@@ -164,12 +70,32 @@ export function Provider(props) {
   if (id) {
   }
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCommunity = async () => {
+      try {
+        const result = await getAllCommunities();
+        setCommunity(result);
+        setLoading(false);
+      } catch (error) {
+        setError("An error occurred while fetching communities.");
+        setLoading(false);
+      }
+    };
+    fetchCommunity();
+  }, []);
+
   useProtectedRoute(session);
 
   return (
     <AuthContext.Provider
       value={{
         session,
+        loading,
+        community,
+        error
       }}
     >
       {props.children}

@@ -1,19 +1,29 @@
-import { View, Text, Image, ImageBackground, TextInput, TouchableNativeFeedback } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TextInput,
+  TouchableNativeFeedback,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid";
 import { Community, MyLessons, Speakers } from "../../../components";
 import { Link } from "expo-router";
-import { useEnsName, useEnsAvatar } from 'wagmi'
+import { useEnsName, useEnsAvatar } from "wagmi";
+import { useAuth } from "../../../context/auth";
 
 const Home = () => {
-  const { data: name} = useEnsName({
-    address: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
-  })
+  const { data: name } = useEnsName({
+    address: "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e",
+  });
   const { data: avatar } = useEnsAvatar({
-    name: 'jxom.eth',
-  })
+    name: "jxom.eth",
+  });
+  const { loading, community, error } = useAuth();
   return (
     <View className="flex-1">
       <StatusBar style="light" />
@@ -23,7 +33,7 @@ const Home = () => {
             <View className="flex-row space-x-4 items-center">
               <Image
                 source={{
-                  uri: avatar
+                  uri: avatar,
                 }}
                 className="w-[50px] h-[50px] rounded-full"
               />
@@ -55,7 +65,11 @@ const Home = () => {
           </View>
 
           <View className="mx-[28px] mt-[27px]">
-            <Community />
+            {loading ? (
+              <ActivityIndicator color="#f70" size="large" />
+            ) : (
+              <Community item={community} />
+            )}
           </View>
         </View>
       </SafeAreaView>

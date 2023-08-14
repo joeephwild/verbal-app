@@ -146,3 +146,55 @@ export const languageCommunity = [
     num_people: 260000000,
   },
 ];
+
+export const post = [
+  {
+    author: {
+      name: "Emily Johnson",
+      image:
+        "https://images.pexels.com/photos/4676440/pexels-photo-4676440.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    },
+    time_posted: "2023-08-14T15:30:00Z",
+    image:
+      "https://images.pexels.com/photos/17843026/pexels-photo-17843026/free-photo-of-man-in-suit-and-cap-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    content:
+      "Saluton! Mi estas lernanta Esperanton. Hodiaŭ mi lernis pri la verboj.",
+    author_image:
+      "https://images.pexels.com/photos/4676440/pexels-photo-4676440.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    author: {
+      name: "Carlos Rodriguez",
+      image:
+        "https://images.pexels.com/photos/17824562/pexels-photo-17824562/free-photo-of-portrait-of-a-man-sitting-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    },
+    time_posted: "2023-08-14T16:45:00Z",
+    image:
+      "https://images.pexels.com/photos/17843026/pexels-photo-17843026/free-photo-of-man-in-suit-and-cap-in-black-and-white.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    content:
+      "¡Hola a todos! Comparto una canción en español que me encanta. Disfruten.",
+    author_image:
+      "https://images.pexels.com/photos/17824562/pexels-photo-17824562/free-photo-of-portrait-of-a-man-sitting-in-a-park.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    author: {
+      name: "Sophie Chen",
+      image: "sophie_profile_image.jpg",
+    },
+    time_posted: "2023-08-14T18:15:00Z",
+    image: "",
+    content: "大家好！今天我要跟大家分享一些有趣的中文成语故事。",
+    author_image: "sophie_profile_image.jpg",
+  },
+  {
+    author: {
+      name: "Alexandre Dupont",
+      image: "alexandre_profile_image.jpg",
+    },
+    time_posted: "2023-08-14T20:00:00Z",
+    image: "",
+    content:
+      "Bonjour à tous ! Je viens de terminer un livre fantastique en français. Recommandé.",
+    author_image: "alexandre_profile_image.jpg",
+  },
+];

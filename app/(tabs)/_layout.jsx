@@ -6,6 +6,7 @@ import {
   HomeIcon,
   UserGroupIcon,
   UserIcon,
+  MicrophoneIcon,
 } from "react-native-heroicons/solid";
 import BottomSheets from "../../components/BottomSheet";
 
@@ -65,7 +66,7 @@ export default function TabLayout() {
         name="(profile)"
         options={{
           tabBarIcon: ({ color, focused, size }) => (
-            <UserIcon color={color} size={size} />
+            <MicrophoneIcon color={color} size={size} />
           ),
         }}
       />
