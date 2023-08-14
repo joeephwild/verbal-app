@@ -25,12 +25,18 @@ import { useAuth } from "../../../../context/auth";
 import ContentCard from "../../../../components/ContentCard";
 import { Input } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
+import { addUserToCommunityWithValidation, createPost } from "../../../../lib/supabaseService";
 
 const CommunityDetails = () => {
   const { communityId } = useLocalSearchParams();
   const [communities, setCommunity] = useState([]);
-  const { community, loading, error } = useAuth();
+  const { community, loading, error, id } = useAuth();
   const [image, setImage] = useState(null);
+
+  const joinCommunity = async (userId, commnityId) => {
+    const result = await addUserToCommunityWithValidation(userId, commnityId);
+    console.log(result);
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -64,7 +70,6 @@ const CommunityDetails = () => {
     }
   };
 
-  console.log(communities);
   useEffect(() => {
     const filterForTutor = async () => {
       try {
@@ -120,6 +125,7 @@ const CommunityDetails = () => {
                     style={{
                       width: wp(45),
                     }}
+                    onPress={() => joinCommunity(id, item.id)}
                     className="mt-[16px] bg-[#F70] py-[16px] rounded-[8px] items-center justify-center"
                   >
                     <Text className="text-[16px] text-white  font-bold leading-normal">

@@ -95,7 +95,8 @@ export function Provider(props) {
         session,
         loading,
         community,
-        error
+        error,
+        id
       }}
     >
       {props.children}
