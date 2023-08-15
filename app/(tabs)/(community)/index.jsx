@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import {
   ArrowLeftCircleIcon,
   ArrowLeftIcon,
+  ChevronLeftIcon,
 } from "react-native-heroicons/solid";
 import {
   widthPercentageToDP as wp,
@@ -61,13 +62,13 @@ const index = () => {
         <ActivityIndicator color="#f70" size="large" />
       ) : (
         <ScrollView>
-          <View className="mt-[16px] mx-[24px]">
-            <View className="flex-row items-center space-x-[12px]">
-              <ArrowLeftIcon size={25} color="#fff" />
+          <View  className="mt-[16px] mx-[24px]">
+            <Pressable onPress={() => router.back()} className="flex-row items-center space-x-[12px]">
+              <ChevronLeftIcon size={25} color="#fff" />
               <Text className="text-[#fff] text-[20px] font-normal">
                 Community
               </Text>
-            </View>
+            </Pressable>
             <TextInput
               placeholder="Search"
               style={{

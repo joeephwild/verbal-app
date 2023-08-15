@@ -198,3 +198,62 @@ export const post = [
     author_image: "alexandre_profile_image.jpg",
   },
 ];
+
+export const Podcast = [
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6919954/pexels-photo-6919954.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6919954/pexels-photo-6919954.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+  {
+    name: "Awesome Tech Talks",
+    author: "Tech Enthusiast Productions",
+    audio_file: "https://example.com/awesome_tech_talks_episode1.mp3",
+    image:
+      "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  },
+];

@@ -63,7 +63,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(profile)"
+        name="(podcast)"
         options={{
           tabBarIcon: ({ color, focused, size }) => (
             <MicrophoneIcon color={color} size={size} />

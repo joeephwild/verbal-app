@@ -3,17 +3,18 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ChevronLeftIcon } from "react-native-heroicons/solid";
 import { Input, CheckBox } from "react-native-elements";
+import { router } from "expo-router";
 
 const uploadPodcast = () => {
   return (
     <SafeAreaView>
       <View className="mt-[16px] mx-[24px]">
-        <View className="flex-row items-center space-x-4 ">
+        <Pressable onPress={() => router.back()} className="flex-row items-center space-x-4 ">
           <ChevronLeftIcon color="#fff" size={25} />
           <Text className="text-[20px] font-semibold text-[#fff] leading-normal">
             Upload Podcast
           </Text>
-        </View>
+        </Pressable>
         <View className="space-y-[6px] mt-[28px]">
           <View className="space-y-[8px] items-start">
             <Text className="text-[16px] text-start font-semibold text-[#fff]">

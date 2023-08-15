@@ -8,7 +8,7 @@ export default () => {
       screenOptions={{
         headerShown: false,
         contentStyle: {
-          backgroundColor: "#000000",
+          backgroundColor: "#010F15",
         },
       }}
     />

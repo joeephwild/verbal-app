@@ -14,52 +14,54 @@ import {
   ChevronLeftIcon,
   PaperAirplaneIcon,
 } from "react-native-heroicons/solid";
-// import { Navigator, useNavigation } from 'expo-router's
-// import { useEffect } from "react";
-// import mindDb from "../../../src/lib/mindDb";
+import { Pressable } from "react-native";
+import { router } from "expo-router";
+import mindDb from "../../../lib/mindDb";
+import { useAuth } from "../../../context/auth";
 
 const Ai = () => {
-  // const navigate = useNavigation();
-  // const [text, setText] = React.useState("");
-  // const [user, setUser] = React.useState("");
-  // const [loading, setLoading] = React.useState(false);
-  // const [response, setResponse] = React.useState("");
+  const { session } = useAuth();
+  const [text, setText] = React.useState("");
+  const [user, setUser] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
+  const [response, setResponse] = React.useState("");
 
-  // // useEffect(() => {
-  // //   if (session) {
-  // //     setUser(session?.user?.email);
-  // //   }
-  // // }, [session]);
+  useEffect(() => {
+    if (session) {
+      setUser(session?.user?.email);
+    }
+  }, [session]);
 
-  // // const queryAi = async () => {
-  // //   try {
-  // //     //   setLoading(true);
-  // //     if (!session?.user) {
-  // //       throw new Error("No user on the session!");
-  // //     }
+  const queryAi = async () => {
+    try {
+      //   setLoading(true);
+      // if (!session?.user) {
+      //   throw new Error("No user on the session!");
+      // }
 
-  // //     const response = await mindDb(user, text);
-  // //     if (response) {
-  // //       console.log(response);
-  // //       setResponse(response);
-  // //     }
-  // //   } catch (error) {
-  // //     if (error instanceof Error) {
-  // //       Alert.alert(error.message);
-  // //     }
-  // //   }
-  // // };
+      const response = await mindDb("joseph", text);
+      if (response) {
+        console.log(response);
+        setResponse(response);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <View style={styles.header}>
-        <ChevronLeftIcon
-          onPress={() => navigate.goBack()}
-          size={25}
-          color="white"
-        />
-        <Text style={styles.headerText}>Learn with Ai</Text>
-      </View>
+      <Pressable
+        onPress={() => router.back()}
+        className="flex-row items-center space-x-[12px]"
+      >
+        <ChevronLeftIcon size={25} color="#fff" />
+        <Text className="text-[#fff] text-[20px] font-normal">
+          Learn with Ai
+        </Text>
+      </Pressable>
 
       <View style={styles.chatContainer}>
         {/* Your chat messages can go here */}

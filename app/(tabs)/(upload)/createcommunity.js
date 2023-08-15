@@ -1,23 +1,48 @@
 import { View, Text, Pressable } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ChevronLeftIcon } from "react-native-heroicons/solid";
+import { ChevronLeftIcon, PhotoIcon } from "react-native-heroicons/solid";
 import { Input } from "react-native-elements";
 import { createCommunity } from "../../../lib/supabaseService";
 import { router } from "expo-router";
+import * as ImagePicker from "expo-image-picker";
 
 const CreateCommunity = () => {
   const [communityName, setCommunityName] = useState("");
   const [communityDesc, setCommunityDesc] = useState("");
+  const [image, setImage] = useState("");
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 2,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
   return (
     <SafeAreaView>
       <View className="mt-[16px] mx-[24px]">
-        <View className="flex-row items-center space-x-4 ">
-          <ChevronLeftIcon onPress={() => router.back()} color="#fff" size={25} />
+        <Pressable
+          onPress={() => router.back()}
+          className="flex-row items-center space-x-4 "
+        >
+          <ChevronLeftIcon
+            onPress={() => router.back()}
+            color="#fff"
+            size={25}
+          />
           <Text className="text-[20px] font-semibold text-[#fff] leading-normal">
             Create a community
           </Text>
-        </View>
+        </Pressable>
         <View className="space-y-[6px] mt-[28px]">
           <View className="space-y-[8px] items-start">
             <Text className="text-[16px] text-start font-semibold text-[#fff]">
@@ -43,18 +68,20 @@ const CreateCommunity = () => {
               numberOfLines={20}
             />
           </View>
-          <View className="space-y-[8px] items-start">
+          <Pressable
+            onPress={pickImage}
+            className="bg-[#F70] w-full py-[16px] mt-[158px] rounded-[8px] items-center justify-center"
+          >
+            <PhotoIcon size={25} color="#fff" />
             <Text className="text-[16px] text-start font-semibold text-[#fff]">
-              Resources
+              Upload A community Image
             </Text>
-            <Input
-              placeholder=""
-              className="bg-[#fff] w-[338px] h-[48px] rounded-[5px]"
-            />
-          </View>
+          </Pressable>
         </View>
         <Pressable
-          onPress={() => createCommunity({ communityName, communityDesc })}
+          onPress={() =>
+            createCommunity({ communityName, communityDesc, image })
+          }
           className="bg-[#F70] w-full py-[16px] mt-[158px] rounded-[8px] items-center justify-center"
         >
           <Text className="text-[16px] text-white font-bold leading-normal">

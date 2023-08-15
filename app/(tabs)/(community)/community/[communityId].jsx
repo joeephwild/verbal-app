@@ -25,7 +25,10 @@ import { useAuth } from "../../../../context/auth";
 import ContentCard from "../../../../components/ContentCard";
 import { Input } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
-import { addUserToCommunityWithValidation, createPost } from "../../../../lib/supabaseService";
+import {
+  addUserToCommunityWithValidation,
+  createPost,
+} from "../../../../lib/supabaseService";
 
 const CommunityDetails = () => {
   const { communityId } = useLocalSearchParams();
@@ -88,14 +91,13 @@ const CommunityDetails = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View>
-        <View className="flex-row py-[16px] items-center space-x-[28px]">
-          <ChevronLeftIcon
-            onPress={() => router.back()}
-            size={25}
-            color="#fff"
-          />
+        <Pressable
+          onPress={() => router.back()}
+          className="flex-row items-center space-x-[12px]"
+        >
+          <ChevronLeftIcon size={25} color="#fff" />
           <Text className="text-[#fff] text-[20px] font-normal">Community</Text>
-        </View>
+        </Pressable>
         <ScrollView
           contentContainerStyle={{}}
           refreshControl
