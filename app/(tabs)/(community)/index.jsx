@@ -27,7 +27,7 @@ const CommunityCard = ({ item }) => {
   return (
     <Pressable className="mx-[20px] items-center justify-center">
       <Pressable
-        onPress={() => router.push(`/community/${item.name}`)}
+        onPress={() => router.push(`/community/${item.id}`)}
         style={{
           width: wp(90),
         }}
@@ -62,8 +62,11 @@ const index = () => {
         <ActivityIndicator color="#f70" size="large" />
       ) : (
         <ScrollView>
-          <View  className="mt-[16px] mx-[24px]">
-            <Pressable onPress={() => router.back()} className="flex-row items-center space-x-[12px]">
+          <View className="mt-[16px] mx-[24px]">
+            <Pressable
+              onPress={() => router.back()}
+              className="flex-row items-center space-x-[12px]"
+            >
               <ChevronLeftIcon size={25} color="#fff" />
               <Text className="text-[#fff] text-[20px] font-normal">
                 Community

@@ -1,6 +1,6 @@
-import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
+import { View, Text, Image, TouchableWithoutFeedback, Pressable } from "react-native";
 import React from "react";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import { useState } from "react";
 import { ScrollView } from "react-native";
 
@@ -17,9 +17,9 @@ const Community = ({ item }) => {
         contentContainerStyle={{ gap: 20 }}
       >
         {item.map((commnity) => (
-          <View
+          <Pressable
             key={commnity.id}
-            onPress={() => router.push(`/community/${community.name}`)}
+            onPress={() => router.push(`/community/${commnity.id}`)}
             className=" bg-white rounded-[8px] px-4 py-3.5 w-[349px] min-h-[200px]"
           >
             <View className="space-y-8">
@@ -41,7 +41,7 @@ const Community = ({ item }) => {
               </View>
               <Text>{commnity.description}</Text>
             </View>
-          </View>
+          </Pressable>
         ))}
       </ScrollView>
     </View>

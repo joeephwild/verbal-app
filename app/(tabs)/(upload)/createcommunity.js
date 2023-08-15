@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ChevronLeftIcon, PhotoIcon } from "react-native-heroicons/solid";
 import { Input } from "react-native-elements";
-import { createCommunity } from "../../../lib/supabaseService";
 import { router } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
+import { createCommunity } from "../../../lib/services/communityService";
 
 const CreateCommunity = () => {
   const [communityName, setCommunityName] = useState("");
