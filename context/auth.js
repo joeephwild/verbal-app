@@ -4,10 +4,9 @@ import React, { useEffect, useState } from "react";
 import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
 import { Alert } from "react-native";
 import {
-  getUserDetails,
   getAllCommunities,
   createCommunity,
-} from "../lib/supabaseService";
+} from "../lib/services/communityService";
 
 const AuthContext = React.createContext(null);
 
@@ -96,7 +95,7 @@ export function Provider(props) {
         loading,
         community,
         error,
-        id
+        id,
       }}
     >
       {props.children}
