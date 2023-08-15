@@ -7,6 +7,9 @@ import {
   ScrollView,
   Button,
   ActivityIndicator,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -30,7 +33,12 @@ import {
   checkUserInCommunity,
   leaveACommunity,
 } from "../../../../lib/services/communityService";
-import { handleSubmission, pickImage, pickVideo } from "../../../../lib/services/userService";
+import {
+  handleSubmission,
+  pickImage,
+  pickVideo,
+  pinFileToIPFS,
+} from "../../../../lib/services/userService";
 import {
   createPost,
   getPostsInCommunity,
@@ -41,7 +49,7 @@ const CommunityDetails = () => {
   const { communityId } = useLocalSearchParams();
   const [communities, setCommunity] = useState([]);
   const { community, loading, error, id } = useAuth();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [posts, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isMember, setIsMember] = useState(false); // State to track membership status
@@ -57,40 +65,44 @@ const CommunityDetails = () => {
 
   const handleImageUpload = async () => {
     const result = await pickImage();
-    if (result) {
-      const uri = await handleSubmission(result);
-      console.log(uri);
-    }
+    let url = `https://gateway.pinata.cloud/ipfs/${result}`;
+    setImage(url);
+    console.log(url);
+    alert("image upload sucessful");
   };
 
-  const handleVideoUpload = async () => {
-    const result = await pickVideo();
+  const handleVideoUpload = () => {
+    const result = pickVideo();
     setImage(result);
   };
 
   const handleLeave = async () => {
     leaveACommunity(id, communityId);
-
-    alert("Left sucessfully");
     setIsMember(false);
+    setModalVisible(false);
+  };
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(true);
   };
 
   const handleJoin = async () => {
-    addUserToCommunityWithValidation(id, communityId);
-
-    alert("Joined sucessfully");
+    await addUserToCommunityWithValidation(id, communityId);
     setIsMember(true);
   };
 
-  const handlCreatePost = () => {
-    createPost(id, communityId, "content", title, image);
+  const handlCreatePost = async () => {
+    alert("yeah");
+    await createPost(id, communityId, "content", title, image);
+    setTitle("");
     alert("Post Created successfully");
   };
 
   useEffect(() => {
     const filterForCommunity = async () => {
-      setIsLoading(true);
       try {
+        setIsLoading(true);
         const comunityDetails = community?.filter(
           (item) => item.id === communityId
         );
@@ -103,7 +115,7 @@ const CommunityDetails = () => {
     const getPost = () => {
       const result = getPostsInCommunity(communityId);
       setPost(result);
-      console.log(post);
+      console.log(result);
     };
     getPost();
     filterForCommunity();
@@ -113,7 +125,7 @@ const CommunityDetails = () => {
       <View>
         <Pressable
           onPress={() => router.back()}
-          className="flex-row items-center space-x-[12px]"
+          className="flex-row items-center py-6 space-x-[12px]"
         >
           <ChevronLeftIcon size={25} color="#fff" />
           <Text className="text-[#fff] text-[20px] font-normal">Community</Text>
@@ -140,19 +152,22 @@ const CommunityDetails = () => {
                       }}
                       className="object-cover bg-white"
                     />
-                    <Text className="text-3xl font-bold text-[#fff]">
-                      {item.name}
-                    </Text>
-                    <Text className="text-[16px] font-semibold text-[#ccc]">
-                      8.7k Members
-                    </Text>
-                    <View className="flex-row space-x-[6px] items-center mx-[24px]">
+                    <View className="items-start ml-9 mt-4">
+                      <Text className="text-3xl text-start font-bold text-[#fff]">
+                        {item.name}
+                      </Text>
+                      <Text className="text-[16px] font-semibold text-[#ccc]">
+                        8.7k Members
+                      </Text>
+                    </View>
+
+                    <View className="flex-row space-x-[6px] items-center mx-[22px]">
                       {isMember ? (
                         <Pressable
                           style={{
                             width: wp(45),
                           }}
-                          onPress={handleLeave}
+                          onPress={toggleModal}
                           className="mt-[16px] bg-[#F70] py-[16px] rounded-[8px] items-center justify-center"
                         >
                           <Text className="text-[16px] text-white font-bold leading-normal">
@@ -202,7 +217,7 @@ const CommunityDetails = () => {
                           onChangeText={(text) => setTitle(text)}
                           placeholder="Whats on your Mind..."
                           multiline
-                          className="bg-[#ECE8E8] h-[68px] text-[12px] mr-9 border-none outline-noe px-4 py-2.5"
+                          className="bg-transparent h-[68px] text-[16px] mr-9 border-none outline-noe px-4 py-2.5"
                         />
                       </View>
                     </View>
@@ -218,6 +233,7 @@ const CommunityDetails = () => {
                         style={{
                           width: wp(35),
                         }}
+                        disabled={!image && !title}
                         onPress={handlCreatePost}
                         className="bg-[#F70] px-[24px] py-[9px] mb-2 rounded-[8px] items-center justify-center"
                       >
@@ -233,9 +249,9 @@ const CommunityDetails = () => {
                 return (
                   <View
                     style={{
-                      marginBottom: 8,
+                      // marginBottom: 8,
                       borderBottomColor: "#cccc",
-                      marginTop: 8,
+                      marginTop: 16,
                     }}
                   >
                     {/* ContentCard is used to display the post details */}
@@ -247,8 +263,93 @@ const CommunityDetails = () => {
           )}
         </ScrollView>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View className="flex-1 items-center justify-center bg-black/60">
+          <View className="w-[342px] space-y-[8px] h-[200px] bg-[#13161B] p-[24px]">
+            <View className="">
+              <Text className="text-[#fff] text-[20px] font-semibold">
+                Leave Group
+              </Text>
+            </View>
+            <Text className="text-[#C3D0E580] font-nromal tet-[14px]">
+              Others will continue after you leave. You can join the session
+              again.
+            </Text>
+            <View className="flex-row justify-center space-x-[16px] pt-[36px]">
+              <Pressable
+                className="border border-[#6B7D99] min-w-[136px] py-[16px] mb-2 rounded-[9px] items-center justify-center"
+                onPress={() => setModalVisible(false)}
+              >
+                <Text className="text-[16px] text-white  font-bold leading-normal">
+                  Don’t Leave
+                </Text>
+              </Pressable>
+              <Pressable
+                className="bg-[#F70] px-[29px] min-w-[136px] mb-2 rounded-[9px] items-center justify-center"
+                onPress={handleLeave}
+              >
+                <Text className="text-[16px] text-white  font-bold leading-normal">
+                  Leave
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+});
 
 export default CommunityDetails;

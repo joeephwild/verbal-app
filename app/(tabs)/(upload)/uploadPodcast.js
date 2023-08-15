@@ -1,21 +1,41 @@
-import { View, Text, Pressable } from "react-native";
-import React from "react";
+import { View, Text, Pressable, ScrollView } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ChevronLeftIcon } from "react-native-heroicons/solid";
+import { ChevronLeftIcon, PhotoIcon } from "react-native-heroicons/solid";
 import { Input, CheckBox } from "react-native-elements";
 import { router } from "expo-router";
+import { pickImage } from "../../../lib/services/userService";
 
 const uploadPodcast = () => {
+  const [image, setImage] = useState("");
+
+  const handleImageUpload = async () => {
+    const result = await pickImage();
+    setImage(result);
+    console.log(result);
+  };
   return (
     <SafeAreaView>
-      <View className="mt-[16px] mx-[24px]">
-        <Pressable onPress={() => router.back()} className="flex-row items-center space-x-4 ">
+      <ScrollView className="mt-[6px] mx-[24px]">
+        <Pressable
+          onPress={() => router.back()}
+          className="flex-row items-center space-x-4 "
+        >
           <ChevronLeftIcon color="#fff" size={25} />
           <Text className="text-[20px] font-semibold text-[#fff] leading-normal">
             Upload Podcast
           </Text>
         </Pressable>
         <View className="space-y-[6px] mt-[28px]">
+          <Pressable
+            onPress={handleImageUpload}
+            className="border border-[#F70] w-full h-[20%] py-[16px] rounded-[8px] items-center justify-center"
+          >
+            <PhotoIcon size={25} color="#fff" />
+            <Text className="text-[16px] text-start font-semibold text-[#fff]">
+              Upload A Image
+            </Text>
+          </Pressable>
           <View className="space-y-[8px] items-start">
             <Text className="text-[16px] text-start font-semibold text-[#fff]">
               Podcast Title
@@ -25,7 +45,7 @@ const uploadPodcast = () => {
               className="bg-[#fff] w-[338px] h-[48px] rounded-[5px]"
             />
           </View>
-          <View className="space-y-[8px] items-start">
+          {/* <View className="space-y-[8px] items-start">
             <Text className="text-[16px] text-start font-semibold text-[#fff]">
               Description
             </Text>
@@ -33,7 +53,7 @@ const uploadPodcast = () => {
               placeholder=""
               className="bg-[#fff] w-[338px] h-[48px] rounded-[5px]"
             />
-          </View>
+          </View> */}
           <View className="space-y-[8px] items-start">
             <Text className="text-[16px] text-start font-semibold text-[#fff]">
               Add Thumbnail
@@ -43,9 +63,6 @@ const uploadPodcast = () => {
               errorMessage=""
               className="bg-[#fff] w-[338px] h-[48px] rounded-[5px]"
             />
-            {/* <Text className="text-[12px] text-center font-semibold text-[#AAAAAAAA]">
-              Supported formates: JPEG, PNG, AI, PPT
-            </Text> */}
           </View>
           <View className="space-y-[8px] items-start">
             <Text className="text-[16px] text-start font-semibold text-[#fff]">
@@ -85,7 +102,7 @@ const uploadPodcast = () => {
             <Text className="text-[#fff]">Conditions</Text>
           </Text>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

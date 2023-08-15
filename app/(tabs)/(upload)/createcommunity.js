@@ -6,26 +6,17 @@ import { Input } from "react-native-elements";
 import { router } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import { createCommunity } from "../../../lib/services/communityService";
+import { pickImage } from "../../../lib/services/userService";
 
 const CreateCommunity = () => {
   const [communityName, setCommunityName] = useState("");
   const [communityDesc, setCommunityDesc] = useState("");
   const [image, setImage] = useState("");
 
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 2,
-    });
-
+  const handleImageUpload = async () => {
+    const result = await pickImage();
+    setImage(result);
     console.log(result);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
   };
   return (
     <SafeAreaView>
@@ -69,8 +60,8 @@ const CreateCommunity = () => {
             />
           </View>
           <Pressable
-            onPress={pickImage}
-            className="bg-[#F70] w-full py-[16px] mt-[158px] rounded-[8px] items-center justify-center"
+            onPress={handleImageUpload}
+            className="border border-[#F70] w-full h-[40%] py-[16px] rounded-[8px] items-center justify-center"
           >
             <PhotoIcon size={25} color="#fff" />
             <Text className="text-[16px] text-start font-semibold text-[#fff]">
@@ -82,10 +73,10 @@ const CreateCommunity = () => {
           onPress={() =>
             createCommunity({ communityName, communityDesc, image })
           }
-          className="bg-[#F70] w-full py-[16px] mt-[158px] rounded-[8px] items-center justify-center"
+          className="bg-[#F70] w-full py-[16px] mt-[58px] rounded-[8px] items-center justify-center"
         >
           <Text className="text-[16px] text-white font-bold leading-normal">
-            Get Started
+            Create A Community
           </Text>
         </Pressable>
       </View>

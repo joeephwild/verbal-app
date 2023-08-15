@@ -1,11 +1,8 @@
 import { supabase } from "../lib/supabase";
-import { router, useNavigation, useSegments } from "expo-router";
+import {  useNavigation, useSegments } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
-import { Alert } from "react-native";
 import {
   getAllCommunities,
-  createCommunity,
 } from "../lib/services/communityService";
 
 const AuthContext = React.createContext(null);

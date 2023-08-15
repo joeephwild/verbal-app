@@ -28,13 +28,10 @@ const styles = {
   cardContainer: {
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
     padding: 6,
-    marginBottom: 6,
     backgroundColor: "#fff",
-    width: 402,
-    maxHeight: 350,
-    marginorizontal: 24
+    width: "100%",
+    maxHeight: 450,
   },
   header: {
     flexDirection: "row",
