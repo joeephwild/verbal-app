@@ -67,7 +67,6 @@ const CommunityDetails = () => {
     const result = await pickImage();
     let url = `https://gateway.pinata.cloud/ipfs/${result}`;
     setImage(url);
-    console.log(url);
     alert("image upload sucessful");
   };
 
@@ -115,7 +114,6 @@ const CommunityDetails = () => {
     const getPost = () => {
       const result = getPostsInCommunity(communityId);
       setPost(result);
-      console.log(result);
     };
     getPost();
     filterForCommunity();

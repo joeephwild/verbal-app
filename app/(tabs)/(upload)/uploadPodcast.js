@@ -12,7 +12,7 @@ const uploadPodcast = () => {
   const handleImageUpload = async () => {
     const result = await pickImage();
     setImage(result);
-    console.log(result);
+    // console.log(result);
   };
   return (
     <SafeAreaView>
