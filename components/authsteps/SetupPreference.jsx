@@ -27,6 +27,54 @@ const SetupPreference = ({ nextStep }) => {
     { key: "3", value: "21-26" },
     { key: "4", value: "26-above" },
   ];
+
+  const availablityTimes = [
+    { key: "1", value: "2:00-2:30" },
+    { key: "2", value: "3:00-3:30" },
+    { key: "3", value: "4:00-4:30" },
+    { key: "4", value: "5:00-5:30" },
+    { key: "5", value: "6:00-6:30" },
+  ];
+
+  const accountType = [
+    { key: "1", value: "Learner" },
+    { key: "2", value: "Mentor" },
+  ];
+
+  const language = [
+    {
+      key: "1",
+      title: "English",
+      imageSource: require("./lib/local-assets/america.png"),
+      language: "en",
+    },
+    {
+      key: "2",
+      title: "Italian",
+      imageSource: require("./lib/local-assets/italy.png"),
+    },
+    {
+      key: "3",
+      title: "German",
+      imageSource: require("./lib/local-assets/germany.png"),
+    },
+    {
+      key: "4",
+      title: "Turkish",
+      imageSource: require("./lib/local-assets/turkey.png"),
+      language: "tr-TR",
+    },
+    {
+      key: "5",
+      title: "Swedish",
+      imageSource: require("./lib/local-assets/sweden.png"),
+    },
+    {
+      key: "6",
+      title: "Japanese",
+      imageSource: require("./lib/local-assets/japan.png"),
+    },
+  ];
   const { data: name, error } = useEnsName({
     address: address ? address : account,
     chainId: 5,
@@ -96,27 +144,7 @@ const SetupPreference = ({ nextStep }) => {
             </Text>
             <MultipleSelectList
               setSelected={(val) => setSelectedLanguage(val)}
-              data={ageLevels}
-              save="value"
-              dropdownItemStyles={{
-                borderColor: "#AAAAAAAA",
-                backgroundColor: "#000",
-                marginTop: 8,
-              }}
-              search={false}
-              arrowicon={<ChevronDownIcon size={25} color="#fff" />}
-              dropdownTextStyles={{ color: "#fff" }}
-              inputStyles={{ color: "#fff" }}
-              placeholder="11 - 15"
-            />
-          </View>
-          <View className="space-y-[8px]">
-            <Text className="text-[16px] font-bold text-[#ffff] leading-normal">
-              Availability
-            </Text>
-            <MultipleSelectList
-              setSelected={(val) => setSelectedAvailability(val)}
-              data={ageLevels}
+              data={language}
               save="value"
               dropdownItemStyles={{
                 borderColor: "#AAAAAAAA",
@@ -135,8 +163,8 @@ const SetupPreference = ({ nextStep }) => {
               Account Type
             </Text>
             <SelectList
-              setSelected={(val) => setAge(val)}
-              data={ageLevels}
+              setSelected={(val) => setSelectedAccountType(val)}
+              data={accountType}
               save="value"
               dropdownItemStyles={{
                 borderColor: "#AAAAAAAA",
@@ -150,6 +178,28 @@ const SetupPreference = ({ nextStep }) => {
               placeholder="11 - 15"
             />
           </View>
+          {selectedAccountType === "Mentor" && (
+            <View className="space-y-[8px]">
+              <Text className="text-[16px] font-bold text-[#ffff] leading-normal">
+                Availability
+              </Text>
+              <MultipleSelectList
+                setSelected={(val) => setSelectedAvailability(val)}
+                data={availablityTimes}
+                save="value"
+                dropdownItemStyles={{
+                  borderColor: "#AAAAAAAA",
+                  backgroundColor: "#000",
+                  marginTop: 8,
+                }}
+                search={false}
+                arrowicon={<ChevronDownIcon size={25} color="#fff" />}
+                dropdownTextStyles={{ color: "#fff" }}
+                inputStyles={{ color: "#fff" }}
+                placeholder="11 - 15"
+              />
+            </View>
+          )}
           <View className="space-y-[8px]">
             <Text className="text-[16px] font-bold text-[#ffff] leading-normal">
               Confirm Password
@@ -163,7 +213,7 @@ const SetupPreference = ({ nextStep }) => {
         </View>
         <View className="items-center my-5 justify-center">
           <Pressable
-            onPress={nextStep}
+            onPress={handl}
             className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
           >
             <Text className="text-[16px] text-center text-white  font-bold leading-normal">
