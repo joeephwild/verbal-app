@@ -43,7 +43,7 @@ import {
   createPost,
   getPostsInCommunity,
 } from "../../../../lib/services/contentService";
-import { sendFileToIPFS } from "../../../../utils/pinata";
+// import { sendFileToIPFS } from "../../../../utils/pinata";
 
 const CommunityDetails = () => {
   const { communityId } = useLocalSearchParams();
@@ -54,7 +54,6 @@ const CommunityDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isMember, setIsMember] = useState(false); // State to track membership status
   const [content, setTitle] = useState("");
-  console.log(posts)
 
   useEffect(() => {
     const fetchData = async () => {

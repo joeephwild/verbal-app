@@ -16,7 +16,6 @@ const CreateCommunity = () => {
   const handleImageUpload = async () => {
     const result = await pickImage();
     setImage(result);
-    // console.log(result);
   };
   return (
     <SafeAreaView>

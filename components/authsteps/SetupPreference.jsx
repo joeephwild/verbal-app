@@ -35,7 +35,6 @@ const SetupPreference = ({ nextStep }) => {
   const { data: avatar } = useEnsAvatar({
     name: name,
   });
-  console.log(avatar);
 
   const handleProfile = async () => {
     const userObj = {

@@ -28,7 +28,6 @@ const TutorDetails = () => {
     const filterForTutor = async () => {
       try {
         const tutorAccount = Mentors?.filter((item) => item.name === id);
-        // console.log(tutorAccount);
         setTutor(tutorAccount);
       } catch (error) {
         console.log(error);

@@ -19,7 +19,6 @@ export const useRally = () => {
   const createCryptoAccount = async () => {
     const newAccount = await createAccount();
     setAccount(newAccount);
-    // console.log(newAccount);
   };
 
   const getUserAccount = async () => {
