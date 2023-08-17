@@ -37,11 +37,16 @@ const Home = () => {
                   source={{
                     uri: avatar,
                   }}
-                  className="w-[50px] h-[50px] rounded-full"
+                  className="w-[50px] bg-gray-500/75 h-[50px] rounded-full"
                 />
               </Pressable>
 
-              <Text className="text-[24px] font-bold leading-normal text-[#fff]">
+              <Text
+                style={{
+                  fontFamily: "SpaceMono",
+                }}
+                className="text-[24px] font-bold leading-normal text-[#fff]"
+              >
                 Hi
                 <Text className="text-[#000]"> {name}</Text>
               </Text>

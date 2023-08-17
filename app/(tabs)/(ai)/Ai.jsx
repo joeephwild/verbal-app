@@ -43,22 +43,32 @@ const Ai = () => {
   const [loading, setLoading] = React.useState(false);
   const [response, setResponse] = React.useState("");
   const [chatHistory, setChatHistory] = useState(Messages);
-
+  console.log("this chat history", chatHistory);
   useEffect(() => {
     if (session) {
       setUser(session?.user?.email);
     }
   }, [session]);
 
-  useEffect(() => {
-    const fetchChat = () => {
-      const chat = getUserChatHistory(id);
-      console.log(chat);
-      const bot = getChatBotHistory(id);
-      console.log(bot);
-    };
-    fetchChat()
-  }, []);
+  // useEffect(() => {
+  //   const fetchChat = async () => {
+  //     const chat = await getUserChatHistory(id);
+
+  //     const userChat = {
+  //       role: "user",
+  //       message: chat[0],
+  //     };
+  //     setChatHistory([...chatHistory, userChat]);
+
+  //     const bot = await getChatBotHistory(id);
+  //     const botChat = {
+  //       role: "ai",
+  //       message: bot[0],
+  //     };
+  //     setChatHistory([...chatHistory, botChat]);
+  //   };
+  //   fetchChat();
+  // }, []);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
@@ -71,14 +81,17 @@ const Ai = () => {
           className="flex-row py-4 items-center space-x-[12px]"
         >
           <ChevronLeftIcon size={25} color="#fff" />
-          <Text className="text-[#fff] text-[20px] font-normal">
+          <Text
+            style={{
+              fontFamily: "SpaceMono",
+            }}
+            className="text-[#fff] text-[20px] font-normal"
+          >
             Learn with Ai
           </Text>
         </Pressable>
 
         <View style={{ flex: 1 }}>
-          {/* Your chat messages can go here */}
-
           {chatHistory.length > 0 ? (
             <View className="mt-[0px] px-[4px] flex-1">
               <ScrollView
@@ -97,7 +110,13 @@ const Ai = () => {
                           }}
                           className="bg-[#fff] p-[12px] gap-[8px] rounded-[12px]"
                         >
-                          <Text>{item.message}</Text>
+                          <Text
+                            style={{
+                              fontFamily: "SpaceMono",
+                            }}
+                          >
+                            {item.message}
+                          </Text>
                           <View className="border-t-2 p-1.5 flex-row items-center justify-between">
                             <View className="flex-row items-center">
                               <HandThumbUpIcon color="#000" size={24} />
@@ -105,7 +124,13 @@ const Ai = () => {
                             </View>
                             <View className="flex-row items-center">
                               <ClipboardDocumentIcon color="#000" size={24} />
-                              <Text>Copy</Text>
+                              <Text
+                                style={{
+                                  fontFamily: "SpaceMono",
+                                }}
+                              >
+                                Copy
+                              </Text>
                             </View>
                           </View>
                         </View>
@@ -120,7 +145,13 @@ const Ai = () => {
                           }}
                           className="bg-[#fff] p-[12px] gap-[8px] rounded-[12px]"
                         >
-                          <Text>{item.message}</Text>
+                          <Text
+                            style={{
+                              fontFamily: "SpaceMono",
+                            }}
+                          >
+                            {item.message}
+                          </Text>
                         </View>
                       </View>
                     );
@@ -135,7 +166,12 @@ const Ai = () => {
                   source={require("../../../assets/images/Logo.png")}
                   className="w-[32px] h-[30.659px] object-contain"
                 />
-                <Text className="text-[34px] pt-[16px] text-[#ffffff] font-normal leading-[41px]] text-center">
+                <Text
+                  style={{
+                    fontFamily: "SpaceMono",
+                  }}
+                  className="text-[34px] pt-[16px] text-[#ffffff] font-normal leading-[41px]] text-center"
+                >
                   Verbal AI
                 </Text>
               </View>
@@ -158,7 +194,7 @@ const Ai = () => {
           }}
           className="flex-row h-[48px] items-center rounded-[8px] px-[25px] mt-9 bg-white"
         >
-          <Input
+          <TextInput
             value={text}
             onChangeText={(message) => setText(message)}
             className="h-[40px] bg-transparent w-[90%] items-center border-none outline-none focus:outline-none"

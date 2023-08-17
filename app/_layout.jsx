@@ -13,6 +13,7 @@ import { WagmiConfig, configureChains, createConfig, mainnet } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { avalanche, bsc, lineaTestnet, linea } from "wagmi/chains";
 import { PortalProvider } from "@gorhom/portal";
+import { CustomText } from '../components/StyledText'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet, avalanche, bsc, lineaTestnet, linea],
@@ -40,7 +41,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require("../assets/fonts/Inter-VariableFont_slnt.ttf"),
+    InterBold: require("../assets/fonts/Inter-Black.ttf"),
     ...FontAwesome.font,
   });
 
@@ -88,10 +90,11 @@ function RootLayoutNav() {
               headerShown: false,
               contentStyle: {
                 backgroundColor: "#000000",
+                
               },
             }}
           >
-            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(auth)"  />
             <Stack.Screen name="(tabs)" />
             <Stack.Screen
               name="PodcastPlayer"

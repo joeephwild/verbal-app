@@ -23,10 +23,20 @@ const index = () => {
         />
 
         <View className="items-start">
-          <Text className="text-[34px] mt-3 text-[#ffffff] font-bold leading-normal">
+          <Text
+            style={{
+              fontFamily: "SpaceMono",
+            }}
+            className="text-[34px] mt-3 text-[#ffffff] font-bold leading-normal"
+          >
             Welcome to Verbal
           </Text>
-          <Text className="text-[16px] mt-3 text-[#CCCCCC] font-semibold leading-normal">
+          <Text
+            style={{
+              fontFamily: "SpaceMono",
+            }}
+            className="text-[16px] mt-3 text-[#CCCCCC] font-semibold leading-normal"
+          >
             Experience revolutionary learning with blockchain technology and
             AI-tailored lessons, connecting with a vibrant community.
           </Text>

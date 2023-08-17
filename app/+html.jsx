@@ -4,7 +4,7 @@ import { ScrollViewStyleReset } from 'expo-router/html';
 // web page during static rendering.
 // The contents of this function only run in Node.js environments and
 // do not have access to the DOM or browser APIs.
-export default function Root({ children }: { children: React.ReactNode }) {
+export default function Root({ children }) {
   return (
     <html lang="en">
       <head>
@@ -30,7 +30,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
         <style dangerouslySetInnerHTML={{ __html: responsiveBackground }} />
         {/* Add any additional <head> elements that you want globally available on web... */}
       </head>
-      <body>{children}</body>
+      <body className='font-Inter-VariableFont_slnt'>{children}</body>
     </html>
   );
 }

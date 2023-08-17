@@ -7,28 +7,49 @@ import {
   SelectList,
 } from "react-native-dropdown-select-list";
 import { Input } from "react-native-elements";
-import { useEnsName } from "wagmi";
+import { useEnsName, useEnsAvatar } from "wagmi";
+import { updateUserProfile } from "../../lib/services/userService";
+import { useAuth } from "../../context/auth";
+import { useWalletConnectModal } from "@walletconnect/modal-react-native";
 
 const SetupPreference = ({ nextStep }) => {
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedAvailability, setSelectedAvailability] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [selectedAccountType, setSelectedAccountType] = useState("");
+  const [selectedLanguageLevel, setSelectedLanguageLevel] = useState("");
+  const { open, isConnected, address } = useWalletConnectModal();
+  const { id, account } = useAuth();
   const ageLevels = [
     { key: "1", value: "11-15" },
     { key: "2", value: "16-20" },
     { key: "3", value: "21-26" },
     { key: "4", value: "26-above" },
   ];
-  const {
-    data: name,
-    isError,
-    isLoading,
-  } = useEnsName({
-    address: "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e",
+  const { data: name, error } = useEnsName({
+    address: address ? address : account,
     chainId: 5,
   });
+
+  const { data: avatar } = useEnsAvatar({
+    name: name,
+  });
+  console.log(avatar);
+
+  const handleProfile = async () => {
+    const userObj = {
+      username: name ? name : username,
+      full_name: fullName,
+      avatar_url: avatar,
+      account_type: selectedAccountType,
+      availability_timestamp: selectedAvailability,
+      languages: selectedLanguage,
+      language_level: selectedLanguageLevel,
+      cover_image: "",
+    };
+    updateUserProfile(id, userObj);
+  };
   return (
     <View className="flex-1 ">
       <StatusBar style="light" />

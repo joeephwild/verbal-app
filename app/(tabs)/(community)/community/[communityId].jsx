@@ -19,7 +19,7 @@ import {
   PhotoIcon,
   VideoCameraIcon,
 } from "react-native-heroicons/solid";
-import { post } from "../../../../utils";
+// import { post } from "../../../../utils";
 import { router, useLocalSearchParams } from "expo-router";
 import {
   widthPercentageToDP as wp,
@@ -49,11 +49,12 @@ const CommunityDetails = () => {
   const { communityId } = useLocalSearchParams();
   const [communities, setCommunity] = useState([]);
   const { community, loading, error, id } = useAuth();
-  const [image, setImage] = useState("");
-  const [posts, setPost] = useState([]);
+  const [image, setImage] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isMember, setIsMember] = useState(false); // State to track membership status
-  const [title, setTitle] = useState("");
+  const [content, setTitle] = useState("");
+  console.log(posts)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,7 +94,7 @@ const CommunityDetails = () => {
 
   const handlCreatePost = async () => {
     alert("yeah");
-    await createPost(id, communityId, "content", title, image);
+    createPost(id, communityId, content, [image]);
     setTitle("");
     alert("Post Created successfully");
   };
@@ -111,9 +112,9 @@ const CommunityDetails = () => {
         console.log(error);
       }
     };
-    const getPost = () => {
-      const result = getPostsInCommunity(communityId);
-      setPost(result);
+    const getPost = async () => {
+      const result = await getPostsInCommunity(communityId);
+      setPosts(result);
     };
     getPost();
     filterForCommunity();
@@ -151,10 +152,20 @@ const CommunityDetails = () => {
                       className="object-cover bg-white"
                     />
                     <View className="items-start ml-9 mt-4">
-                      <Text className="text-3xl text-start font-bold text-[#fff]">
+                      <Text
+                        style={{
+                          fontFamily: "InterBold",
+                        }}
+                        className="text-3xl text-start font-bold text-[#fff]"
+                      >
                         {item.name}
                       </Text>
-                      <Text className="text-[16px] font-semibold text-[#ccc]">
+                      <Text
+                        style={{
+                          fontFamily: "SpaceMono",
+                        }}
+                        className="text-[16px] font-semibold text-[#ccc]"
+                      >
                         8.7k Members
                       </Text>
                     </View>
@@ -168,7 +179,12 @@ const CommunityDetails = () => {
                           onPress={toggleModal}
                           className="mt-[16px] bg-[#F70] py-[16px] rounded-[8px] items-center justify-center"
                         >
-                          <Text className="text-[16px] text-white font-bold leading-normal">
+                          <Text
+                            style={{
+                              fontFamily: "InterBold",
+                            }}
+                            className="text-[16px] text-white font-bold leading-normal"
+                          >
                             Leave Group
                           </Text>
                         </Pressable>
@@ -180,7 +196,12 @@ const CommunityDetails = () => {
                           onPress={handleJoin}
                           className="mt-[16px] bg-[#F70] py-[16px] rounded-[8px] items-center justify-center"
                         >
-                          <Text className="text-[16px] text-white font-bold leading-normal">
+                          <Text
+                            style={{
+                              fontFamily: "InterBold",
+                            }}
+                            className="text-[16px] text-white font-bold leading-normal"
+                          >
                             Join Group
                           </Text>
                         </Pressable>
@@ -191,7 +212,12 @@ const CommunityDetails = () => {
                         }}
                         className="mt-[16px] border-2 border-[#F70] px-[24px]  py-[16px] rounded-[8px] items-center justify-center"
                       >
-                        <Text className="text-[16px] text-white  font-bold leading-normal">
+                        <Text
+                          style={{
+                            fontFamily: "InterBold",
+                          }}
+                          className="text-[16px] text-white  font-bold leading-normal"
+                        >
                           Invite Friends
                         </Text>
                       </Pressable>
@@ -211,7 +237,7 @@ const CommunityDetails = () => {
                           className="w-[50px] h-[50px] border-2 rounded-full"
                         />
                         <Input
-                          value={title}
+                          value={content}
                           onChangeText={(text) => setTitle(text)}
                           placeholder="Whats on your Mind..."
                           multiline
@@ -231,11 +257,11 @@ const CommunityDetails = () => {
                         style={{
                           width: wp(35),
                         }}
-                        disabled={!image && !title}
+                        disabled={!image && !content}
                         onPress={handlCreatePost}
                         className="bg-[#F70] px-[24px] py-[9px] mb-2 rounded-[8px] items-center justify-center"
                       >
-                        <Text className="text-[16px] text-white  font-bold leading-normal">
+                        <Text className="text-[16px] font-[InterBold] text-white  font-bold leading-normal">
                           Submit
                         </Text>
                       </Pressable>
@@ -243,26 +269,28 @@ const CommunityDetails = () => {
                   </View>
                 );
               })}
-              {post.map((item) => {
-                return (
-                  <View
-                    style={{
-                      // marginBottom: 8,
-                      borderBottomColor: "#cccc",
-                      marginTop: 16,
-                    }}
-                  >
-                    {/* ContentCard is used to display the post details */}
-                    <ContentCard content={item} />
-                  </View>
-                );
-              })}
+            </View>
+          )}
+
+          {posts && posts.length > 0 ? (
+            <View className="mb-12 mt-4">
+              {posts?.map((item) => (
+                <View className="">
+                  <ContentCard content={item} />
+                </View>
+              ))}
+            </View>
+          ) : (
+            <View>
+              <Text className="text-[#fff] font-[InterBold] text-center text-[20px]">
+                No post in community
+              </Text>
             </View>
           )}
         </ScrollView>
       </View>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
