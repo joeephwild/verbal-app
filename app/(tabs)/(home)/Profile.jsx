@@ -48,8 +48,6 @@ const Profile = () => {
 
   const handleImageUpload = async () => {
     const result = await pickImage();
-    // setImage(result);
-    // console.log(result);
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>

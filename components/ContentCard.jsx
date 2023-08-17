@@ -43,7 +43,6 @@ const ContentCard = ({ content }) => {
 
     return formattedTime;
   };
-  console.log(content.created_at);
   return (
     <View
       style={{
