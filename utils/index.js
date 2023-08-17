@@ -260,67 +260,71 @@ export const Podcast = [
 
 export const Messages = [
   {
-    "role": "user",
-    "message": "Hello, AI!"
+    role: "user",
+    message: "Hello, AI!",
   },
   {
-    "role": "ai",
-    "message": "Hi there! How can I assist you today?"
+    role: "ai",
+    message: "Hi there! How can I assist you today?",
   },
   {
-    "role": "user",
-    "message": "Can you help me learn French?"
+    role: "user",
+    message: "Can you help me learn French?",
   },
   {
-    "role": "ai",
-    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+    role: "ai",
+    message:
+      "Absolutely! I'd be happy to help you learn French. Let's get started.",
   },
   {
-    "role": "user",
-    "message": "Hello, AI!"
+    role: "user",
+    message: "Hello, AI!",
   },
   {
-    "role": "ai",
-    "message": "Hi there! How can I assist you today?"
+    role: "ai",
+    message: "Hi there! How can I assist you today?",
   },
   {
-    "role": "user",
-    "message": "Can you help me learn French?"
+    role: "user",
+    message: "Can you help me learn French?",
   },
   {
-    "role": "ai",
-    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+    role: "ai",
+    message:
+      "Absolutely! I'd be happy to help you learn French. Let's get started.",
   },
   {
-    "role": "user",
-    "message": "Hello, AI!"
+    role: "user",
+    message: "Hello, AI!",
   },
   {
-    "role": "ai",
-    "message": "Hi there! How can I assist you today?"
+    role: "ai",
+    message: "Hi there! How can I assist you today?",
   },
   {
-    "role": "user",
-    "message": "Can you help me learn French?"
+    role: "user",
+    message: "Can you help me learn French?",
   },
   {
-    "role": "ai",
-    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+    role: "ai",
+    message:
+      "Absolutely! I'd be happy to help you learn French. Let's get started.",
   },
   {
-    "role": "user",
-    "message": "Hello, AI!"
+    role: "user",
+    message: "Hello, AI!",
   },
   {
-    "role": "ai",
-    "message": "Hi there! How can I assist you today?"
+    role: "ai",
+    message: "Hi there! How can I assist you today?",
   },
   {
-    "role": "user",
-    "message": "Can you help me learn French?"
+    role: "user",
+    message: "Can you help me learn French?",
   },
   {
-    "role": "ai",
-    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+    role: "ai",
+    message:
+      "Absolutely! I'd be happy to help you learn French. Let's get started.",
   },
-]
+];

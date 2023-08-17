@@ -33,6 +33,8 @@ import {
   getChatBotHistory,
   getUserChatHistory,
 } from "../../../lib/services/aiChatService";
+
+import { getUserDetails } from "../../../lib/services/userService";
 import { mindDbQueryCall } from "../../../lib/mindDb";
 import { Input } from "react-native-elements";
 
@@ -40,35 +42,63 @@ const Ai = () => {
   const { session, id } = useAuth();
   const [text, setText] = React.useState("");
   const [user, setUser] = React.useState("");
+  const [userprofile, setUserprofile] = useState({ id: "", username: "" });
   const [loading, setLoading] = React.useState(false);
   const [response, setResponse] = React.useState("");
-  const [chatHistory, setChatHistory] = useState(Messages);
-  console.log("this chat history", chatHistory);
+  const [chatHistory, setChatHistory] = useState("");
   useEffect(() => {
     if (session) {
       setUser(session?.user?.email);
     }
   }, [session]);
 
-  // useEffect(() => {
-  //   const fetchChat = async () => {
-  //     const chat = await getUserChatHistory(id);
+  useEffect(() => {
+    const fetchChat = async () => {
+      const userChat = await getUserChatHistory(id);
+      const botChat = await getChatBotHistory(id);
+      const userProfileData = await getUserDetails(id);
 
-  //     const userChat = {
-  //       role: "user",
-  //       message: chat[0],
-  //     };
-  //     setChatHistory([...chatHistory, userChat]);
+      const combinedChat = [...userChat, ...botChat];
 
-  //     const bot = await getChatBotHistory(id);
-  //     const botChat = {
-  //       role: "ai",
-  //       message: bot[0],
-  //     };
-  //     setChatHistory([...chatHistory, botChat]);
-  //   };
-  //   fetchChat();
-  // }, []);
+      // Sort the combined chat messages by their created_at timestamp
+      combinedChat.sort(
+        (a, b) =>
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      );
+
+      const transformedMessages = [];
+
+      for (const message of combinedChat) {
+        if (message.author_name != "mindDb_bot") {
+          transformedMessages.push({
+            role: "user",
+            message: message.message,
+          });
+        } else if (message.author_name === "mindDb_bot") {
+          transformedMessages.push({
+            role: "ai",
+            message: message.message,
+          });
+        }
+      }
+      setChatHistory(transformedMessages);
+
+      // const userChat = {
+      //   role: "user",
+      //   message: chat[0],
+      // };
+      // setChatHistory([...chatHistory, userChat]);
+
+      // const bot = await getChatBotHistory(id);
+      // const botChat = {
+      //   role: "ai",
+      //   message: bot[0],
+      // };
+      // setChatHistory([...chatHistory, botChat]);
+    };
+    fetchChat();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAvoidingView
