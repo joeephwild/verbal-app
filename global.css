@@ -5,3 +5,9 @@
 body {
   @apply text-white;
 }
+
+
+@font-face {
+  font-family: Inter-VariableFont_slnt;
+  src: url("./assets/fonts/Inter-Black.ttf");
+}

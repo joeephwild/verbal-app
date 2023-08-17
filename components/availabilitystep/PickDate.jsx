@@ -19,7 +19,7 @@ const PickDate = ({ handleClick, setSelectedDate, setTime }) => {
       <View className="mt-[24px]">
         <Calendar
           onDayPress={(day) => {
-            console.log("selected day", day);
+            // console.log("selected day", day);
             setSelectedDate(day.dateString);
           }}
           date=""

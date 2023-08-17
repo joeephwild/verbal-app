@@ -4,22 +4,91 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import {
+  HeartIcon,
+  ShareIcon,
+  ChatBubbleBottomCenterIcon,
+} from "react-native-heroicons/solid";
 
 const ContentCard = ({ content }) => {
+  const formatTime = (inputTimestamp) => {
+    // Parse the input timestamp
+    const parsedTimestamp = new Date(inputTimestamp);
+
+    // Calculate time difference in milliseconds
+    const currentTime = new Date();
+    const timeDifferenceMs = currentTime - parsedTimestamp;
+
+    // Convert time difference to human-readable format
+    let formattedTime;
+
+    if (timeDifferenceMs < 60000) {
+      formattedTime = Math.floor(timeDifferenceMs / 1000) + " sec ago";
+    } else if (timeDifferenceMs < 3600000) {
+      formattedTime = Math.floor(timeDifferenceMs / 60000) + " min ago";
+    } else if (timeDifferenceMs < 86400000) {
+      formattedTime = Math.floor(timeDifferenceMs / 3600000) + " hr ago";
+    } else {
+      const options = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        timeZoneName: "short",
+      };
+      formattedTime = parsedTimestamp.toLocaleString("en-US", options);
+    }
+
+    return formattedTime;
+  };
+  console.log(content.created_at);
   return (
-    <View style={styles.cardContainer}>
-      <View style={styles.header}>
+    <View
+      style={{
+        width: wp(100),
+        maxHeight: hp(90),
+      }}
+      className="bg-[#fff] mb-4 p-2"
+    >
+      <View className="flex-row items-center space-x-2">
         <Image
-          source={{ uri: content.author.image }}
-          style={styles.authorImage}
+          source={{
+            uri: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          }}
+          className="w-[40px] bg-gray-400 h-[40px] object-cover rounded-full"
         />
         <View>
-          <Text style={styles.authorName}>{content.author.name}</Text>
-          <Text style={styles.timePosted}>Posted {content.time_posted}</Text>
+          <Text className="text-[16px] font-[InterBold] font-semibold leading-normal">
+            Jane park
+          </Text>
+          <Text className="font-[SpaceMono] text-[14px] font-normal leading-nromal">
+            Posted {formatTime(content.created_at)}
+          </Text>
         </View>
       </View>
-      <Text  style={styles.postContent}>{content.content}</Text>
-      {content.image && <Image source={{ uri: content.image }} style={styles.postImage} />}
+      <Text className="text-[16px] font-normal leading-normal text-[#000] pb-4">
+        {content.content}
+      </Text>
+      <Image source={{ uri: content.media_url[0] }} style={styles.postImage} />
+      <View className="flex-row items-center justify-between px-4 py-2">
+        <View className="flex-row items-center space-x-4">
+          <View className="flex-row items-center space-x-2">
+            <HeartIcon size={19} color="#000" />
+            <Text>80</Text>
+          </View>
+          <View className="flex-row items-center space-x-2">
+            <ShareIcon size={19} color="#000" />
+            <Text>80</Text>
+          </View>
+        </View>
+
+        <View className="flex-row items-center space-x-2">
+          <ChatBubbleBottomCenterIcon color="#000" />
+          <Text>300</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -28,13 +97,11 @@ const styles = {
   cardContainer: {
     borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 8,
     padding: 6,
-    marginBottom: 6,
     backgroundColor: "#fff",
-    width: 402,
-    maxHeight: 350,
-    marginorizontal: 24
+    width: "100%",
+    maxHeight: 450,
+    marginBottom: 9,
   },
   header: {
     flexDirection: "row",
@@ -67,7 +134,7 @@ const styles = {
     fontSize: 14,
     fontstyle: "normal",
     fontWeight: 400,
-    lineheight:" normal",
+    lineheight: " normal",
   },
 };
 

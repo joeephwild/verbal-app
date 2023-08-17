@@ -27,7 +27,7 @@ const CommunityCard = ({ item }) => {
   return (
     <Pressable className="mx-[20px] items-center justify-center">
       <Pressable
-        onPress={() => router.push(`/community/${item.name}`)}
+        onPress={() => router.push(`/community/${item.id}`)}
         style={{
           width: wp(90),
         }}
@@ -41,10 +41,20 @@ const CommunityCard = ({ item }) => {
             className="w-[50px] h-[50px] rounded-full"
           />
           <View>
-            <Text className="text-[16px] font-semibold leading-normal text-[#000]">
+            <Text
+              style={{
+                fontFamily: "InterBold",
+              }}
+              className="text-[16px] font-semibold leading-normal text-[#000]"
+            >
               {item.name}
             </Text>
-            <Text className="text-[14px] font-normal leading-normal text-[#000]">
+            <Text
+              style={{
+                fontFamily: "SpaceMono",
+              }}
+              className="text-[14px] font-normal leading-normal text-[#000]"
+            >
               28k Members
             </Text>
           </View>
@@ -62,10 +72,18 @@ const index = () => {
         <ActivityIndicator color="#f70" size="large" />
       ) : (
         <ScrollView>
-          <View  className="mt-[16px] mx-[24px]">
-            <Pressable onPress={() => router.back()} className="flex-row items-center space-x-[12px]">
+          <View className="mt-[16px] mx-[24px]">
+            <Pressable
+              onPress={() => router.back()}
+              className="flex-row items-center space-x-[12px]"
+            >
               <ChevronLeftIcon size={25} color="#fff" />
-              <Text className="text-[#fff] text-[20px] font-normal">
+              <Text
+                style={{
+                  fontFamily: "SpaceMono",
+                }}
+                className="text-[#fff] text-[20px] font-normal"
+              >
                 Community
               </Text>
             </Pressable>
@@ -77,7 +95,12 @@ const index = () => {
               className="bg-[#fff] mt-[16px] h-[48px] px-[8px] rounded-[8px]"
             />
             <View className="mt-[24px]">
-              <Text className="text-[#fff] font-semibold text-[20px]">
+              <Text
+                style={{
+                  fontFamily: "InterBold",
+                }}
+                className="text-[#fff] mb-3 font-semibold text-[20px]"
+              >
                 Top Community
               </Text>
               {community.map((item) => {

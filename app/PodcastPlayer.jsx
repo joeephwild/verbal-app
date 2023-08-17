@@ -1,12 +1,18 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 
 const PodcastPlayer = () => {
   return (
     <View>
-      <Text>PodcastPlayer</Text>
+      <CustomText
+        style={{
+          fontFamily: "SpaceMono",
+        }}
+      >
+        PodcastPlayer
+      </CustomText>
     </View>
-  )
-}
+  );
+};
 
-export default PodcastPlayer
+export default PodcastPlayer;

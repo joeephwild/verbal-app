@@ -46,7 +46,7 @@ const ConnectWallet = ({ nextStep }) => {
       const newAccount = await createAccount();
       const account = await getAccount();
       await RlyMumbaiNetwork.claimRly();
-      console.log(account);
+      // console.log(account);
       nextStep();
     } catch (error) {
       alert(error);

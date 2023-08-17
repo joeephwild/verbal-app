@@ -1,12 +1,8 @@
 import { supabase } from "../lib/supabase";
 import { router, useNavigation, useSegments } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { RlyMumbaiNetwork, Network, getAccount } from "@rly-network/mobile-sdk";
-import { Alert } from "react-native";
-import {
-  getAllCommunities,
-  createCommunity,
-} from "../lib/services/communityService";
+import { getAllCommunities } from "../lib/services/communityService";
+import { getAccount } from "@rly-network/mobile-sdk";
 
 const AuthContext = React.createContext(null);
 
@@ -29,10 +25,10 @@ function useProtectedRoute(session) {
       !inAuthGroup
     ) {
       // Redirect to the sign-in page.
-      navigate.navigate("(auth)");
+      router.replace("(auth)");
     } else if (session && inAuthGroup) {
       // Redirect away from the sign-in page.
-      navigate.navigate("(tabs)");
+      router.replace("(tabs)");
     }
   }, [session, segments]);
 }
@@ -71,6 +67,7 @@ export function Provider(props) {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [account, setAccount] = useState("");
 
   useEffect(() => {
     const fetchCommunity = async () => {
@@ -86,6 +83,14 @@ export function Provider(props) {
     fetchCommunity();
   }, []);
 
+  useEffect(() => {
+    const handleWalletConnect = async () => {
+      const account = await getAccount();
+      setAccount(account);
+    };
+    handleWalletConnect();
+  }, [account]);
+
   useProtectedRoute(session);
 
   return (
@@ -96,6 +101,7 @@ export function Provider(props) {
         community,
         error,
         id,
+        account,
       }}
     >
       {props.children}

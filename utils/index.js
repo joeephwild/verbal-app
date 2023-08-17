@@ -257,3 +257,70 @@ export const Podcast = [
       "https://images.pexels.com/photos/6953867/pexels-photo-6953867.jpeg?auto=compress&cs=tinysrgb&w=1600",
   },
 ];
+
+export const Messages = [
+  {
+    "role": "user",
+    "message": "Hello, AI!"
+  },
+  {
+    "role": "ai",
+    "message": "Hi there! How can I assist you today?"
+  },
+  {
+    "role": "user",
+    "message": "Can you help me learn French?"
+  },
+  {
+    "role": "ai",
+    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+  },
+  {
+    "role": "user",
+    "message": "Hello, AI!"
+  },
+  {
+    "role": "ai",
+    "message": "Hi there! How can I assist you today?"
+  },
+  {
+    "role": "user",
+    "message": "Can you help me learn French?"
+  },
+  {
+    "role": "ai",
+    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+  },
+  {
+    "role": "user",
+    "message": "Hello, AI!"
+  },
+  {
+    "role": "ai",
+    "message": "Hi there! How can I assist you today?"
+  },
+  {
+    "role": "user",
+    "message": "Can you help me learn French?"
+  },
+  {
+    "role": "ai",
+    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+  },
+  {
+    "role": "user",
+    "message": "Hello, AI!"
+  },
+  {
+    "role": "ai",
+    "message": "Hi there! How can I assist you today?"
+  },
+  {
+    "role": "user",
+    "message": "Can you help me learn French?"
+  },
+  {
+    "role": "ai",
+    "message": "Absolutely! I'd be happy to help you learn French. Let's get started."
+  },
+]

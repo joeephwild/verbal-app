@@ -6,13 +6,14 @@ import {
   TextInput,
   TouchableNativeFeedback,
   ActivityIndicator,
+  Pressable,
 } from "react-native";
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid";
 import { Community, MyLessons, Speakers } from "../../../components";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useEnsName, useEnsAvatar } from "wagmi";
 import { useAuth } from "../../../context/auth";
 
@@ -31,13 +32,21 @@ const Home = () => {
         <View>
           <View className="flex-row items-center py-[20px] justify-between px-[24px] w-full">
             <View className="flex-row space-x-4 items-center">
-              <Image
-                source={{
-                  uri: avatar,
+              <Pressable onPress={() => router.push("/Profile")}>
+                <Image
+                  source={{
+                    uri: avatar,
+                  }}
+                  className="w-[50px] bg-gray-500/75 h-[50px] rounded-full"
+                />
+              </Pressable>
+
+              <Text
+                style={{
+                  fontFamily: "SpaceMono",
                 }}
-                className="w-[50px] h-[50px] rounded-full"
-              />
-              <Text className="text-[24px] font-bold leading-normal text-[#fff]">
+                className="text-[24px] font-bold leading-normal text-[#fff]"
+              >
                 Hi
                 <Text className="text-[#000]"> {name}</Text>
               </Text>

@@ -4,18 +4,19 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Link, useNavigation, router } from "expo-router";
 import { MyLesson } from "../utils";
-import { useEnsName, useEnsAvatar } from 'wagmi'
+import { useEnsName, useEnsAvatar } from "wagmi";
 
 const MyLessons = () => {
   const navigate = useNavigation();
-  const { data: name} = useEnsName({
-    address: '0xA0Cf798816D4b9b9866b5330EEa46a18382f251e',
-  })
+  const { data: name } = useEnsName({
+    address: "0xA0Cf798816D4b9b9866b5330EEa46a18382f251e",
+  });
   const { data: avatar } = useEnsAvatar({
-    name: 'jxo.eth',
-  })
+    name: "jxo.eth",
+  });
   return (
     <ScrollView
+    
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ gap: 20, alignContent: "center" }}
@@ -35,9 +36,12 @@ const MyLessons = () => {
           </View>
 
           <View className="flex-row mt-[27px] items-center  space-x-4">
-            <Image  source={{
-                  uri: avatar ? avatar : item.image
-                }} className="w-[60px] h-[60px] rounded-full" />
+            <Image
+              source={{
+                uri: avatar ? avatar : item.image,
+              }}
+              className="w-[60px] h-[60px] rounded-full"
+            />
             <View className="items-start space-y-2">
               <Text className="text-[20px] font-semibold text-[#000]">
                 {item.course}

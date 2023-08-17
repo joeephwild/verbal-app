@@ -15,7 +15,6 @@ import {
 } from "react-native-heroicons/solid";
 import React, { useState, useRef } from "react";
 import { BottomSheet } from "react-native-elements";
-// import { Portal, PortalHost } from "@gorhom/portal";
 import { Link, router } from "expo-router";
 import { Modalize } from "react-native-modalize";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -43,10 +42,9 @@ const BottomSheets = () => {
         <Modalize
           modalStyle={{
             width: wp(100),
-            height: hp(50)
+            height: hp(50),
           }}
-
-          adjustToContentHeight={true}
+          modalHeight={350}
           ref={modalizeRef}
         >
           <View className="items-start pl-[25px] pt-[31px] space-y-[40px]">
