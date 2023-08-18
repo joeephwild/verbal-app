@@ -20,9 +20,9 @@ const Login = () => {
       password: password,
     });
     if (error) {
-      Alert.alert(error.message);
+      alert(error.message);
     } else {
-      Alert.alert("signed in");
+      alert("signed in");
       navigate.navigate("(tabs)");
     }
   };

@@ -27,13 +27,32 @@ import {
   Square2StackIcon,
   UserCircleIcon,
 } from "react-native-heroicons/solid";
-import { pickImage } from "../../../lib/services/userService";
+import {
+  getUserDetails,
+  pickImage,
+  updateUserProfile,
+} from "../../../lib/services/userService";
+import { useAuth } from "../../../context/auth";
 
 const Profile = () => {
   const [isSwitched, setIsSwitched] = useState("overview");
   const [isVisible, setIsVisible] = useState(false);
+  const [image, setImage] = useState("");
+  const [coverImage, setCoverImage] = useState("");
   const modalizeRef = useRef(null);
   const ProfileRef = useRef(null);
+  const { id } = useAuth();
+  const [accountDetails, setAccountDetails] = React.useState([]);
+
+  useEffect(() => {
+    const getProfiles = async () => {
+      const data = await getUserDetails(id);
+      console.log(data);
+      const result = data.map((item) => item);
+      setAccountDetails(result);
+    };
+    getProfiles();
+  }, []);
 
   const onOpen = () => {
     modalizeRef.current?.open();
@@ -42,13 +61,67 @@ const Profile = () => {
   const open = () => {
     ProfileRef.current?.open();
   };
-  const handlePickImage = async () => {
-    pickImage();
+  const handleProfileImage = async () => {
+    const result = await pickImage();
+    let url = `https://gateway.pinata.cloud/ipfs/${result}`;
+    setImage(url);
+    alert("image upload sucessful");
+    const userObj = {
+      username: "",
+      full_name: "",
+      avatar_url: "",
+      account_type: "",
+      availability_timestamp: "",
+      languages: "",
+      language_levels: "",
+      cover_image: image,
+    };
+    updateUserProfile(id, userObj);
   };
 
-  const handleImageUpload = async () => {
+  const handleCoverImage = async () => {
     const result = await pickImage();
+    let url = `https://gateway.pinata.cloud/ipfs/${result}`;
+    setCoverImage(url);
+    alert("image upload sucessful");
+    const userObj = {
+      username: "",
+      full_name: "",
+      avatar_url: "",
+      account_type: "",
+      availability_timestamp: "",
+      languages: "",
+      language_levels: "",
+      cover_image: coverImage,
+    };
+    await updateUserProfile(id, userObj);
   };
+
+  // const handleProfile = async () => {
+  //   try {
+  //     const userObj = {
+  //       username: "",
+  //       full_name: "",
+  //       avatar_url: image,
+  //       account_type: "",
+  //       availability_timestamp: "",
+  //       languages: "",
+  //       language_levels: "",
+  //       cover_image: image,
+  //     };
+
+  //     const result = await updateUserProfile(id, userObj);
+
+  //     if (result) {
+  //       // console.log(result);
+  //       alert("Profile updated successfully");
+  //     } else {
+  //       console.log("User not found or no changes made.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating profile:", error.message);
+  //   }
+  // };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -166,7 +239,7 @@ const Profile = () => {
                 </Text>
               </Pressable>
               <Pressable
-                onPress={handleImageUpload}
+                onPress={handleCoverImage}
                 className="flex-row space-x-8 items-center"
               >
                 <PhotoIcon size={30} color="#000" />
@@ -200,7 +273,7 @@ const Profile = () => {
                 </Text>
               </Pressable>
               <Pressable
-                onPress={handlePickImage}
+                onPress={handleProfileImage}
                 className="flex-row space-x-8 items-center"
               >
                 <PhotoIcon size={30} color="#000" />

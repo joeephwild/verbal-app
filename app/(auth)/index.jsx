@@ -10,8 +10,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const index = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View className="mt-[90px] mx-[15px]">
+    <SafeAreaView style={{ flex: 1, }}>
+      <View className="mt-[60px] mx-[15px]">
         <StatusBar style="light" />
         <Image
           style={{

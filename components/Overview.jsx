@@ -63,7 +63,7 @@ const Overview = ({ isNotProfile }) => {
               fontWeight: "bold",
             }}
           >
-            Post
+            Settings
           </Text>
         </Pressable>
         {isNotProfile ? (

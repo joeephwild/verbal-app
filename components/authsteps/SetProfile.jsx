@@ -103,7 +103,7 @@ const SetProfile = ({
       </View>
       <View className="items-center my-5 justify-center">
         <Pressable
-          onPress={signUpWithEmail}
+          onPress={nextStep}
           className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
         >
           <Text className="text-[16px] text-center text-white  font-bold leading-normal">
