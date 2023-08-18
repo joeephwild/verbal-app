@@ -35,7 +35,7 @@ const Home = () => {
               <Pressable onPress={() => router.push("/Profile")}>
                 <Image
                   source={{
-                    uri: avatar,
+                    uri:  "https://images.pexels.com/photos/15509057/pexels-photo-15509057/free-photo-of-fashion-man-love-people.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
                   }}
                   className="w-[50px] bg-gray-500/75 h-[50px] rounded-full"
                 />

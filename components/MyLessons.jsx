@@ -16,7 +16,6 @@ const MyLessons = () => {
   });
   return (
     <ScrollView
-    
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ gap: 20, alignContent: "center" }}
@@ -38,7 +37,7 @@ const MyLessons = () => {
           <View className="flex-row mt-[27px] items-center  space-x-4">
             <Image
               source={{
-                uri: avatar ? avatar : item.image,
+                uri: "https://images.pexels.com/photos/15509057/pexels-photo-15509057/free-photo-of-fashion-man-love-people.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
               }}
               className="w-[60px] h-[60px] rounded-full"
             />

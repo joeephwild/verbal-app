@@ -3,6 +3,7 @@ import { router, useNavigation, useSegments } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { getAllCommunities } from "../lib/services/communityService";
 import { getAccount } from "@rly-network/mobile-sdk";
+import { getUserDetails } from "../lib/services/userService";
 
 const AuthContext = React.createContext(null);
 
@@ -25,10 +26,10 @@ function useProtectedRoute(session) {
       !inAuthGroup
     ) {
       // Redirect to the sign-in page.
-      router.replace("(auth)");
+      navigate.navigate("(auth)");
     } else if (session && inAuthGroup) {
       // Redirect away from the sign-in page.
-      router.replace("(tabs)");
+      navigate.navigate("(tabs)");
     }
   }, [session, segments]);
 }
@@ -60,7 +61,7 @@ export function Provider(props) {
       }
     };
     checkUserProfile();
-  }, []);
+  }, [id]);
 
   if (id) {
   }
