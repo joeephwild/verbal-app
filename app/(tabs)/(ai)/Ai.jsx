@@ -75,22 +75,13 @@ const Ai = () => {
         }
       }
       setChatHistory(transformedMessages);
-
-      // const userChat = {
-      //   role: "user",
-      //   message: chat[0],
-      // };
-      // setChatHistory([...chatHistory, userChat]);
-
-      // const bot = await getChatBotHistory(id);
-      // const botChat = {
-      //   role: "ai",
-      //   message: bot[0],
-      // };
-      // setChatHistory([...chatHistory, botChat]);
     };
     fetchChat();
   }, [text]);
+
+  useEffect(() => {
+    console.log("Chat history updated:", chatHistory);
+  }, [chatHistory]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
