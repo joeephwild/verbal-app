@@ -3,8 +3,8 @@ import React from "react";
 import { PaperAirplaneIcon } from "react-native-heroicons/solid";
 import { mindDbQueryCall } from "../lib/mindDb";
 
-const InputBox = ({ index }) => {
-  const [text, setText] = React.useState("");
+const InputBox = ({ index, text, setText }) => {
+  
   const [isFetching, setIsFetching] = React.useState(false)
   const handleSend = async () => {
     await mindDbQueryCall(index, text);

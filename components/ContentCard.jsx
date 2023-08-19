@@ -49,7 +49,7 @@ const ContentCard = ({ content }) => {
         width: wp(100),
         maxHeight: hp(90),
       }}
-      className="bg-[#fff] mb-4 p-2"
+      className="bg-[#fff]  mb-4 p-2"
     >
       <View className="flex-row items-center space-x-2">
         <Image

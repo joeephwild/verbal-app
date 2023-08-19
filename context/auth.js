@@ -3,7 +3,6 @@ import { router, useNavigation, useSegments } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { getAllCommunities } from "../lib/services/communityService";
 import { getAccount } from "@rly-network/mobile-sdk";
-import { getUserDetails } from "../lib/services/userService";
 
 const AuthContext = React.createContext(null);
 

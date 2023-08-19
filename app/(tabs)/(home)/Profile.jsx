@@ -62,21 +62,28 @@ const Profile = () => {
     ProfileRef.current?.open();
   };
   const handleProfileImage = async () => {
-    const result = await pickImage();
-    let url = `https://gateway.pinata.cloud/ipfs/${result}`;
-    setImage(url);
-    alert("image upload sucessful");
-    const userObj = {
-      username: "",
-      full_name: "",
-      avatar_url: "",
-      account_type: "",
-      availability_timestamp: "",
-      languages: "",
-      language_levels: "",
-      cover_image: image,
-    };
-    updateUserProfile(id, userObj);
+    try {
+      const result = await pickImage();
+      let url = `https://gateway.pinata.cloud/ipfs/${result}`;
+      setImage(url); // Assuming you have a state variable called 'setImage' to store the image URL.
+
+      if (image) {
+        // Assuming you have 'id' available from somewhere.
+        const userObj = {
+          avatar_url: image, // Use the IPFS URL here.
+        };
+
+        // Assuming you have a function 'updateUserProfile' to update the user's profile.
+        await updateUserProfile(id, userObj);
+
+        alert("Image upload and profile update successful");
+      }
+
+      alert("Image upload successful");
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      // Handle the error, e.g., show an error message to the user.
+    }
   };
 
   const handleCoverImage = async () => {

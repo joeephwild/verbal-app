@@ -6,7 +6,7 @@ import {
   FlatList,
   Keyboard,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -36,6 +36,7 @@ import InputBox from "../../../components/InputBox";
 
 const Ai = () => {
   const { session, id } = useAuth();
+  const [text, setText] = React.useState("");
   const [user, setUser] = React.useState("");
   const [chatHistory, setChatHistory] = useState([]);
   useEffect(() => {
@@ -44,7 +45,7 @@ const Ai = () => {
     }
   }, [session]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchChat = async () => {
       const userChat = await getUserChatHistory(id);
       const botChat = await getChatBotHistory(id);
@@ -89,7 +90,7 @@ const Ai = () => {
       // setChatHistory([...chatHistory, botChat]);
     };
     fetchChat();
-  }, []);
+  }, [text]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -128,7 +129,7 @@ const Ai = () => {
           keyboardVerticalOffset={180}
           behavior={"position"}
         >
-          <InputBox index={id} />
+          <InputBox text={text} setText={setText} index={id} />
         </KeyboardAvoidingView>
       </View>
     </SafeAreaView>

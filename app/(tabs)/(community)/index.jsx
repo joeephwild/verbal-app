@@ -10,15 +10,12 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
-  ArrowLeftCircleIcon,
-  ArrowLeftIcon,
   ChevronLeftIcon,
 } from "react-native-heroicons/solid";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { languageCommunity } from "../../../utils/index";
 import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../../../context/auth";
 import { router } from "expo-router";

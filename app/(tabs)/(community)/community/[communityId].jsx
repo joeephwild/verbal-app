@@ -45,7 +45,7 @@ import {
 } from "../../../../lib/services/contentService";
 // import { sendFileToIPFS } from "../../../../utils/pinata";
 
-const CommunityDetails = () => {
+const CommunityDetail = () => {
   const { communityId } = useLocalSearchParams();
   const [communities, setCommunity] = useState([]);
   const { community, loading, error, id } = useAuth();
@@ -92,10 +92,21 @@ const CommunityDetails = () => {
   };
 
   const handlCreatePost = async () => {
-    alert("yeah");
-    createPost(id, communityId, content, [image]);
-    setTitle("");
-    alert("Post Created successfully");
+    const result = await createPost(id, communityId, content, [image]);
+    console.log(result);
+    setPosts((prevPosts) => [result, ...prevPosts]);
+    if (result) {
+      // Update your state with the newly created post
+      console.log(result.data);
+
+      alert("done");
+      // Clear the input fields or perform any other necessary actions
+      setTitle("");
+      setImage("");
+    } else if (result.error) {
+      // Handle the error, e.g., display an error message
+      console.error("Error creating post:", result.error);
+    }
   };
 
   useEffect(() => {
@@ -333,48 +344,4 @@ const CommunityDetails = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
-
-export default CommunityDetails;
+export default CommunityDetail;
