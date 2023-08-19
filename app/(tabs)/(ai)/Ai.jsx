@@ -77,10 +77,6 @@ const Ai = () => {
       setChatHistory(transformedMessages);
     };
     fetchChat();
-  }, [text]);
-
-  useEffect(() => {
-    console.log("Chat history updated:", chatHistory);
   }, [chatHistory]);
 
   return (
