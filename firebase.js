@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -10,8 +11,11 @@ const firebaseConfig = {
   projectId: "verbal-app-4aea3",
   storageBucket: "verbal-app-4aea3.appspot.com",
   messagingSenderId: "87700826575",
-  appId: "1:87700826575:web:055a521f903fe240388aba"
+  appId: "1:87700826575:web:055a521f903fe240388aba",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const database = getDatabase();

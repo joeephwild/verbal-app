@@ -5,6 +5,7 @@ import {
   SelectList,
 } from "react-native-dropdown-select-list";
 import { ChevronDownIcon } from "react-native-heroicons/solid";
+import { useAuth } from "../../context/auth";
 
 const SelectLang = ({
   selectedLanguage,
@@ -28,6 +29,7 @@ const SelectLang = ({
     { key: "3", value: "Intermediate" },
     { key: "4", value: "Fluent" },
   ];
+
   return (
     <View className="items-start space-y-[40px] my-[16px]">
       <View className="space-y-[8px]">
@@ -39,7 +41,7 @@ const SelectLang = ({
           opportunities
         </Text>
         <View className="rounded-[8px] mt-[24px]">
-          <MultipleSelectList
+          <SelectList
             setSelected={(val) => setSelectedLanguage(val)}
             data={data}
             save="value"
@@ -80,16 +82,16 @@ const SelectLang = ({
           />
         </View>
       </View>
-      <View className="items-center my-5 justify-center">
+      {/* <View className="items-center my-5 justify-center">
         <Pressable
-          onPress={nextStep}
+          onPress={handleProfile}
           className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
         >
           <Text className="text-[16px] text-center text-white  font-bold leading-normal">
             Continue
           </Text>
         </Pressable>
-      </View>
+      </View> */}
     </View>
   );
 };

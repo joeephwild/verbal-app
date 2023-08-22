@@ -2,7 +2,7 @@ import { View, Text, Pressable, Image } from "react-native";
 import React from "react";
 import { router } from "expo-router";
 
-const Session = () => {
+const Session = ({time}) => {
   return (
     <View className="items-center mt-[30px] justify-center">
       <Image

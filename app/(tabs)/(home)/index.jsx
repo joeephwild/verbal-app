@@ -26,7 +26,7 @@ const Home = () => {
   const { data: avatar } = useEnsAvatar({
     name: "jxom.eth",
   });
-  const { loading, community, error } = useAuth();
+  const { loading, community, error, allProfiles } = useAuth();
   const { user } = useAccount();
   console.log(user);
   return (

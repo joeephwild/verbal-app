@@ -15,14 +15,9 @@ const Login = () => {
   const navigate = useNavigation();
 
   const signInWithEmail = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-    if (error) {
-      alert(error.message);
-    } else {
-      alert("signed in");
+    if (!email || !password) return Alert.alert("Fill up required input");
+    const user = signin(email, password);
+    if (user) {
       navigate.navigate("(tabs)");
     }
   };
@@ -75,7 +70,7 @@ const Login = () => {
       </View>
       <View className="items-center mt-[174px] justify-center">
         <Pressable
-          disabled={!email && !password}
+          // disabled={!email && !password}
           onPress={signInWithEmail}
           className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
         >

@@ -9,9 +9,6 @@ import {
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import { Button, Input } from "react-native-elements";
-import { useAuth } from "../../context/auth";
-import { supabase } from "../../lib/supabase";
 
 const SetProfile = ({
   setEmail,
@@ -22,20 +19,6 @@ const SetProfile = ({
   confirmPassword,
   nextStep,
 }) => {
-  const { signup, session } = useAuth();
-
-  const signUpWithEmail = async () => {
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
-    if (error) {
-      Alert.alert(error.message);
-    } else {
-      Alert.alert("signed Up");
-      nextStep()
-    }
-  };
 
   return (
     <SafeAreaView className="">
@@ -52,7 +35,10 @@ const SetProfile = ({
         </Text>
         <View className="space-y-[24px] mt-[40px]">
           <View className="space-y-[8px] text-white">
-            <Input
+            <Text className="text-[#fff] font-bold text-[15px]">
+              Email Address
+            </Text>
+            <TextInput
               label="Email"
               onChangeText={(text) => setEmail(text)}
               value={email}
@@ -68,49 +54,43 @@ const SetProfile = ({
             />
           </View>
           <View className="space-y-[8px] text-white">
-            <Input
-              label="Set Password"
+            <Text className="text-[#fff] font-bold text-[15px]">Password</Text>
+            <TextInput
               onChangeText={(text) => setPassword(text)}
               value={password}
               placeholder="**********"
               keyboardType="visible-password"
               placeholderTextColor={"#fff"}
               autoCapitalize={"none"}
-              labelStyle={{
-                color: "#fff",
-                paddingBottom: 8,
-              }}
               className="w-full border  text-[12px] text-[#fff] h-[56px] px-[24px] py-[16px] items-center justify-center rounded-[8px]  border-[#aaa]"
             />
           </View>
           <View className="space-y-[8px] text-white">
-            <Input
-              label="Confirm Password"
+            <Text className="text-[#fff] font-bold text-[15px]">
+              Confirm Password
+            </Text>
+            <TextInput
               onChangeText={(text) => setConfirmPassword(text)}
               value={confirmPassword}
               placeholder="************"
               keyboardType="visible-password"
               placeholderTextColor={"#fff"}
               autoCapitalize={"none"}
-              labelStyle={{
-                color: "#fff",
-                paddingBottom: 8,
-              }}
               className="w-full border text-[12px] text-[#fff] h-[56px] px-[24px] py-[16px] items-center justify-center rounded-[8px]  border-[#aaa]"
             />
           </View>
         </View>
       </View>
-      <View className="items-center my-5 justify-center">
+      {/* <View className="items-center my-5 justify-center">
         <Pressable
-          onPress={nextStep}
+          onPress={handleAuth}
           className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
         >
           <Text className="text-[16px] text-center text-white  font-bold leading-normal">
             Continue
           </Text>
         </Pressable>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };
