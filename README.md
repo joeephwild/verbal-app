@@ -1,49 +1,48 @@
-# Verbal: Learn Languages Together
+# Verbal Dapp - Language Learning Application
 
-Welcome to Verbal, an innovative Decentralized Application (DApp) that is set to redefine the way we learn languages. As you embark on your linguistic journey, Verbal promises not just a language learning experience, but a vibrant, community-driven adventure that fosters connections, knowledge exchange, and growth.
+Welcome to Verbal Dapp, a decentralized language learning application that empowers users to learn, earn, and practice languages in a unique decentralized environment.
 
 ![Verbal Dapp](/images/verbal-dapp-screenshot.png)
 
 ## Table of Contents
 
-- [About](#About)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
+- [Verbal Dapp - Language Learning Application](#verbal-dapp---language-learning-application)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Getting Started](#getting-started)
+  - [Usage](#usage)
+  - [Technologies Used](#technologies-used)
+  - [Smart Contracts deployed on the Linea Testnet](#smart-contracts-deployed-on-the-linea-testnet)
+  - [Smart Contracts details and Linea](#smart-contracts-details-and-linea)
+  - [Contributing](#contributing)
+  - [License](#license)
+- [Expo Router Example](#expo-router-example)
+  - [🚀 How to use](#-how-to-use)
+  - [📝 Notes](#-notes)
 
-## About
+## Introduction
 
-At its core, Verbal is more than just an app; it's a global community united by the passion for language. With Verbal, you have the power to:
+Verbal Dapp is designed to revolutionize the way language learning takes place. By utilizing blockchain technology, smart contracts, and a gamified approach, Verbal Dapp provides users with an immersive language learning experience that goes beyond traditional methods.
 
--**Discover Language Communities:**Immerse yourself in an array of dynamic language communities, each dedicated to a specific language. Engage with speakers and learners from around the world, share cultural insights, and embrace the diversity of languages.
+## Features
 
-**Publish Tutorials as Podcasts and Videos:** Ever found yourself explaining the intricacies of a language to a friend? Now, imagine doing that on a larger scale. With Verbal, you can create and publish engaging tutorials in the form of podcasts and videos. Help fellow learners master pronunciation, tackle challenging grammar rules, and explore cultural nuances.
-
-**Earn from Your Expertise**: Your expertise deserves recognition, and Verbal ensures you are duly rewarded. When learners benefit from your tutorials, they can express their gratitude by contributing tokens directly to your wallet. This groundbreaking feature, facilitated by blockchain integration, ensures a direct and transparent exchange of value.
-
-**Engage in Live Calls**: The thrill of real-time conversations is invaluable in language learning. Through Verbal's live call feature, you can connect with native speakers and fellow learners, enhancing your conversational skills and cultural understanding. Instant feedback and meaningful interactions are just a call away.
-
-**AI-powered Language Testing**: Elevate your language learning journey with Verbal's AI-driven language testing. Test your writing and speaking skills to receive personalized feedback, allowing you to track your progress and fine-tune your linguistic abilities.
-
-**Teach and Learn Simultaneously**: Verbal's strength lies in its collaborative spirit. While you contribute your linguistic insights, you can also delve into other languages and cultures, creating a reciprocal learning environment that transcends geographical borders.
-
-## How Verbal Works
-Verbal's foundation is rooted in blockchain technology, guaranteeing security, transparency, and direct transactions. When you share your expertise and learners benefit from your tutorials, they can send tokens directly to your wallet. This peer-to-peer transaction model ensures that your efforts are directly rewarded, eliminating unnecessary intermediaries.
-
-As Verbal continues to evolve, we're eagerly exploring the possibility of introducing livestreaming functionalities. Imagine conducting interactive lessons, directly addressing learners' questions, and creating real-time engagement. With each update, Verbal strives to offer an even richer and immersive experience for language enthusiasts.
-
+- **Decentralized Learning:** Leverage the power of blockchain to create a secure and transparent learning environment.
+- **Earn While You Learn:** Users can earn tokens by completing language-related tasks, quizzes, and challenges.
+- **Practice Conversations:** Engage in real-time language practice with other users through voice and text interactions.
+- **Interactive Lessons:** Access a wide range of interactive lessons, vocabulary exercises, and grammar quizzes.
+- **Smart Contracts:** Use smart contracts to ensure fair rewards distribution and verify user achievements.
+- **Multi-Lingual Support:** Learn and practice a variety of languages from around the world.
+- **Community Engagement:** Join a vibrant community of language enthusiasts, exchange cultural insights, and learn collaboratively.
 
 ## Getting Started
 
 To get started with Verbal Dapp, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/your-username/verbal-dapp.git`
-2. Install the required dependencies: `yarn install`
+2. Install the required dependencies: `npm install`
 3. Configure your environment variables.
-4. Run the application: `npx expo start`
-5. Select the development environment either and android by selecting `a` or an ios `i`
+4. Run the application: `npm start`
 
 ## Usage
 
@@ -62,7 +61,17 @@ To get started with Verbal Dapp, follow these steps:
 - Rally Protocol
 - Opbnb
 - Express.js
+- [Infura](https://linea-goerli.infura.io/v3/)
 
+## Smart Contracts deployed on the Linea Testnet
+- [0x13Dc55d50a67C882Cf9930281C91688489642789](https://goerli.lineascan.build/address/0x13Dc55d50a67C882Cf9930281C91688489642789)
+- [0x2413916b5b6d5d13770fba2F05e0BA04411a6691](https://goerli.lineascan.build/address/0x2413916b5b6d5d13770fba2F05e0BA04411a6691)
+- [0xfFDd21F23227c8776fF691635482EF3aFF6D750f](https://goerli.lineascan.build/address/0xfFDd21F23227c8776fF691635482EF3aFF6D750f)
+- [0xb00ca2cc9d7d6D4B72C55C356f8B911a9d8a8350](https://goerli.lineascan.build/address/0xb00ca2cc9d7d6D4B72C55C356f8B911a9d8a8350)
+
+## Smart Contracts details and Linea
+The contracts were written using solidity and were deployd on linea testnet using truffle as the framework. You can see more about the smart contract, its test and deployments [here](https://github.com/joeephwild/smart-contract/tree/main/contract-verbal)
+****
 ## Contributing
 
 We welcome contributions from the community to enhance and improve Verbal Dapp. If you'd like to contribute:
