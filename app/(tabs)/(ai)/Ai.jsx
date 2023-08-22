@@ -56,7 +56,7 @@ const Ai = () => {
       const q = query(
         collection(db, "chatrooms"),
         where("userId", "==", user.uid),
-        orderBy("timestamp")
+        orderBy("created_at")
       );
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         let chat = [];
@@ -94,21 +94,17 @@ const Ai = () => {
           keyboardVerticalOffset={100}
           behavior={"padding"}
         >
-          {chatHistory.length > 0 ? (
-            <FlatList
-              data={chatHistory}
-              renderItem={({ item }) => <MessageBox {...item} />}
-              keyExtractor={(_, index) => index.toString()}
-              contentContainerStyle={{
-                paddingHorizontal: 10,
-                gap: 24,
-                paddingBottom: 180,
-              }}
-              automaticallyAdjustKeyboardInsets
-            />
-          ) : (
-            <NoChatView />
-          )}
+          <FlatList
+            data={chatHistory}
+            renderItem={({ item }) => <MessageBox {...item} />}
+            keyExtractor={(_, index) => index.toString()}
+            contentContainerStyle={{
+              paddingHorizontal: 10,
+              gap: 24,
+              paddingBottom: 180,
+            }}
+            automaticallyAdjustKeyboardInsets
+          />
 
           <InputBox text={text} setText={setText} index={id} />
         </KeyboardAvoidingView>
