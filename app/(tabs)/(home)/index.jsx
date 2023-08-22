@@ -7,8 +7,9 @@ import {
   TouchableNativeFeedback,
   ActivityIndicator,
   Pressable,
+  ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid";
@@ -16,6 +17,9 @@ import { Community, MyLessons, Speakers } from "../../../components";
 import { Link, router } from "expo-router";
 import { useEnsName, useEnsAvatar } from "wagmi";
 import { useAuth } from "../../../context/auth";
+import { useAccount } from "../../../context/account";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 const Home = () => {
   const { data: name } = useEnsName({
@@ -24,18 +28,44 @@ const Home = () => {
   const { data: avatar } = useEnsAvatar({
     name: "jxom.eth",
   });
-  const { loading, community, error } = useAuth();
+  const { loading, community, error, allProfiles } = useAuth();
+  const { user } = useAccount();
+  console.log(user);
+  const [allCommunities, setAllCommunity] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchCommunity = async () => {
+      setIsLoading(true);
+      const q = query(collection(db, "community") );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let communities = [];
+        querySnapshot.forEach((doc) => {
+          communities.push({ ...doc.data(), id: doc.id });
+        });
+        // console.log("tutor", communities);
+        setAllCommunity(communities);
+        setIsLoading(false)
+      });
+      return () => unsubscribe();
+    };
+    fetchCommunity();
+  }, []);
   return (
-    <View className="flex-1">
+    <ScrollView
+      centerContent={true}
+      contentContainerStyle={{ flex: 1, gap: 9 }}
+      className="flex-1"
+    >
       <StatusBar style="light" />
       <SafeAreaView className="bg-[#F70] w-full h-[311px] rounded-b-[50px]">
-        <View>
+        <View contentContainerStyle={{ flex: 1 }}>
           <View className="flex-row items-center py-[20px] justify-between px-[24px] w-full">
             <View className="flex-row space-x-4 items-center">
               <Pressable onPress={() => router.push("/Profile")}>
                 <Image
                   source={{
-                    uri:  "https://images.pexels.com/photos/15509057/pexels-photo-15509057/free-photo-of-fashion-man-love-people.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+                    uri: "https://images.pexels.com/photos/15509057/pexels-photo-15509057/free-photo-of-fashion-man-love-people.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
                   }}
                   className="w-[50px] bg-gray-500/75 h-[50px] rounded-full"
                 />
@@ -69,20 +99,21 @@ const Home = () => {
           <MyLessons />
 
           {/** Speakers */}
+
           <View className="mx-[28px] mt-[27px]">
             <Speakers />
           </View>
 
           <View className="mx-[28px] mt-[27px]">
-            {loading ? (
+            {isLoading ? (
               <ActivityIndicator color="#f70" size="large" />
             ) : (
-              <Community item={community} />
+              <Community item={allCommunities} />
             )}
           </View>
         </View>
       </SafeAreaView>
-    </View>
+    </ScrollView>
   );
 };
 

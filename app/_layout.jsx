@@ -8,12 +8,13 @@ import { useFonts } from "expo-font";
 import { Slot, SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { Provider } from "../context/auth";
+import { AccountProvider } from "../context/account";
 import { WalletConnectModal } from "@walletconnect/modal-react-native";
 import { WagmiConfig, configureChains, createConfig, mainnet } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { avalanche, bsc, lineaTestnet, linea } from "wagmi/chains";
 import { PortalProvider } from "@gorhom/portal";
-import { CustomText } from '../components/StyledText'
+import { CustomText } from "../components/StyledText";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet, avalanche, bsc, lineaTestnet, linea],
@@ -79,32 +80,33 @@ const providerMetadata = {
 function RootLayoutNav() {
   return (
     <PortalProvider>
-      <Provider>
-        <WagmiConfig config={config}>
-          <WalletConnectModal
-            projectId={process.env.EXPO_PUBLIC_WALLETCONNECT_PROJECTID}
-            providerMetadata={providerMetadata}
-          />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: {
-                backgroundColor: "#000000",
-                
-              },
-            }}
-          >
-            <Stack.Screen name="(auth)"  />
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen
-              name="PodcastPlayer"
-              options={{
-                presentation: "modal",
-              }}
+      <AccountProvider>
+        <Provider>
+          <WagmiConfig config={config}>
+            <WalletConnectModal
+              projectId={process.env.EXPO_PUBLIC_WALLETCONNECT_PROJECTID}
+              providerMetadata={providerMetadata}
             />
-          </Stack>
-        </WagmiConfig>
-      </Provider>
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: {
+                  backgroundColor: "#000000",
+                },
+              }}
+            >
+              <Stack.Screen name="(auth)" />
+              <Stack.Screen name="(tabs)" />
+              <Stack.Screen
+                name="PodcastPlayer"
+                options={{
+                  presentation: "modal",
+                }}
+              />
+            </Stack>
+          </WagmiConfig>
+        </Provider>
+      </AccountProvider>
     </PortalProvider>
   );
 }
