@@ -30,10 +30,10 @@ At its core, Verbal is more than just an app; it's a global community united by 
 **Teach and Learn Simultaneously**: Verbal's strength lies in its collaborative spirit. While you contribute your linguistic insights, you can also delve into other languages and cultures, creating a reciprocal learning environment that transcends geographical borders.
 
 ## How Verbal Works
+
 Verbal's foundation is rooted in blockchain technology, guaranteeing security, transparency, and direct transactions. When you share your expertise and learners benefit from your tutorials, they can send tokens directly to your wallet. This peer-to-peer transaction model ensures that your efforts are directly rewarded, eliminating unnecessary intermediaries.
 
 As Verbal continues to evolve, we're eagerly exploring the possibility of introducing livestreaming functionalities. Imagine conducting interactive lessons, directly addressing learners' questions, and creating real-time engagement. With each update, Verbal strives to offer an even richer and immersive experience for language enthusiasts.
-
 
 ## Getting Started
 
@@ -74,6 +74,13 @@ We welcome contributions from the community to enhance and improve Verbal Dapp. 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Contract Links
+
+- ['VerbalToken'](https://goerli.lineascan.build/address/0x13Dc55d50a67C882Cf9930281C91688489642789#code)
+-  ['PodcastContract'](https://goerli.lineascan.build/address/0x2413916b5b6d5d13770fba2F05e0BA04411a6691#code)
+- [' Sessions](https://goerli.lineascan.build/address/0xfFDd21F23227c8776fF691635482EF3aFF6D750f#code)
+- ['RewardsContract](https://goerli.lineascan.build/address/0xb00ca2cc9d7d6D4B72C55C356f8B911a9d8a8350#code)
 
 ---
 
