@@ -4,6 +4,7 @@ import { PaperAirplaneIcon } from "react-native-heroicons/solid";
 import { mindDbQueryCall } from "../lib/mindDb";
 import { getDatabase, ref, set } from "firebase/database";
 import { auth, database, db } from "../firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 const InputBox = ({ index, text, setText }) => {
   const [isFetching, setIsFetching] = React.useState(false);
@@ -22,21 +23,28 @@ const InputBox = ({ index, text, setText }) => {
   const sendMessage = async () => {
     try {
       if (text.trim() === "") return;
+      const user = auth.currentUser;
+      const currentDate = new Date(); // Get the current date and time
+      const timestamp = currentDate.toISOString();
       // // Add the new message to the Firestore collection
-      set(ref(database, `messages/${userUid}`), {
+      const docRef = await addDoc(collection(db, "chatrooms"), {
+        role: "user",
         message: text,
-        sender: "user",
+        userId: user.uid,
+        created_at: timestamp,
+      });
+      setText("");
+      const response = await mindDbQueryCall("joseph", text);
+      console.log(response);
+
+      const airesponse = await addDoc(collection(db, "chatrooms"), {
+        role: "ai",
+        message: response,
+        userId: user.uid,
+        created_at: timestamp,
       });
 
-      // const response = await mindDbQueryCall("joseph", text);
-      // console.log(response);
-
-      set(ref(database, `messages/${userUid}`), {
-        aimessage: text,
-        sender: "ai",
-      });
-
-      setText(""); // Clear the input box
+      // Clear the input box
     } catch (error) {
       console.log("error sending message", error.message);
     }

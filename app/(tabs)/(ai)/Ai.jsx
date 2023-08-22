@@ -29,6 +29,15 @@ import { getUserDetails } from "../../../lib/services/userService";
 import MessageBox from "../../../components/MessageBox";
 import NoChatView from "../../../components/NoChatView";
 import InputBox from "../../../components/InputBox";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../../../firebase";
 
 const Ai = () => {
   const { session, id } = useAuth();
@@ -41,39 +50,26 @@ const Ai = () => {
   //   }
   // }, [session]);
 
-  // useLayoutEffect(() => {
-  //   const fetchChat = async () => {
-  //     const userChat = await getUserChatHistory(id);
-  //     const botChat = await getChatBotHistory(id);
-  //     const userProfileData = await getUserDetails(id);
-
-  //     const combinedChat = [...userChat, ...botChat];
-
-  //     // Sort the combined chat messages by their created_at timestamp
-  //     combinedChat.sort(
-  //       (a, b) =>
-  //         new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-  //     );
-
-  //     const transformedMessages = [];
-
-  //     for (const message of combinedChat) {
-  //       if (message.author_name != "mindDb_bot") {
-  //         transformedMessages.push({
-  //           role: "user",
-  //           message: message.message,
-  //         });
-  //       } else if (message.author_name === "mindDb_bot") {
-  //         transformedMessages.push({
-  //           role: "ai",
-  //           message: message.message,
-  //         });
-  //       }
-  //     }
-  //     setChatHistory(transformedMessages);
-  //   };
-  //   fetchChat();
-  // }, [chatHistory]);
+  useEffect(() => {
+    const fetchChat = async () => {
+      const user = auth.currentUser;
+      const q = query(
+        collection(db, "chatrooms"),
+        where("userId", "==", user.uid),
+        orderBy("timestamp")
+      );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let chat = [];
+        querySnapshot.forEach((doc) => {
+          chat.push({ ...doc.data(), id: doc.id });
+        });
+        console.log("community chat", chat);
+        setChatHistory(chat);
+      });
+      return () => unsubscribe();
+    };
+    fetchChat();
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
