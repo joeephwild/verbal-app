@@ -9,7 +9,7 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { BellIcon, MagnifyingGlassIcon } from "react-native-heroicons/solid";
@@ -18,6 +18,8 @@ import { Link, router } from "expo-router";
 import { useEnsName, useEnsAvatar } from "wagmi";
 import { useAuth } from "../../../context/auth";
 import { useAccount } from "../../../context/account";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 const Home = () => {
   const { data: name } = useEnsName({
@@ -29,6 +31,26 @@ const Home = () => {
   const { loading, community, error, allProfiles } = useAuth();
   const { user } = useAccount();
   console.log(user);
+  const [allCommunities, setAllCommunity] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchCommunity = async () => {
+      setIsLoading(true);
+      const q = query(collection(db, "community") );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let communities = [];
+        querySnapshot.forEach((doc) => {
+          communities.push({ ...doc.data(), id: doc.id });
+        });
+        // console.log("tutor", communities);
+        setAllCommunity(communities);
+        setIsLoading(false)
+      });
+      return () => unsubscribe();
+    };
+    fetchCommunity();
+  }, []);
   return (
     <ScrollView
       centerContent={true}
@@ -83,10 +105,10 @@ const Home = () => {
           </View>
 
           <View className="mx-[28px] mt-[27px]">
-            {loading ? (
+            {isLoading ? (
               <ActivityIndicator color="#f70" size="large" />
             ) : (
-              <Community item={community} />
+              <Community item={allCommunities} />
             )}
           </View>
         </View>

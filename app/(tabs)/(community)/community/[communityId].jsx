@@ -43,6 +43,15 @@ import {
   createPost,
   getPostsInCommunity,
 } from "../../../../lib/services/contentService";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../../../../firebase";
 // import { sendFileToIPFS } from "../../../../utils/pinata";
 
 const CommunityDetail = () => {
@@ -53,14 +62,14 @@ const CommunityDetail = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isMember, setIsMember] = useState(false); // State to track membership status
-  const [content, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const userIsMember = await checkUserInCommunity(id, communityId);
-      setIsMember(userIsMember);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const userIsMember = await checkUserInCommunity(id, communityId);
+    //   setIsMember(userIsMember);
+    // };
+    // fetchData();
   }, [id, communityId]);
 
   const handleImageUpload = async () => {
@@ -87,25 +96,50 @@ const CommunityDetail = () => {
   };
 
   const handleJoin = async () => {
-    await addUserToCommunityWithValidation(id, communityId);
-    setIsMember(true);
+    const user = auth.currentUser;
+    let userId = user.uid;
+    const communityRef = db.collection("communities").doc(communityId);
+
+    return db
+      .runTransaction((transaction) => {
+        return transaction.get(communityRef).then((doc) => {
+          if (!doc.exists) {
+            throw new Error("Community does not exist!");
+          }
+
+          // Update the members array in the transaction
+          const members = doc.data().members || [];
+          if (!members.includes(userId)) {
+            members.push(userId);
+            transaction.update(communityRef, { members: members });
+          }
+          setIsMember(true);
+        });
+      })
+      .then(() => {
+        console.log("User joined the community successfully!");
+      })
+      .catch((error) => {
+        console.error("Error joining the community: ", error);
+      });
   };
 
   const handlCreatePost = async () => {
-    const result = await createPost(id, communityId, content, [image]);
-    console.log(result);
-    setPosts((prevPosts) => [result, ...prevPosts]);
-    if (result) {
-      // Update your state with the newly created post
-      console.log(result.data);
-
-      alert("done");
-      // Clear the input fields or perform any other necessary actions
-      setTitle("");
-      setImage("");
-    } else if (result.error) {
-      // Handle the error, e.g., display an error message
-      console.error("Error creating post:", result.error);
+    try {
+      const user = auth.currentUser;
+      const docRef = await addDoc(collection(db, "post"), {
+        community_id: communityId,
+        content: content,
+        img_url: image,
+        video_url: "",
+        image: "",
+        user_id: user.uid,
+        name: "joseph",
+        created_at: Date,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
   };
 
@@ -113,18 +147,40 @@ const CommunityDetail = () => {
     const filterForCommunity = async () => {
       try {
         setIsLoading(true);
-        const comunityDetails = community?.filter(
-          (item) => item.id === communityId
-        );
-        setCommunity(comunityDetails);
-        setIsLoading(false);
+        const q = query(collection(db, "community"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          let communities = [];
+          querySnapshot.forEach((doc) => {
+            communities.push({ ...doc.data(), id: doc.id });
+          });
+
+          const comunityDetails = communities?.filter(
+            (item) => item.id === communityId
+          );
+          console.log("tutor", comunityDetails);
+          setCommunity(comunityDetails);
+          setIsLoading(false);
+        });
+        return () => unsubscribe();
       } catch (error) {
         console.log(error);
       }
     };
     const getPost = async () => {
-      const result = await getPostsInCommunity(communityId);
-      setPosts(result);
+      const q = query(
+        collection(db, "post"),
+        where("community_id", "==", communityId)
+      );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let post = [];
+        querySnapshot.forEach((doc) => {
+          post.push({ ...doc.data(), id: doc.id });
+        });
+        console.log("community post", post);
+        setPosts(post);
+        setIsLoading(false);
+      });
+      return () => unsubscribe();
     };
     getPost();
     filterForCommunity();
@@ -248,7 +304,7 @@ const CommunityDetail = () => {
                         />
                         <Input
                           value={content}
-                          onChangeText={(text) => setTitle(text)}
+                          onChangeText={(text) => setContent(text)}
                           placeholder="Whats on your Mind..."
                           multiline
                           className="bg-transparent h-[68px] text-[16px] mr-9 border-none outline-noe px-4 py-2.5"
@@ -281,12 +337,11 @@ const CommunityDetail = () => {
               })}
             </View>
           )}
-
           {posts && posts.length > 0 ? (
             <View className="mb-12 mt-4">
-              {posts?.map((item) => (
+              {posts.map((item, i) => (
                 <View className="">
-                  <ContentCard content={item} />
+                  <ContentCard key={i} item={item} />
                 </View>
               ))}
             </View>
