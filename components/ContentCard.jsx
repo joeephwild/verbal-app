@@ -63,12 +63,12 @@ const ContentCard = ({ item }) => {
             {item.name}
           </Text>
           <Text className="font-[SpaceMono] text-[14px] font-normal leading-nromal">
-            {/* Posted {formatTime(content.created_at)} */}
+            Posted {formatTime(content.created_at)}
           </Text>
         </View>
       </View>
       <Text className="text-[16px] font-normal leading-normal text-[#000] pb-4">
-        {item.content}
+        {item.contents}
       </Text>
       <Image source={{ uri: item.img_url }} style={styles.postImage} />
       <View className="flex-row items-center justify-between px-4 py-2">

@@ -4,28 +4,14 @@ import {
   KeyboardAvoidingView,
   Platform,
   FlatList,
-  Keyboard,
 } from "react-native";
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ChevronLeftIcon } from "react-native-heroicons/solid";
 import { Pressable } from "react-native";
 import { router } from "expo-router";
 import { useAuth } from "../../../context/auth";
-import { Messages } from "../../../utils/index";
-
-import {
-  getChatBotHistory,
-  getUserChatHistory,
-} from "../../../lib/services/aiChatService";
-
-import { getUserDetails } from "../../../lib/services/userService";
 import MessageBox from "../../../components/MessageBox";
 import NoChatView from "../../../components/NoChatView";
 import InputBox from "../../../components/InputBox";
@@ -38,17 +24,20 @@ import {
   where,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
+import * as Speech from "expo-speech";
 
 const Ai = () => {
   const { session, id } = useAuth();
   const [text, setText] = React.useState("");
   const [user, setUser] = React.useState("");
   const [chatHistory, setChatHistory] = useState([]);
-  // useEffect(() => {
-  //   if (session) {
-  //     setUser(session?.user?.email);
-  //   }
-  // }, [session]);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [isCurrentMessage, setIscurrentMessages] = useState(false);
+
+  const speakResponse = (response) => {
+    let options = {};
+    Speech.speak(response, options);
+  };
 
   useEffect(() => {
     const fetchChat = async () => {
@@ -56,17 +45,28 @@ const Ai = () => {
       const q = query(
         collection(db, "chatrooms"),
         where("userId", "==", user.uid),
-        orderBy("timestamp")
+        orderBy("created_at")
       );
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         let chat = [];
         querySnapshot.forEach((doc) => {
           chat.push({ ...doc.data(), id: doc.id });
         });
-        console.log("community chat", chat);
         setChatHistory(chat);
+        // Speak the AI response (assuming the AI response is in the last item of chat)
+        // if (chat.length > 0) {
+        //   const lastMessage = chat[chat.length - 1];
+        //   if (lastMessage.role === "ai" && lastMessage.message) {
+        //     // speakResponse(lastMessage.message);
+        //     Speech.speak(lastMessage.message);
+        //   }
+        // }
       });
-      return () => unsubscribe();
+
+      return () => {
+        unsubscribe();
+        // Speech.stop();
+      };
     };
     fetchChat();
   }, []);
@@ -91,26 +91,34 @@ const Ai = () => {
       <View style={{ flex: 1 }}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
-          keyboardVerticalOffset={100}
+          keyboardVerticalOffset={180}
           behavior={"padding"}
         >
-          {chatHistory.length > 0 ? (
+          {!chatHistory && chatHistory.length <= 0 ? (
+            <NoChatView />
+          ) : (
             <FlatList
               data={chatHistory}
-              renderItem={({ item }) => <MessageBox {...item} />}
+              renderItem={({ item }) => (
+                <MessageBox aiLoading={aiLoading} isCurrentMessage={isCurrentMessage} {...item} />
+              )}
               keyExtractor={(_, index) => index.toString()}
               contentContainerStyle={{
                 paddingHorizontal: 10,
                 gap: 24,
                 paddingBottom: 180,
               }}
-              automaticallyAdjustKeyboardInsets
+              // automaticallyAdjustKeyboardInsets
             />
-          ) : (
-            <NoChatView />
           )}
 
-          <InputBox text={text} setText={setText} index={id} />
+          <InputBox
+            text={text}
+            setText={setText}
+            index={id}
+            setAiLoading={setAiLoading}
+            setIscurrentMessages={setIscurrentMessages}
+          />
         </KeyboardAvoidingView>
       </View>
     </SafeAreaView>

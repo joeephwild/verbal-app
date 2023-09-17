@@ -328,3 +328,49 @@ export const Messages = [
       "Absolutely! I'd be happy to help you learn French. Let's get started.",
   },
 ];
+
+export const Chains = [
+  {
+    chainName: "Goerli",
+    chainId: 5,
+    chainImage:
+      "https://imgs.search.brave.com/j7h1oU0x5QOusFr5w5_2kNYyn9d3j_zfIwXzSDVK3fI/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9kMzN3/dWJyZmtpMGw2OC5j/bG91ZGZyb250Lm5l/dC81MGY4NTEzODAw/YzUyYTUwZDkwNWRk/ODE5MTJmOTcxNmRk/MmJkYWJhLzJiZTA0/L3N0YXRpYy9iMTM1/YjdmMjJkNGQ3NGYz/ZTg1NjYyMjFiMTA3/OWNmMy9mZDhkOS9l/dGgtZGlhbW9uZC1w/dXJwbGUucG5ns",
+  },
+  {
+    chainName: "Avalanche Fuji C-Chain",
+    chainId: 43113,
+    chainImage:
+      "https://imgs.search.brave.com/j7h1oU0x5QOusFr5w5_2kNYyn9d3j_zfIwXzSDVK3fI/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9kMzN3/dWJyZmtpMGw2OC5j/bG91ZGZyb250Lm5l/dC81MGY4NTEzODAw/YzUyYTUwZDkwNWRk/ODE5MTJmOTcxNmRk/MmJkYWJhLzJiZTA0/L3N0YXRpYy9iMTM1/YjdmMjJkNGQ3NGYz/ZTg1NjYyMjFiMTA3/OWNmMy9mZDhkOS9l/dGgtZGlhbW9uZC1w/dXJwbGUucG5ns",
+  },
+];
+
+export const TimeFrame = [
+  {
+    key: 1,
+    time: "5:00",
+  },
+  {
+    key: 1,
+    time: "5:30",
+  },
+  {
+    key: 1,
+    time: "6:00",
+  },
+  {
+    key: 1,
+    time: "6:30",
+  },
+  {
+    key: 1,
+    time: "7:00",
+  },
+  {
+    key: 1,
+    time: "7:30",
+  },
+  {
+    key: 1,
+    time: "8:00",
+  },
+];

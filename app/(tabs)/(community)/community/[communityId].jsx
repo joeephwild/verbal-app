@@ -28,21 +28,8 @@ import {
 import { useAuth } from "../../../../context/auth";
 import ContentCard from "../../../../components/ContentCard";
 import { Input } from "react-native-elements";
-import {
-  addUserToCommunityWithValidation,
-  checkUserInCommunity,
-  leaveACommunity,
-} from "../../../../lib/services/communityService";
-import {
-  handleSubmission,
-  pickImage,
-  pickVideo,
-  pinFileToIPFS,
-} from "../../../../lib/services/userService";
-import {
-  createPost,
-  getPostsInCommunity,
-} from "../../../../lib/services/contentService";
+import { leaveACommunity } from "../../../../lib/services/communityService";
+import { pickImage, pickVideo } from "../../../../lib/services/userService";
 import {
   addDoc,
   collection,
@@ -50,6 +37,7 @@ import {
   orderBy,
   query,
   where,
+  serverTimestamp,
 } from "firebase/firestore";
 import { auth, db } from "../../../../firebase";
 // import { sendFileToIPFS } from "../../../../utils/pinata";
@@ -98,30 +86,7 @@ const CommunityDetail = () => {
   const handleJoin = async () => {
     const user = auth.currentUser;
     let userId = user.uid;
-    const communityRef = db.collection("communities").doc(communityId);
-
-    return db
-      .runTransaction((transaction) => {
-        return transaction.get(communityRef).then((doc) => {
-          if (!doc.exists) {
-            throw new Error("Community does not exist!");
-          }
-
-          // Update the members array in the transaction
-          const members = doc.data().members || [];
-          if (!members.includes(userId)) {
-            members.push(userId);
-            transaction.update(communityRef, { members: members });
-          }
-          setIsMember(true);
-        });
-      })
-      .then(() => {
-        console.log("User joined the community successfully!");
-      })
-      .catch((error) => {
-        console.error("Error joining the community: ", error);
-      });
+    const communityRef = query(collection(db, "communities"));
   };
 
   const handlCreatePost = async () => {
@@ -129,13 +94,13 @@ const CommunityDetail = () => {
       const user = auth.currentUser;
       const docRef = await addDoc(collection(db, "post"), {
         community_id: communityId,
-        content: content,
+        contents: content,
         img_url: image,
         video_url: "",
-        image: "",
+        image: user.photoURL,
         user_id: user.uid,
-        name: "joseph",
-        created_at: Date,
+        name: user.displayName,
+        created_at: serverTimestamp(),
       });
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -169,7 +134,8 @@ const CommunityDetail = () => {
     const getPost = async () => {
       const q = query(
         collection(db, "post"),
-        where("community_id", "==", communityId)
+        where("community_id", "==", communityId),
+        orderBy("created_at")
       );
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         let post = [];

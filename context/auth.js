@@ -48,13 +48,13 @@ function useProtectedRoute(session) {
       navigate.navigate("(auth)");
     } else if (session && inAuthGroup) {
       // Redirect away from the sign-in page.
-      navigate.navigate("(tabs)");
+      navigate.navigate("(home)");
     }
   }, [session, segments]);
 }
 
 export function Provider(props) {
-  const [session, setSession] = React.useState(null);
+  const [session, setSession] = React.useState("");
   const [id, setId] = useState("");
   const [community, setCommunity] = React.useState([]);
   const [loading, setLoading] = useState(true);

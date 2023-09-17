@@ -29,7 +29,7 @@ const Session = ({time}) => {
         className="bg-[#F70] w-full py-[16px] mt-[9px] rounded-[8px] items-center justify-center"
       >
         <Text className="text-[16px] text-white font-bold leading-normal">
-          Check availability
+         Schdule Call
         </Text>
       </Pressable>
     </View>

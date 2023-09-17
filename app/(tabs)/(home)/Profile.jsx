@@ -164,6 +164,9 @@ const Profile = () => {
                 <Text className="text-[#AAAAAAAA] text-[16px] font-semibold">
                   Pro {item.tutor_lang}
                 </Text>
+                <Text className="text-[#AAAAAAAA] text-[16px] font-semibold">
+                  {item.userName}
+                </Text>
               </View>
               <View className="flex-row space-x-[16px] items-center justify-around mt-[20px] ">
                 <Pressable
@@ -215,7 +218,7 @@ const Profile = () => {
                 </View>
               )}
 
-              {isSwitched === "overview" && <Overview />}
+              {isSwitched === "overview" && <Overview isNotProfile={false} />}
             </View>
 
             <Portal>

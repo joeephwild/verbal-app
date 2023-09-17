@@ -42,7 +42,7 @@ const CreateCommunity = () => {
               placeholder=""
               value={communityName}
               onChangeText={(text) => setCommunityName(text)}
-              className="bg-[#fff] w-[338px] px-[8px] py-2.5 h-[48px] rounded-[5px]"
+              className="bg-[#000] border-2 border-[#ccca] w-[338px] h-[48px] rounded-[5px]"
             />
           </View>
           <View className="space-y-[8px] items-start">
@@ -54,13 +54,13 @@ const CreateCommunity = () => {
               onChangeText={(text) => setCommunityDesc(text)}
               multiline
               placeholder=""
-              className="bg-[#fff] w-[338px] h-[88px] px-[8px] py-2.5 rounded-[5px]"
+              className="bg-[#000] border-2 border-[#ccca] w-[338px] h-[48px] rounded-[5px]"
               numberOfLines={20}
             />
           </View>
           <Pressable
             onPress={handleImageUpload}
-            className="border border-[#F70] w-full h-[40%] py-[16px] rounded-[8px] items-center justify-center"
+            className="border border-[#ccca] w-full h-[40%] py-[16px] rounded-[8px] items-center justify-center"
           >
             <PhotoIcon size={25} color="#fff" />
             <Text className="text-[16px] text-start font-semibold text-[#fff]">

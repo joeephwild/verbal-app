@@ -4,11 +4,18 @@ import { PaperAirplaneIcon } from "react-native-heroicons/solid";
 import { mindDbQueryCall } from "../lib/mindDb";
 import { getDatabase, ref, set } from "firebase/database";
 import { auth, database, db } from "../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
-const InputBox = ({ index, text, setText }) => {
+const InputBox = ({
+  index,
+  text,
+  setText,
+  setAiLoading,
+  setIscurrentMessages,
+}) => {
   const [isFetching, setIsFetching] = React.useState(false);
   const [userUid, setUserUid] = useState("");
+
   const handleSend = async () => {
     await mindDbQueryCall(index, text);
   };
@@ -24,24 +31,28 @@ const InputBox = ({ index, text, setText }) => {
     try {
       if (text.trim() === "") return;
       const user = auth.currentUser;
-      const currentDate = new Date(); // Get the current date and time
-      const timestamp = currentDate.toISOString();
-      // // Add the new message to the Firestore collection
+      setText("");
+      // Add the new message to the Firestore collection
       const docRef = await addDoc(collection(db, "chatrooms"), {
         role: "user",
         message: text,
         userId: user.uid,
-        created_at: timestamp,
+        created_at: serverTimestamp(), // Use serverTimestamp() to set the timestamp
       });
-      setText("");
-      const response = await mindDbQueryCall("joseph", text);
-      console.log(response);
 
-      const airesponse = await addDoc(collection(db, "chatrooms"), {
+      setAiLoading(true);
+      setIscurrentMessages(true);
+      const response = await mindDbQueryCall(
+        auth.currentUser.displayName,
+        text
+      );
+      setAiLoading(false);
+      setIscurrentMessages(false);
+      await addDoc(collection(db, "chatrooms"), {
         role: "ai",
         message: response,
         userId: user.uid,
-        created_at: timestamp,
+        created_at: serverTimestamp(), // Use serverTimestamp() for the AI response as well
       });
 
       // Clear the input box

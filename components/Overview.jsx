@@ -95,7 +95,7 @@ const Overview = ({ isNotProfile }) => {
           </View>
           <ScrollView>
             <View>
-              {isSwitched === "details" && <Details />}
+              {isSwitched === "details" && <Details isNotProfile={isNotProfile} />}
               {isSwitched === "post" && <Post />}
               {isSwitched === "profile" && (
                 <View style={{ paddingBottom: 20 }}>

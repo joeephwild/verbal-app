@@ -13,7 +13,7 @@ import {
   HeartIcon,
   EllipsisHorizontalIcon,
 } from "react-native-heroicons/outline";
-import {  useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import Session from "../../../../components/Session";
 import { useState } from "react";
 import Overview from "../../../../components/Overview";
@@ -47,7 +47,7 @@ const TutorDetails = () => {
     filterForTutor();
   }, [id]);
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
         contentContainerStyle={{
           marginVertical: 24,
@@ -90,35 +90,7 @@ const TutorDetails = () => {
               <Text className="text-[#AAAAAAAA] text-[16px] font-semibold">
                 Pro {item.tutor_lang}
               </Text>
-              <View className="flex-row space-x-[16px] items-center justify-around mt-[10px] ">
-                <Pressable
-                  onPress={() => setIsSwitched("overview")}
-                  className={`${
-                    isSwitched === "overview"
-                      ? "border-b-[5px] w-[180px] py-4 border-[#f70]"
-                      : "border-b-[5px] border-gray-500 w-[170px] py-4 text-center"
-                  } `}
-                >
-                  <Text className="text-[#fff] text-center text-[16px] leading-normal font-semibold">
-                    Overview
-                  </Text>
-                </Pressable>
-                <Pressable
-                  onPress={() => setIsSwitched("session")}
-                  className={`${
-                    isSwitched === "session"
-                      ? "border-b-[5px] w-[180px] py-4 border-[#f70]"
-                      : "border-b-[5px] border-gray-500 w-[170px] py-4 text-center"
-                  } `}
-                >
-                  <Text className="text-[#fff] text-center text-[16px] leading-normal font-semibold">
-                    Session
-                  </Text>
-                </Pressable>
-              </View>
-              {isSwitched === "session" && <Session time={item.time_slot} />}
-
-              {isSwitched === "overview" && <Overview isNotProfile={true} />}
+              <Session time={item.time_slot} />
             </View>
           </View>
         ))}

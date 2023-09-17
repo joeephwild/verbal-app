@@ -19,6 +19,7 @@ import { RlyMumbaiNetwork, createAccount } from "@rly-network/mobile-sdk";
 import { auth, db } from "../../firebase";
 import { getAccount } from "@rly-network/mobile-sdk";
 import { addDoc, collection } from "firebase/firestore";
+import { updateProfile } from "firebase/auth";
 
 const CreateAccount = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -100,20 +101,7 @@ const CreateAccount = () => {
             await RlyMumbaiNetwork.claimRly();
           }
 
-          // Prepare user data
-          // const userObj = {
-          //   native_language: selectedLanguage,
-          //   native_levels: selectedLevel,
-          //   full_name: fullName,
-          //   userName: username,
-          //   profile_img: profile,
-          //   cover_image: coverImage,
-          //   account: selectedAccountType,
-          //   time_slot: selectedAvailability,
-          //   pro_level: selectedLanguageLevel,
-          //   tutor_lang: selectedTutorLanguage,
-          //   address: account,
-          // };
+          const user = auth.currentUser;
 
           // Create the user profile
           try {
@@ -130,6 +118,20 @@ const CreateAccount = () => {
               tutor_lang: selectedTutorLanguage,
               address: account,
             });
+            updateProfile(auth.currentUser, {
+              displayName: username,
+              photoURL: profile,
+            })
+              .then(() => {
+                // Profile updated!
+                // ...
+                Alert.alert("done");
+              })
+              .catch((error) => {
+                // An error occurred
+                // ...
+                console.log("error updating profile", error.message);
+              });
             console.log("Document written with ID: ", docRef.id);
             Alert.alert("Profile Created successfully");
           } catch (e) {

@@ -14,14 +14,31 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.verbaldapp.verbal",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Allow Verbal to use Face ID."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "permissions": [
+        "android.permission.SPEECH",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "INTERNET"
+      ],
+      "package": "com.verbaldapp.verbal",
+      "versionCode": 1,
+      "minSdkVersion": 24
     },
     "web": {
       "bundler": "metro",
@@ -41,10 +58,24 @@
         {
           "faceIDPermission": "Allow Verbal to use Face ID."
         }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "53d11c66-2795-4c73-988f-d588af1ddcdc"
+      }
     }
   }
 }

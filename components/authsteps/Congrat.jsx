@@ -25,7 +25,7 @@ const Congrat = () => {
         </View>
       </View>
       <View
-        onPress={() => router.push("/(tabs)")}
+        onPress={() => navigate.navigate("(home)")}
         asChild
         className="items-center my-5 justify-center"
       >

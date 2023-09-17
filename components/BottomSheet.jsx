@@ -76,7 +76,7 @@ const BottomSheets = () => {
                 <SignalIcon color="#fff" size={25} />
               </Pressable>
 
-              <Text className="text-[16px] font-normal ">Go Live</Text>
+              <Text className="text-[16px] font-normal ">Record a Podcast</Text>
             </View>
             <View className="flex-row items-center space-x-[16px]">
               <Pressable className="bg-[#000] w-[10px] h-[10px] rounded-full p-5 items-center justify-center">

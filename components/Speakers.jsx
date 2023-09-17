@@ -46,7 +46,7 @@ const Speakers = () => {
       >
         {profileDetails.map((item, index) => (
           <Pressable
-          key={index}
+            key={index}
             onPress={() => router.push(`/tutor/${item.id}`)}
             className=" bg-white rounded-[8px] px-4 py-3.5 w-[250px] min-h-[48px]"
           >
@@ -63,7 +63,10 @@ const Speakers = () => {
                 </Text>
                 <View className="items-start">
                   <Text className="text-[16px] space font-normal text-[#000]">
-                    {item.tutor_lang}  {item.account}
+                    {item.tutor_lang} {item.account}
+                  </Text>
+                  <Text className="text-[10px] space font-normal text-[#000]">
+                    {item.userName}
                   </Text>
                 </View>
               </View>
