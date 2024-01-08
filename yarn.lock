@@ -6402,6 +6402,13 @@ expo-font@~11.4.0:
   dependencies:
     fontfaceobserver "^2.1.0"
 
+expo-font@~11.5.0:
+  version "11.5.1"
+  resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-11.5.1.tgz#213fbdce58a2343583570bdf0a8ee3e415d27add"
+  integrity sha512-Bs4eXbxT7x6dcy2awEd6R7G7NwepZTz7gg6YXhMQWviXhFfH6GFmkCumV5dWR6vfJrBwiH/m7zPB5AEpSA1syQ==
+  dependencies:
+    fontfaceobserver "^2.1.0"
+
 expo-head@0.0.11:
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/expo-head/-/expo-head-0.0.11.tgz#729fa6b9c8ce09c4af1e0efdccc86b23d7124569"
