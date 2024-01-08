@@ -1,10 +1,12 @@
 import { View, Text, Image, Pressable, ScrollView } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Link, useNavigation, router } from "expo-router";
 import { MyLesson } from "../utils";
 import { useEnsName, useEnsAvatar } from "wagmi";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const MyLessons = () => {
   const navigate = useNavigation();
@@ -14,6 +16,25 @@ const MyLessons = () => {
   const { data: avatar } = useEnsAvatar({
     name: "jxo.eth",
   });
+
+  useEffect(() => {
+    const fetchChat = async () => {
+      const user = auth.currentUser;
+      const q = query(collection(db, "session"), orderBy("created_at"));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let chat = [];
+        querySnapshot.forEach((doc) => {
+          chat.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(chat);
+      });
+
+      return () => {
+        unsubscribe();
+      };
+    };
+    fetchChat();
+  }, []);
   return (
     <ScrollView
       horizontal

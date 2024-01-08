@@ -1,3 +1,4 @@
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -6,8 +7,8 @@ import {
   ScrollView,
   Image,
   Pressable,
+  FlatList,
 } from "react-native";
-import React, { useMemo, useRef, useState } from "react";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,13 +17,14 @@ import {
   ChevronLeftIcon,
   MagnifyingGlassIcon,
 } from "react-native-heroicons/solid";
-import { Podcast } from "../../../utils";
-import { router } from "expo-router";
-import { Modalize } from "react-native-modalize";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Portal, PortalHost } from "@gorhom/portal";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { Link, useNavigation } from "expo-router"; // Assuming "router" is not used
 
-const index = () => {
+const Index = () => {
+  const [podcast, setPodcast] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const tabs = [
     "Trending",
     "Latest",
@@ -33,15 +35,15 @@ const index = () => {
     "English",
   ];
 
-  // variables
   const snapPoints = useMemo(() => ["25%", "50%"], []);
 
   const podcastRef = useRef(null);
   const [selectedPodcast, setSelectedPodcast] = useState(null);
 
+  const navigation = useNavigation();
+
   const onOpen = (item) => {
-    setSelectedPodcast(item);
-    podcastRef.current?.open();
+    navigation.navigate("PodcastPlayer", { podcast: item });
   };
 
   const onClose = () => {
@@ -49,93 +51,100 @@ const index = () => {
     podcastRef.current?.close();
   };
 
+  useEffect(() => {
+    const filterForTutor = async () => {
+      try {
+        setIsLoading(true);
+        const q = query(collection(db, "podcast"), orderBy("created_at"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          let post = [];
+          querySnapshot.forEach((doc) => {
+            post.push({ ...doc.data(), id: doc.id });
+          });
+          console.log("podcast post", post);
+          setPodcast(post);
+          setIsLoading(false);
+        });
+        return () => unsubscribe();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    filterForTutor();
+  }, []);
+
   return (
     <SafeAreaView>
-      <ScrollView className="mx-[28px]">
-        <Text className="text-[26px] font-bold text-[#fff] ml-9">Podcast</Text>
-        <View className="mt-[16px] bg-[#252836] flex-row items-center h-[53px] px-4 py-2.5">
+      <View style={{ marginHorizontal: wp(7) }}>
+        <Text style={{ fontSize: 26, fontWeight: "bold", color: "#fff", marginLeft: wp(2) }}>Podcast</Text>
+        <View style={{ marginTop: hp(2), backgroundColor: "#252836", flexDirection: "row", alignItems: "center", height: hp(7), paddingHorizontal: wp(3), paddingVertical: hp(1) }}>
           <TextInput
             placeholderTextColor="#fff"
             placeholder="Search"
             style={{
               width: wp(70),
+              color: "#fff",
+              fontSize: 16,
             }}
-            className=" placeholder:text-white"
           />
           <MagnifyingGlassIcon size={24} color="#fff" />
         </View>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 6, marginTop: 16 }}
+          contentContainerStyle={{ gap: 6, marginTop: hp(2) }}
         >
-          {tabs.map((item) => (
-            <View className="bg-[#2F3142] px-4 py-2.5 rounded-full">
-              <Text className="text-[#fff] font-normal text-[16px]">
+          {tabs.map((item, index) => (
+            <View
+              key={index}
+              style={{
+                backgroundColor: "#2F3142",
+                paddingHorizontal: wp(4),
+                paddingVertical: hp(1),
+                borderRadius: 999,
+                marginRight: wp(2),
+              }}
+            >
+              <Text style={{ fontSize: 16, fontWeight: "normal", color: "#fff" }}>
                 {item}
               </Text>
             </View>
           ))}
         </ScrollView>
 
-        <View>
-          <View className="flex-row flex-wrap gap-5 pt-4 ">
-            {Podcast.map((item) => (
-              <Pressable onPress={() => onOpen(item)} key={item.id}>
-                <Image
-                  source={{
-                    uri: item.image,
-                  }}
-                  className="w-[160px] h-[160px] object-cover"
-                />
-                <View className="w-[158px] mt-2 h-[43px]">
-                  <Text className="text-[13px] font-bold text-[#fff]">
-                    {item.name}
-                  </Text>
-                  <Text className="text-[10px] font-medium text-[#CCCCCC]">
-                    {item.author}
-                  </Text>
-                </View>
-              </Pressable>
-            ))}
-          </View>
-        </View>
-      </ScrollView>
-      <Portal>
-        <Modalize
-          ref={podcastRef}
-          modalStyle={{ backgroundColor: "#000" }}
-          // snapPoint={snapPoints}
-          HeaderComponent={() => (
-            <View className="mt-[16px] px-[24px]">
-              {/* Customize your header */}
-              <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
-                Podcasts
-              </Text>
-              <Pressable
-                onPress={() => onClose()}
-                className="flex-row mt-5 items-center space-x-[12px]"
+        <FlatList
+          data={podcast}
+          renderItem={({ item }) => (
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 5, paddingTop: hp(2) }}>
+              <Link
+              href="PodcastPlayer"
+                params={{
+                  image: item.podcast_img,
+                  title: item.podcast_Title,
+                  audio: item.podcast_audio_url,
+                  name: item.created_by,
+                }}
+                asChild
               >
-                <ChevronLeftIcon size={25} color="#fff" />
-                <Text className="text-[#fff] text-[20px] font-normal">
-                  Now playing
-                </Text>
-              </Pressable>
+                <Pressable onPress={() => onOpen(item)}>
+                  <Image
+                    source={{ uri: item.podcast_img }}
+                    style={{ width: wp(40), height: wp(40), resizeMode: "cover" }}
+                  />
+                  <View style={{ width: wp(40), marginTop: hp(1.5) }}>
+                    <Text style={{ fontSize: 13, fontWeight: "bold", color: "#fff" }}>{item.podcast_Title}</Text>
+                    <Text style={{ fontSize: 10, fontWeight: "medium", color: "#CCCCCC" }}>{item.created_by}</Text>
+                  </View>
+                </Pressable>
+              </Link>
             </View>
           )}
-        >
-          <View>
-            {/* <Image style={{
-              width: wp(80)
-            }} source={{
-              uri: selectedPodcast.image
-            }} /> */}
-          </View>
-        </Modalize>
-        <PortalHost name="CustomPortalHost" />
-      </Portal>
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
     </SafeAreaView>
   );
 };
 
-export default index;
+export default Index;

@@ -28,24 +28,21 @@ import {
 import { useAuth } from "../../../../context/auth";
 import ContentCard from "../../../../components/ContentCard";
 import { Input } from "react-native-elements";
+import { leaveACommunity } from "../../../../lib/services/communityService";
+import { pickImage, pickVideo } from "../../../../lib/services/userService";
 import {
-  addUserToCommunityWithValidation,
-  checkUserInCommunity,
-  leaveACommunity,
-} from "../../../../lib/services/communityService";
-import {
-  handleSubmission,
-  pickImage,
-  pickVideo,
-  pinFileToIPFS,
-} from "../../../../lib/services/userService";
-import {
-  createPost,
-  getPostsInCommunity,
-} from "../../../../lib/services/contentService";
+  addDoc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+  serverTimestamp,
+} from "firebase/firestore";
+import { auth, db } from "../../../../firebase";
 // import { sendFileToIPFS } from "../../../../utils/pinata";
 
-const CommunityDetails = () => {
+const CommunityDetail = () => {
   const { communityId } = useLocalSearchParams();
   const [communities, setCommunity] = useState([]);
   const { community, loading, error, id } = useAuth();
@@ -53,14 +50,14 @@ const CommunityDetails = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isMember, setIsMember] = useState(false); // State to track membership status
-  const [content, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const userIsMember = await checkUserInCommunity(id, communityId);
-      setIsMember(userIsMember);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const userIsMember = await checkUserInCommunity(id, communityId);
+    //   setIsMember(userIsMember);
+    // };
+    // fetchData();
   }, [id, communityId]);
 
   const handleImageUpload = async () => {
@@ -87,33 +84,69 @@ const CommunityDetails = () => {
   };
 
   const handleJoin = async () => {
-    await addUserToCommunityWithValidation(id, communityId);
-    setIsMember(true);
+    const user = auth.currentUser;
+    let userId = user.uid;
+    const communityRef = query(collection(db, "communities"));
   };
 
   const handlCreatePost = async () => {
-    alert("yeah");
-    createPost(id, communityId, content, [image]);
-    setTitle("");
-    alert("Post Created successfully");
+    try {
+      const user = auth.currentUser;
+      const docRef = await addDoc(collection(db, "post"), {
+        community_id: communityId,
+        contents: content,
+        img_url: image,
+        video_url: "",
+        image: user.photoURL,
+        user_id: user.uid,
+        name: user.displayName,
+        created_at: serverTimestamp(),
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   useEffect(() => {
     const filterForCommunity = async () => {
       try {
         setIsLoading(true);
-        const comunityDetails = community?.filter(
-          (item) => item.id === communityId
-        );
-        setCommunity(comunityDetails);
-        setIsLoading(false);
+        const q = query(collection(db, "community"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          let communities = [];
+          querySnapshot.forEach((doc) => {
+            communities.push({ ...doc.data(), id: doc.id });
+          });
+
+          const comunityDetails = communities?.filter(
+            (item) => item.id === communityId
+          );
+          console.log("tutor", comunityDetails);
+          setCommunity(comunityDetails);
+          setIsLoading(false);
+        });
+        return () => unsubscribe();
       } catch (error) {
         console.log(error);
       }
     };
     const getPost = async () => {
-      const result = await getPostsInCommunity(communityId);
-      setPosts(result);
+      const q = query(
+        collection(db, "post"),
+        where("community_id", "==", communityId),
+        orderBy("created_at")
+      );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let post = [];
+        querySnapshot.forEach((doc) => {
+          post.push({ ...doc.data(), id: doc.id });
+        });
+        console.log("community post", post);
+        setPosts(post);
+        setIsLoading(false);
+      });
+      return () => unsubscribe();
     };
     getPost();
     filterForCommunity();
@@ -237,7 +270,7 @@ const CommunityDetails = () => {
                         />
                         <Input
                           value={content}
-                          onChangeText={(text) => setTitle(text)}
+                          onChangeText={(text) => setContent(text)}
                           placeholder="Whats on your Mind..."
                           multiline
                           className="bg-transparent h-[68px] text-[16px] mr-9 border-none outline-noe px-4 py-2.5"
@@ -270,12 +303,11 @@ const CommunityDetails = () => {
               })}
             </View>
           )}
-
           {posts && posts.length > 0 ? (
             <View className="mb-12 mt-4">
-              {posts?.map((item) => (
+              {posts.map((item, i) => (
                 <View className="">
-                  <ContentCard content={item} />
+                  <ContentCard key={i} item={item} />
                 </View>
               ))}
             </View>
@@ -333,48 +365,4 @@ const CommunityDetails = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-});
-
-export default CommunityDetails;
+export default CommunityDetail;

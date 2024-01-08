@@ -7,21 +7,18 @@ import {
   ActivityIndicator,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  ArrowLeftCircleIcon,
-  ArrowLeftIcon,
-  ChevronLeftIcon,
-} from "react-native-heroicons/solid";
+import { ChevronLeftIcon } from "react-native-heroicons/solid";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { languageCommunity } from "../../../utils/index";
 import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../../../context/auth";
 import { router } from "expo-router";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 const CommunityCard = ({ item }) => {
   return (
@@ -65,10 +62,28 @@ const CommunityCard = ({ item }) => {
 };
 
 const index = () => {
-  const { loading, community, error } = useAuth();
+  const [allCommunities, setAllCommunity] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  useEffect(() => {
+    const fetchCommunity = async () => {
+      setIsLoading(true);
+      const q = query(collection(db, "community"));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        let communities = [];
+        querySnapshot.forEach((doc) => {
+          communities.push({ ...doc.data(), id: doc.id });
+        });
+        setAllCommunity(communities);
+        setIsLoading(false);
+      });
+      return () => unsubscribe();
+    };
+    fetchCommunity();
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {loading ? (
+      {isLoading ? (
         <ActivityIndicator color="#f70" size="large" />
       ) : (
         <ScrollView>
@@ -103,7 +118,7 @@ const index = () => {
               >
                 Top Community
               </Text>
-              {community.map((item) => {
+              {allCommunities.map((item) => {
                 return <CommunityCard key={item.id} item={item} />;
               })}
             </View>

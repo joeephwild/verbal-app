@@ -1,9 +1,18 @@
-import { View, Text, Pressable, Modal, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Modal,
+  StyleSheet,
+  BackHandler,
+  Image,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import {
   getAccountPhrase,
   RlyMumbaiNetwork,
   getAccount,
+  permanentlyDeleteAccount,
 } from "@rly-network/mobile-sdk";
 import {
   widthPercentageToDP as wp,
@@ -12,19 +21,22 @@ import {
 import { EyeIcon, EyeSlashIcon } from "react-native-heroicons/outline";
 import * as LocalAuthentication from "expo-local-authentication";
 import { useWalletConnectModal } from "@walletconnect/modal-react-native";
-import { Provider } from "../context/auth";
+import { useAuth } from "../context/auth";
+import SeedPhraseModal from "./SeedPhraseModal";
 
 const Post = () => {
   const [seedPhrase, setSeedPhrase] = useState([]);
   const [isBiometric, setIsBiometric] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const { provider } = useWalletConnectModal()
+  const { provider } = useWalletConnectModal();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { signout, deleteAccount } = useAuth();
   console.log(isBiometric);
 
   useEffect(() => {
     const getRallyDetails = async () => {
       const mnemonic = await getAccountPhrase();
+      console.log(mnemonic)
       const wordArray = mnemonic.split(" "); // Provide a space as the delimiter
       setSeedPhrase(wordArray);
       const compatible = await LocalAuthentication.hasHardwareAsync();
@@ -46,60 +58,109 @@ const Post = () => {
       alert(result.error);
     });
   };
+
+  const handleBackButton = () => {
+    // Prevent the user from going back when the modal is open
+    return true;
+  };
+
+  const closeModal = () => {
+    setIsAuthenticated(false);
+    BackHandler.addEventListener("hardwareBackPress", handleBackButton);
+  };
   return (
     <View className="bg-[#000] flex-1">
-      <View className="mt-9">
-        <View className="flex-row items-center border-[#ccca] border-2 w-full mt-5 py-[16px] rounded-[8px] justify-between px-8">
-          <Text className="text-[#fff] text-[16px] font-semibold font-[SpaceMono]">
-            Seed phrase
-          </Text>
-          <Pressable>
-            {isAuthenticated ? (
-              <EyeIcon color="#fff" />
-            ) : (
-              <EyeSlashIcon onPress={handleAuth} color="#fff" />
-            )}
+      <View>
+        <View className="mt-9">
+          <View className="flex-row items-center border-[#ccca] border-2 w-full mt-5 py-[16px] rounded-[8px] justify-between px-8">
+            <Text className="text-[#fff] text-[16px] font-semibold font-[SpaceMono]">
+              Seed phrase
+            </Text>
+            <Pressable>
+              {isAuthenticated ? (
+                <EyeIcon color="#fff" />
+              ) : (
+                <EyeSlashIcon onPress={handleAuth} color="#fff" />
+              )}
+            </Pressable>
+          </View>
+          <Pressable
+            style={{
+              width: wp(86),
+            }}
+            className="border-[#ccca] flex-row border-2 w-full mt-5 py-[16px] rounded-[8px] items-center justify-between px-4 "
+          >
+            <Text className="text-[16px] font-[SpaceMono] text-[#fff]  font-bold leading-normal">
+              Switch Network
+            </Text>
+            <Image
+              source={require("../assets/images/eth.png")}
+              className="w-6 h-8"
+            />
           </Pressable>
         </View>
+        <Pressable
+          style={{
+            width: wp(86),
+          }}
+          onPress={signout}
+          className="border-[#ccca] border-2 w-full mt-5 py-[16px] rounded-[8px] items-center justify-center"
+        >
+          <Text className="text-[16px] text-red-700  font-bold leading-normal">
+            Logout
+          </Text>
+        </Pressable>
+        <Pressable
+          style={{
+            width: wp(86),
+          }}
+          onPress={deleteAccount}
+          className="border-[#ccca] border-2 w-full mt-5 py-[16px] rounded-[8px] items-center justify-center"
+        >
+          <Text className="text-[16px] text-red-700  font-bold leading-normal">
+            Delete Account
+          </Text>
+        </Pressable>
+        <Pressable
+          style={{
+            width: wp(86),
+          }}
+          onPress={() => permanentlyDeleteAccount()}
+          className="border-[#ccca] border-2 w-full mt-5 py-[16px] rounded-[8px] items-center justify-center"
+        >
+          <Text className="text-[16px] text-red-700  font-bold leading-normal">
+            Delete Wallet
+          </Text>
+        </Pressable>
       </View>
-      <Pressable
-        style={{
-          width: wp(86),
-        }}
-        className="border-[#ccca] border-2 w-full mt-5 py-[16px] rounded-[8px] items-center justify-center"
-      >
-        <Text className="text-[16px] text-white  font-bold leading-normal">
-          Logout
-        </Text>
-      </Pressable>
-      <Modal visible={isAuthenticated} animationType="slide">
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Seed Phrase</Text>
-            <View style={styles.seedPhraseContainer}>
-              {seedPhrase.map((item, index) => (
-                <Text key={index} style={styles.seedPhraseItem}>
-                  {item}
-                </Text>
-              ))}
-            </View>
-            {/* <Text style={styles.currentTime}>
-              Current Time: {currentTime.toLocaleTimeString()}
-            </Text> */}
-          </View>
-        </View>
-      </Modal>
+      {/* Seed Phrase Modal */}
+      <SeedPhraseModal
+        closeModal={closeModal}
+        isAuthenticated={isAuthenticated}
+        seedPhrase={seedPhrase}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   // ... (your existing styles)
-
-  modalContainer: {
+  closeButton: {
+    alignSelf: "flex-end",
+    marginTop: 10,
+  },
+  closeButtonText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  blurBackground: {
     flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust the opacity as needed
     alignItems: "center",
     justifyContent: "center",
+  },
+  modalContainer: {
+    flex: 1,
   },
   modalContent: {
     width: 342,

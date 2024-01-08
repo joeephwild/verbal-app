@@ -16,91 +16,96 @@ const Overview = ({ isNotProfile }) => {
   const tabs = ["Details", "Post", "Edit Profile"];
   return (
     <View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          marginTop: 20,
-        }}
-      >
-        <Pressable
-          onPress={() => setIsSwitched("details")}
-          style={{
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-            borderRadius: 20,
-            backgroundColor:
-              isSwitched === "details" ? "#FF770066" : "transparent",
-          }}
-        >
-          <Text
+      {isNotProfile ? (
+        <Details />
+      ) : (
+        <View>
+          <View
             style={{
-              color: "#fff",
-              textAlign: "center",
-              fontSize: 14,
-              fontWeight: "bold",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+              marginTop: 20,
             }}
           >
-            Details
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={() => setIsSwitched("post")}
-          style={{
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-            borderRadius: 20,
-            backgroundColor:
-              isSwitched === "post" ? "#FF770066" : "transparent",
-          }}
-        >
-          <Text
-            style={{
-              color: "#fff",
-              textAlign: "center",
-              fontSize: 14,
-              fontWeight: "bold",
-            }}
-          >
-            Settings
-          </Text>
-        </Pressable>
-        {isNotProfile ? (
-          <></>
-        ) : (
-          <Pressable
-            onPress={() => setIsSwitched("profile")}
-            style={{
-              paddingVertical: 10,
-              paddingHorizontal: 20,
-              borderRadius: 20,
-              backgroundColor:
-                isSwitched === "profile" ? "#FF770066" : "transparent",
-            }}
-          >
-            <Text
+            <Pressable
+              onPress={() => setIsSwitched("details")}
               style={{
-                color: "#fff",
-                textAlign: "center",
-                fontSize: 14,
-                fontWeight: "bold",
+                paddingVertical: 10,
+                paddingHorizontal: 20,
+                borderRadius: 20,
+                backgroundColor:
+                  isSwitched === "details" ? "#FF770066" : "transparent",
               }}
             >
-              Edit Profile
-            </Text>
-          </Pressable>
-        )}
-      </View>
-      <ScrollView>
-        {isSwitched === "details" && <Details />}
-        {isSwitched === "post" && <Post />}
-        {isSwitched === "profile" && (
-          <View style={{ paddingBottom: 20 }}>
-            <SetupPreference />
+              <Text
+                style={{
+                  color: "#fff",
+                  textAlign: "center",
+                  fontSize: 14,
+                  fontWeight: "bold",
+                }}
+              >
+                Details
+              </Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setIsSwitched("post")}
+              style={{
+                paddingVertical: 10,
+                paddingHorizontal: 20,
+                borderRadius: 20,
+                backgroundColor:
+                  isSwitched === "post" ? "#FF770066" : "transparent",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#fff",
+                  textAlign: "center",
+                  fontSize: 14,
+                  fontWeight: "bold",
+                }}
+              >
+                Settings
+              </Text>
+            </Pressable>
+
+            <Pressable
+              onPress={() => setIsSwitched("profile")}
+              style={{
+                paddingVertical: 10,
+                paddingHorizontal: 20,
+                borderRadius: 20,
+                backgroundColor:
+                  isSwitched === "profile" ? "#FF770066" : "transparent",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#fff",
+                  textAlign: "center",
+                  fontSize: 14,
+                  fontWeight: "bold",
+                }}
+              >
+                Edit Profile
+              </Text>
+            </Pressable>
           </View>
-        )}
-      </ScrollView>
+          <ScrollView>
+            <View>
+              {isSwitched === "details" && <Details isNotProfile={isNotProfile} />}
+              {isSwitched === "post" && <Post />}
+              {isSwitched === "profile" && (
+                <View style={{ paddingBottom: 20 }}>
+                  <SetupPreference />
+                </View>
+              )}
+            </View>
+          </ScrollView>
+        </View>
+      )}
     </View>
   );
 };

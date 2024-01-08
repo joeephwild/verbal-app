@@ -10,7 +10,7 @@ import {
   ChatBubbleBottomCenterIcon,
 } from "react-native-heroicons/solid";
 
-const ContentCard = ({ content }) => {
+const ContentCard = ({ item }) => {
   const formatTime = (inputTimestamp) => {
     // Parse the input timestamp
     const parsedTimestamp = new Date(inputTimestamp);
@@ -49,18 +49,18 @@ const ContentCard = ({ content }) => {
         width: wp(100),
         maxHeight: hp(90),
       }}
-      className="bg-[#fff] mb-4 p-2"
+      className="bg-[#fff]  mb-4 p-2"
     >
       <View className="flex-row items-center space-x-2">
         <Image
           source={{
-            uri: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1600",
+            uri: item.image,
           }}
           className="w-[40px] bg-gray-400 h-[40px] object-cover rounded-full"
         />
         <View>
           <Text className="text-[16px] font-[InterBold] font-semibold leading-normal">
-            Jane park
+            {item.name}
           </Text>
           <Text className="font-[SpaceMono] text-[14px] font-normal leading-nromal">
             Posted {formatTime(content.created_at)}
@@ -68,9 +68,9 @@ const ContentCard = ({ content }) => {
         </View>
       </View>
       <Text className="text-[16px] font-normal leading-normal text-[#000] pb-4">
-        {content.content}
+        {item.contents}
       </Text>
-      <Image source={{ uri: content.media_url[0] }} style={styles.postImage} />
+      <Image source={{ uri: item.img_url }} style={styles.postImage} />
       <View className="flex-row items-center justify-between px-4 py-2">
         <View className="flex-row items-center space-x-4">
           <View className="flex-row items-center space-x-2">

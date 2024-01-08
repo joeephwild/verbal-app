@@ -1,9 +1,10 @@
 import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, router } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
 
 const Congrat = () => {
+  const navigate = useNavigation();
   return (
     <SafeAreaView>
       <View>
@@ -23,11 +24,12 @@ const Congrat = () => {
           </Text>
         </View>
       </View>
-      <View className="items-center my-5 justify-center">
-        <Pressable
-          onPress={() => router.push("/(tabs)/(home)")}
-          className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]"
-        >
+      <View
+        onPress={() => navigate.navigate("(home)")}
+        asChild
+        className="items-center my-5 justify-center"
+      >
+        <Pressable className="bg-[#F70] w-[342px] py-[16px] rounded-[8px]">
           <Text className="text-[16px] text-center text-white  font-bold leading-normal">
             Continue
           </Text>

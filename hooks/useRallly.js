@@ -6,6 +6,7 @@ import {
 } from "@rly-network/mobile-sdk";
 import { createAccount } from "@rly-network/mobile-sdk";
 import { useState } from "react";
+import { Alert } from "react-native";
 
 export const useRally = () => {
   const [account, setAccount] = useState([]);
@@ -17,8 +18,15 @@ export const useRally = () => {
   rlyNetwork.setApiKey(process.env.EXPO_PUBLIC_RALLY_APITOKEN);
 
   const createCryptoAccount = async () => {
-    const newAccount = await createAccount();
-    setAccount(newAccount);
+    try {
+      const newAccount = await createAccount();
+      console.log(newAccount);
+      setAccount(newAccount);
+      Alert.alert("Wallet Created Succesfully");
+      return newAccount;
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
 
   const getUserAccount = async () => {

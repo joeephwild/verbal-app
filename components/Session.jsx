@@ -2,7 +2,7 @@ import { View, Text, Pressable, Image } from "react-native";
 import React from "react";
 import { router } from "expo-router";
 
-const Session = () => {
+const Session = ({time}) => {
   return (
     <View className="items-center mt-[30px] justify-center">
       <Image
@@ -29,7 +29,7 @@ const Session = () => {
         className="bg-[#F70] w-full py-[16px] mt-[9px] rounded-[8px] items-center justify-center"
       >
         <Text className="text-[16px] text-white font-bold leading-normal">
-          Check availability
+         Schdule Call
         </Text>
       </Pressable>
     </View>

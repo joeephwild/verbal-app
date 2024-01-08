@@ -1,4 +1,10 @@
-import { View, Text, Image, TouchableWithoutFeedback, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableWithoutFeedback,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { router, useNavigation } from "expo-router";
 import { useState } from "react";
@@ -28,14 +34,14 @@ const Community = ({ item }) => {
                   source={{
                     uri: commnity.img_url,
                   }}
-                  className="w-[60px] h-[60px]"
+                  className="w-[60px] rounded-full object-cover h-[60px]"
                 />
                 <View className="items-start">
                   <Text className="text-[20px] font-bold text-[#000]">
                     {commnity.name}
                   </Text>
                   <Text className="text-[16px] font-normal text-[#FF7700]">
-                    80978k members
+                    {commnity.members.length} members
                   </Text>
                 </View>
               </View>

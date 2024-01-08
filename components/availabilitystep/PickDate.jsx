@@ -3,6 +3,7 @@ import React from "react";
 import { ChevronLeftIcon } from "react-native-heroicons/solid";
 import { Calendar } from "react-native-calendars";
 import { createMeeting } from "../../utils/create-room";
+import { TimeFrame } from "../../utils";
 
 const PickDate = ({ handleClick, setSelectedDate, setTime }) => {
   return (
@@ -19,7 +20,7 @@ const PickDate = ({ handleClick, setSelectedDate, setTime }) => {
       <View className="mt-[24px]">
         <Calendar
           onDayPress={(day) => {
-            setSelectedDate(day.dateString);
+            setSelectedDate(day);
           }}
           date=""
           theme={{
@@ -47,33 +48,19 @@ const PickDate = ({ handleClick, setSelectedDate, setTime }) => {
           <Text className="text-[16px] font-black text-[#fff]">
             Available time slots
           </Text>
-          <View className="flex-row flex-wrap pt-[16px] gap-2">
-            <Pressable
-              onPress={() => setTime("8:00")}
-              className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]"
-            >
-              <Text className="text-[16px] text-[#fff] font-black leading-normal">
-                8:00pm
-              </Text>
-            </Pressable>
-            <Pressable
-              onPress={() => createMeeting()}
-              className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]"
-            >
-              <Text className="text-[16px] text-[#fff] font-black leading-normal">
-                8:00pm
-              </Text>
-            </Pressable>
-            <Pressable className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]">
-              <Text className="text-[16px] text-[#fff] font-black leading-normal">
-                8:00pm
-              </Text>
-            </Pressable>
-            <Pressable className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]">
-              <Text className="text-[16px] text-[#fff] font-black leading-normal">
-                8:00pm
-              </Text>
-            </Pressable>
+          <View className="flex-row flex-wrap items-center pt-[16px] space-x-[16px]">
+            {TimeFrame.map((item, i) => (
+              <View>
+                <Pressable
+                  onPress={() => setTime(item.time)}
+                  className="border-[#2D3440] border p-[8px] rounded-[12px] gap-[4px]"
+                >
+                  <Text className="text-[16px] text-[#fff] font-black leading-normal">
+                    {item.time}
+                  </Text>
+                </Pressable>
+              </View>
+            ))}
           </View>
         </View>
         <Pressable
