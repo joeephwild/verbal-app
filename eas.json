@@ -1,0 +1,49 @@
+{
+  "cli": {
+    "version": ">= 4.1.1"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_MINDSDB": "johnsonafuye@gmail.com",
+        "EXPO_PUBLIC_MINDSDB_PASS": "Password",
+        "EXPO_PUBLIC_HUDDLE01_APIKEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzYzMwYjkxYy1hNmQyLTQyYzEtOTVlOC1jMzA4ZDExNjNkZDgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY5MTU2NTIxMiwiZXhwIjoxNjk5MzQxMjEyfQ.SjwlXaK5bN_5O0mFVW2v2clCUYR6EZfM7jYo41Gr4-A",
+        "EXPO_PUBLIC_LINEA_RPC_URL": "https://linea-goerli.infura.io/v3/4c063e7cdc7c4d6788000384a7851888",
+        "EXPO_PUBLIC_AVALANCHE_CCHAIN_TESTNET": "https://avalanche-fuji.infura.io/v3/4c063e7cdc7c4d6788000384a7851888",
+        "EXPO_PUBLIC_BiNANCE_TESTNET": "https://bnbsmartchain-testnet.infura.io/v3/4c063e7cdc7c4d6788000384a7851888",
+        "EXPO_PUBLIC_OPBNB_RPC": "https://opbnb-testnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+        "EXPO_PUBLIC_WALLETCONNECT_PROJECTID": "7b2ba7ae00fcf4a18919fce7b7844e0a",
+        "EXPO_PUBLIC_RALLY_APITOKEN": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjcxfQ.TWvPqxxW1zHl2_cgEqZIYqlQefQt17QrFshLpngpJk_Tex88mnJJL9kZ_pk2dDCEG6rkN-5V8NESN4sQU44Xrg",
+        "EXPO_PUBLIC_PINATA_API_KEY": "7f377cac7e473311d621",
+        "EXPO_PUBLIC_PINATAAPI_SECRET": "193aa4a1933616580fd0bad64a16108a0322374e4c7d0b6dc90063caed97c5bd",
+        "EXPO_PUBLIC_PINATAJWT": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzMzBhY2E2Yi04MjQ3LTRmNDgtOWE5ZC0yN2I4NmE5N2NkOWQiLCJlbWFpbCI6Impvc2VwaG9tb3RhZGUwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI3ZjM3N2NhYzdlNDczMzExZDYyMSIsInNjb3BlZEtleVNlY3JldCI6IjE5M2FhNGExOTMzNjE2NTgwZmQwYmFkNjRhMTYxMDhhMDMyMjM3NGU0YzdkMGI2ZGM5MDA2M2NhZWQ5N2M1YmQiLCJpYXQiOjE2OTIwODM5NjJ9.PvBvKI5UoK9u-DrLf4zVVKn4U3G8MJQyh2syjk6CWic"
+      }
+    },
+    "test": {
+      "env": {
+        "EXPO_PUBLIC_MINDSDB": "johnsonafuye@gmail.com",
+        "EXPO_PUBLIC_MINDSDB_PASS": "Password",
+        "EXPO_PUBLIC_HUDDLE01_APIKEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzYzMwYjkxYy1hNmQyLTQyYzEtOTVlOC1jMzA4ZDExNjNkZDgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY5MTU2NTIxMiwiZXhwIjoxNjk5MzQxMjEyfQ.SjwlXaK5bN_5O0mFVW2v2clCUYR6EZfM7jYo41Gr4-A",
+        "EXPO_PUBLIC_LINEA_RPC_URL": "https://linea-goerli.infura.io/v3/4c063e7cdc7c4d6788000384a7851888",
+        "EXPO_PUBLIC_AVALANCHE_CCHAIN_TESTNET": "https://avalanche-fuji.infura.io/v3/4c063e7cdc7c4d6788000384a7851888",
+        "EXPO_PUBLIC_BiNANCE_TESTNET": "https://bnbsmartchain-testnet.infura.io/v3/4c063e7cdc7c4d6788000384a7851888",
+        "EXPO_PUBLIC_OPBNB_RPC": "https://opbnb-testnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+        "EXPO_PUBLIC_WALLETCONNECT_PROJECTID": "7b2ba7ae00fcf4a18919fce7b7844e0a",
+        "EXPO_PUBLIC_RALLY_APITOKEN": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjcxfQ.TWvPqxxW1zHl2_cgEqZIYqlQefQt17QrFshLpngpJk_Tex88mnJJL9kZ_pk2dDCEG6rkN-5V8NESN4sQU44Xrg",
+        "EXPO_PUBLIC_PINATA_API_KEY": "7f377cac7e473311d621",
+        "EXPO_PUBLIC_PINATAAPI_SECRET": "193aa4a1933616580fd0bad64a16108a0322374e4c7d0b6dc90063caed97c5bd",
+        "EXPO_PUBLIC_PINATAJWT": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzMzBhY2E2Yi04MjQ3LTRmNDgtOWE5ZC0yN2I4NmE5N2NkOWQiLCJlbWFpbCI6Impvc2VwaG9tb3RhZGUwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI3ZjM3N2NhYzdlNDczMzExZDYyMSIsInNjb3BlZEtleVNlY3JldCI6IjE5M2FhNGExOTMzNjE2NTgwZmQwYmFkNjRhMTYxMDhhMDMyMjM3NGU0YzdkMGI2ZGM5MDA2M2NhZWQ5N2M1YmQiLCJpYXQiOjE2OTIwODM5NjJ9.PvBvKI5UoK9u-DrLf4zVVKn4U3G8MJQyh2syjk6CWic"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

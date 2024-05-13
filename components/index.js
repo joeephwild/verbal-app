@@ -1,0 +1,9 @@
+export { default as StepperControl } from "./StepperControl";
+export { default as MyLessons } from "./MyLessons";
+export { default as Speakers } from "./Speakers";
+export { default as Community } from "./Community";
+export { default as PickDate } from "./availabilitystep/PickDate";
+export { default as ConfirmBooking } from "./availabilitystep/ConfirmBooking";
+export { default as ConfirmTime } from "./availabilitystep/ConfirmTime";
+export { default as MainStudio } from "./VideoSteps/MainStudio";
+export { default as SetUpVideo } from "./VideoSteps/SetUpVideo";

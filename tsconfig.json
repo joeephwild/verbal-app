@@ -1,0 +1,12 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "app/(tabs)/(home)/tutor/[id].jsx", "app/(tabs)/(home)/_layout.jsx", "app/(tabs)/(home)/availablityform.jsx", "app/(tabs)/(home)/index.jsx", "app/(tabs)/_layout.jsx", "app/(tabs)/two.jsx", "app/mylesson/[lesson].jsx", "app/_layout.jsx", "app/[...missing].jsx", "app/+html.jsx", "components/authsteps/Congrat.jsx", "components/authsteps/ConnectWallet.jsx", "components/authsteps/Intro.jsx", "components/authsteps/SelectLang.jsx", "components/MyLessons.jsx", "components/Speakers.jsx", "components/modal.jsx", "components/BottomSheet.jsx", "components/authsteps/SetupPreference.jsx", "components/availabilitystep/ConfirmBooking.jsx", "components/availabilitystep/PickDate.jsx", "components/VideoSteps/MainStudio.jsx", "components/VideoSteps/SetUpVideo.jsx", "components/Community.jsx", "components/index.js", "app/(auth)/_layout.jsx", "app/(auth)/Login.jsx", "app/(auth)/index.jsx", "app/(auth)/CreateAccount.jsx", "utils/pinata.js", "utils/config.js"  ]
+}
