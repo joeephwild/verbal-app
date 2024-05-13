@@ -2,10 +2,6 @@
 
 Welcome to Verbal, an innovative Decentralized Application (DApp) that is set to redefine the way we learn languages. As you embark on your linguistic journey, Verbal promises not just a language learning experience, but a vibrant, community-driven adventure that fosters connections, knowledge exchange, and growth.
 
-[![Video Demo](https://azure-conscious-jellyfish-842.mypinata.cloud/ipfs/QmbCp5TXvU4qrZVTfqEdaYoNzebX2zXTWKvx9LrB1Beg93?pinataGatewayToken=QIyk0eCyyNIke3pNtPjLDd2jG_3G5YLq1q-rCz0hSBWgS1_uCbVwtk0iNMcBkOTw)
-
-[Watch the Video Demo](https://youtu.be/3GpQJRiDUjI?si=QuaVuK-EjUjVl85z))
-
 ## Table of Contents
 
 - [About](#About)
@@ -38,16 +34,6 @@ Verbal's foundation is rooted in blockchain technology, guaranteeing security, t
 
 As Verbal continues to evolve, we're eagerly exploring the possibility of introducing livestreaming functionalities. Imagine conducting interactive lessons, directly addressing learners' questions, and creating real-time engagement. With each update, Verbal strives to offer an even richer and immersive experience for language enthusiasts.
 
-## Getting Started
-
-To get started with Verbal Dapp, follow these steps:
-
-1. Clone the repository: `git clone https://github.com/your-username/verbal-dapp.git`
-2. Install the required dependencies: `yarn install`
-3. Configure your environment variables.
-4. Run the application: `npx expo start`
-5. Select the development environment either and android by selecting `a` or an ios `i`
-
 ## Usage
 
 1. Create an account or log in to your existing account.
@@ -56,15 +42,6 @@ To get started with Verbal Dapp, follow these steps:
 4. Engage in language practice sessions with other users in real time.
 5. Monitor your progress and track your language learning journey.
 6. Earn NFTS as reward or tokens
-
-## Technologies Used
-
-- Ethereum Blockchain
-- Solidity Smart Contracts
-- React Native Expo
-- Rally Protocol
-- Opbnb
-- Express.js
 
 ## Contributing
 
@@ -77,15 +54,6 @@ We welcome contributions from the community to enhance and improve Verbal Dapp. 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## Contract Links
-
-- ['VerbalToken'](https://opbnbscan.com/address/0x068f32500dd6265726a8d1cb6D4ED9416998C0C7#code)
-- ['PodcastContract'](https://opbnbscan.com/address/0xB80675D4623d20D4C1103455Eb5AfbdE474Ec2C5#code)
-- [' Sessions](https://opbnbscan.com/address/0x9Fca3C2E61b3dDD093FAF29DBE420D04e53Ab4F2#code)
-- ['RewardsContract](https://opbnbscan.com/address/0x6B55f92aF1Bf5445243f702F35DD81C97C6E7744#code)
-
----
 
 Ready to embark on a journey of language learning and exploration? Join us in revolutionizing the way we learn and practice languages with Verbal Dapp!
 
