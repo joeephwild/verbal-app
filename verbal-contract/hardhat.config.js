@@ -7,9 +7,9 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY
 module.exports = {
   solidity: "0.8.19",
   networks: {
-    bnb: {
-      url: "https://opbnb-testnet-rpc.bnbchain.org/",
-      accounts: [`0x${PRIVATE_KEY}`],
+    alfajores: {
+      url: "https://alfajores-forno.celo-testnet.org/",
+      accounts: [`1ef03a878f42f3ef7b4b132f72d3666ed71bb3f70defe8ee5c2ffd6874b84b78`],
     },
   }
 };
