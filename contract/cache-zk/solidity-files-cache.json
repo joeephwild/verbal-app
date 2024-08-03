@@ -1,0 +1,3376 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/ApprovalFlowPaymaster.sol": {
+      "lastModificationDate": 1722642170710,
+      "contentHash": "9a65f3215eb12948a610c8c41b042311",
+      "sourceName": "contracts/ApprovalFlowPaymaster.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ApprovalFlowPaymaster"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1722658664389,
+      "contentHash": "8398972af73b4e9e5ff3b31cad86234f",
+      "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol": {
+      "lastModificationDate": 1722658662392,
+      "contentHash": "cc9dd864bd75ae5ab231fbfae7692cd9",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IAccountCodeStorage.sol",
+        "./interfaces/INonceHolder.sol",
+        "./interfaces/IContractDeployer.sol",
+        "./interfaces/IKnownCodesStorage.sol",
+        "./interfaces/IImmutableSimulator.sol",
+        "./interfaces/IEthToken.sol",
+        "./interfaces/IL1Messenger.sol",
+        "./interfaces/ISystemContext.sol",
+        "./interfaces/IBytecodeCompressor.sol",
+        "./BootloaderUtilities.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": []
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1722658664319,
+      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol": {
+      "lastModificationDate": 1722658663287,
+      "contentHash": "5b6a8d8bf0320ecd1bdc362c4d312eaf",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TransactionHelper.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IPaymaster"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol": {
+      "lastModificationDate": 1722658663293,
+      "contentHash": "875b182d35066260db165e6350aef799",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IPaymasterFlow"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol": {
+      "lastModificationDate": 1722658663398,
+      "contentHash": "d3d97ce1ffa048c9ffebcd845a9944a1",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../openzeppelin/token/ERC20/IERC20.sol",
+        "../openzeppelin/token/ERC20/utils/SafeERC20.sol",
+        "../interfaces/IPaymasterFlow.sol",
+        "../interfaces/IContractDeployer.sol",
+        "../Constants.sol",
+        "./RLPEncoder.sol",
+        "./EfficientCall.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "TransactionHelper"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1722658664014,
+      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/INonceHolder.sol": {
+      "lastModificationDate": 1722658663280,
+      "contentHash": "635d8b1fb161434ece83d75563c90d31",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/INonceHolder.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "INonceHolder"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/BootloaderUtilities.sol": {
+      "lastModificationDate": 1722658662245,
+      "contentHash": "cf36b27c696f67d72e2eb3219d66ccd1",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/BootloaderUtilities.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IBootloaderUtilities.sol",
+        "./libraries/TransactionHelper.sol",
+        "./libraries/RLPEncoder.sol",
+        "./libraries/EfficientCall.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "BootloaderUtilities"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IContractDeployer.sol": {
+      "lastModificationDate": 1722658663217,
+      "contentHash": "04ab6e26fdc17a98e454a2d40b66cef5",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IContractDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IContractDeployer"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IKnownCodesStorage.sol": {
+      "lastModificationDate": 1722658663251,
+      "contentHash": "8b44dba198e4579807dcf9972cedc472",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IKnownCodesStorage.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IKnownCodesStorage"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountCodeStorage.sol": {
+      "lastModificationDate": 1722658663182,
+      "contentHash": "05ac1dd6d28b32f9aec9c9835dd7f611",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccountCodeStorage.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAccountCodeStorage"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IL1Messenger.sol": {
+      "lastModificationDate": 1722658663259,
+      "contentHash": "b31020815f13cfc6043efc3df1f1d06f",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IL1Messenger.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IL1Messenger"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/ISystemContext.sol": {
+      "lastModificationDate": 1722658663306,
+      "contentHash": "499113f82b84e5ea8b54667f54432b4a",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/ISystemContext.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ISystemContext"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IImmutableSimulator.sol": {
+      "lastModificationDate": 1722658663244,
+      "contentHash": "a67696f328544ef71d1bb0b677b0c383",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IImmutableSimulator.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IImmutableSimulator"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IBytecodeCompressor.sol": {
+      "lastModificationDate": 1722658663201,
+      "contentHash": "979ef36bc70c3548c81b3c03df07c73a",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IBytecodeCompressor.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IBytecodeCompressor"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IEthToken.sol": {
+      "lastModificationDate": 1722658663236,
+      "contentHash": "51f28834f26a5d384b23a02d670123b2",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IEthToken.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IEthToken"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/libraries/RLPEncoder.sol": {
+      "lastModificationDate": 1722658663349,
+      "contentHash": "57ce78bc816a06b695f053ca3b3e5a5b",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/libraries/RLPEncoder.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "RLPEncoder"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/libraries/EfficientCall.sol": {
+      "lastModificationDate": 1722658663336,
+      "contentHash": "57bf5cbfd3226e021863b79cceb0c8ec",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/libraries/EfficientCall.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./SystemContractHelper.sol",
+        "./Utils.sol",
+        "../Constants.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "EfficientCall"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IBootloaderUtilities.sol": {
+      "lastModificationDate": 1722658663190,
+      "contentHash": "071dbd56f1fcce9fdbcbc21872002d4a",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IBootloaderUtilities.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TransactionHelper.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IBootloaderUtilities"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1722658663929,
+      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/token/ERC20/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol": {
+      "lastModificationDate": 1722658663965,
+      "contentHash": "8ad35cad9b6ff0ffc1dd550ad873b005",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol",
+        "../extensions/IERC20Permit.sol",
+        "../../../utils/Address.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "SafeERC20"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractHelper.sol": {
+      "lastModificationDate": 1722658663365,
+      "contentHash": "d44c4d1e5757a576ca9eeee0e6294f39",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractHelper.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../Constants.sol",
+        "./SystemContractsCaller.sol",
+        "./Utils.sol"
+      ],
+      "versionPragmas": [
+        "^0.8"
+      ],
+      "artifacts": [
+        "ISystemContract",
+        "SystemContractHelper"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/libraries/Utils.sol": {
+      "lastModificationDate": 1722658663408,
+      "contentHash": "728dbbafd196a789d9c27fd56e75978f",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/libraries/Utils.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./EfficientCall.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "Utils"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol": {
+      "lastModificationDate": 1722658663379,
+      "contentHash": "452f2673fe40e625be94629084ed91cd",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../Constants.sol",
+        "./Utils.sol"
+      ],
+      "versionPragmas": [
+        "^0.8"
+      ],
+      "artifacts": [
+        "SystemContractsCaller"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/token/ERC20/extensions/IERC20Permit.sol": {
+      "lastModificationDate": 1722658663950,
+      "contentHash": "e2c0f4f502e2fe75be0585737839ba9b",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/token/ERC20/extensions/IERC20Permit.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Permit"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/utils/Address.sol": {
+      "lastModificationDate": 1722658663911,
+      "contentHash": "4dd40735feabb268b5dab77af993e691",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/openzeppelin/utils/Address.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.1"
+      ],
+      "artifacts": [
+        "Address"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/CustomAccount.sol": {
+      "lastModificationDate": 1722662789628,
+      "contentHash": "457dc1419fe3aab32456f9f1acea8565",
+      "sourceName": "contracts/CustomAccount.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/INonceHolder.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/libraries/Utils.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractHelper.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/libraries/EfficientCall.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "VerbalAccount"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol": {
+      "lastModificationDate": 1722658663175,
+      "contentHash": "75d9c69a5cd7875c9ee24255f947bcb4",
+      "sourceName": "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../libraries/TransactionHelper.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAccount"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/GaslessPaymaster.sol": {
+      "lastModificationDate": 1722642170713,
+      "contentHash": "b04c5c9abb1e64ff4f94fbc040d1a52a",
+      "sourceName": "contracts/GaslessPaymaster.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymaster.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IPaymasterFlow.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol",
+        "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol",
+        "@openzeppelin/contracts/access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "GaslessPaymaster"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol": {
+      "lastModificationDate": 1722658664168,
+      "contentHash": "21b9f3bdb3e60f56ea81361c37420136",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./IERC721.sol",
+        "./IERC721Receiver.sol",
+        "./extensions/IERC721Metadata.sol",
+        "../../utils/Address.sol",
+        "../../utils/Context.sol",
+        "../../utils/Strings.sol",
+        "../../utils/introspection/ERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC721"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/utils/Address.sol": {
+      "lastModificationDate": 1722658663970,
+      "contentHash": "ad714a6368ee7d43cded6bbe8af0b155",
+      "sourceName": "@openzeppelin/contracts/utils/Address.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.1"
+      ],
+      "artifacts": [
+        "Address"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/utils/Strings.sol": {
+      "lastModificationDate": 1722658664432,
+      "contentHash": "9c54c6c065d9e590fdcdd72c451425b9",
+      "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Strings"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+      "lastModificationDate": 1722658664108,
+      "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC165"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol": {
+      "lastModificationDate": 1722658664327,
+      "contentHash": "cd8e72e5859bddd5fd26b2fb5c51c846",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../../utils/introspection/IERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+      "lastModificationDate": 1722658664332,
+      "contentHash": "c22d4395e33763de693fd440c6fd10e1",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Receiver"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol": {
+      "lastModificationDate": 1722658664331,
+      "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../IERC721.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC721Metadata"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+      "lastModificationDate": 1722658664301,
+      "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
+      "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC165"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Upgrade.sol": {
+      "lastModificationDate": 1722658664118,
+      "contentHash": "6baa887a798e95b14f34e093f117e9b2",
+      "sourceName": "@openzeppelin/contracts/proxy/ERC1967/ERC1967Upgrade.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../beacon/IBeacon.sol",
+        "../../interfaces/draft-IERC1822.sol",
+        "../../utils/Address.sol",
+        "../../utils/StorageSlot.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.2"
+      ],
+      "artifacts": [
+        "ERC1967Upgrade"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/interfaces/draft-IERC1822.sol": {
+      "lastModificationDate": 1722658664062,
+      "contentHash": "2858d98e74e67987ec81b39605230b74",
+      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC1822.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC1822Proxiable"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/beacon/IBeacon.sol": {
+      "lastModificationDate": 1722658664239,
+      "contentHash": "b6bd23bf19e90b771337037706470933",
+      "sourceName": "@openzeppelin/contracts/proxy/beacon/IBeacon.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IBeacon"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/utils/StorageSlot.sol": {
+      "lastModificationDate": 1722658664430,
+      "contentHash": "187a01c1e4e638014509dfee3ac6faa9",
+      "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "StorageSlot"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/beacon/UpgradeableBeacon.sol": {
+      "lastModificationDate": 1722658664440,
+      "contentHash": "8ffefb755605824cf730ce4092b2f581",
+      "sourceName": "@openzeppelin/contracts/proxy/beacon/UpgradeableBeacon.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./IBeacon.sol",
+        "../../access/Ownable.sol",
+        "../../utils/Address.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "UpgradeableBeacon"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/beacon/BeaconProxy.sol": {
+      "lastModificationDate": 1722658663985,
+      "contentHash": "0d71075819600720f2c99ed4b31d88e0",
+      "sourceName": "@openzeppelin/contracts/proxy/beacon/BeaconProxy.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./IBeacon.sol",
+        "../Proxy.sol",
+        "../ERC1967/ERC1967Upgrade.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "BeaconProxy"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/Proxy.sol": {
+      "lastModificationDate": 1722658664396,
+      "contentHash": "40b3d81a836d50ff47e03893dcaaf204",
+      "sourceName": "@openzeppelin/contracts/proxy/Proxy.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Proxy"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol": {
+      "lastModificationDate": 1722658664117,
+      "contentHash": "524a6c6f00b809b1184050dcc9e131d8",
+      "sourceName": "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../Proxy.sol",
+        "./ERC1967Upgrade.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC1967Proxy"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol": {
+      "lastModificationDate": 1722658664438,
+      "contentHash": "433af24ebe64e49e21ea173b3744af6c",
+      "sourceName": "@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../ERC1967/ERC1967Proxy.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "TransparentUpgradeableProxy"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol": {
+      "lastModificationDate": 1722658664401,
+      "contentHash": "a947492251ac15d6bfd899c9fdb4d82b",
+      "sourceName": "@openzeppelin/contracts/proxy/transparent/ProxyAdmin.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./TransparentUpgradeableProxy.sol",
+        "../../access/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ProxyAdmin"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/RewardsContract.sol": {
+      "lastModificationDate": 1722643285123,
+      "contentHash": "7021ca87cf3dd17d833806785cb3e3ac",
+      "sourceName": "contracts/RewardsContract.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+        "@openzeppelin/contracts/utils/Counters.sol",
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "./interfaces/IPodcast.sol",
+        "./interfaces/ISession.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "RewardsContract"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/interfaces/IPodcast.sol": {
+      "lastModificationDate": 1722643334107,
+      "contentHash": "311b8ea60bc980e7c487b283ab8d3981",
+      "sourceName": "contracts/interfaces/IPodcast.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IPodcastContract"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/interfaces/ISession.sol": {
+      "lastModificationDate": 1722643339752,
+      "contentHash": "8c548c9bf5b6380651aac080a07bf85f",
+      "sourceName": "contracts/interfaces/ISession.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ISessions"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/utils/Counters.sol": {
+      "lastModificationDate": 1722658664016,
+      "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
+      "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Counters"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+      "lastModificationDate": 1722658664321,
+      "contentHash": "909ab67fc5c25033fe6cd364f8c056f9",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "../IERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1722658664125,
+      "contentHash": "a9d2146925da52142435d3bb8df53c3c",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/VerbalToken.sol": {
+      "lastModificationDate": 1722643352161,
+      "contentHash": "72edf4b466f5d8e7467acd6f04b2375b",
+      "sourceName": "contracts/VerbalToken.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "VerbalToken"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/Sessions.sol": {
+      "lastModificationDate": 1722663221311,
+      "contentHash": "9d60dca5463835bac37b50bf8202030c",
+      "sourceName": "contracts/Sessions.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Counters.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Sessions"
+      ]
+    },
+    "/Users/macbook/Desktop/Development/verbal-app/contract/contracts/PodcastContract.sol": {
+      "lastModificationDate": 1722663007969,
+      "contentHash": "3db94b97298dafec31f890c64bbb7d42",
+      "sourceName": "contracts/PodcastContract.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "mode": "3"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "detectMissingLibraries": false,
+          "forceEVMLA": false,
+          "enableEraVMExtensions": false,
+          "libraries": {}
+        },
+        "eraVersion": "1.0.1",
+        "zksolc": {
+          "version": "1.5.2",
+          "compilerSource": "binary",
+          "settings": {
+            "optimizer": {
+              "enabled": true,
+              "mode": "3"
+            },
+            "compilerPath": "/Users/macbook/Library/Caches/hardhat-nodejs/compilers-v2/zksolc/zksolc-v1.5.2",
+            "missingLibrariesPath": "./.zksolc-libraries-cache/missingLibraryDependencies.json",
+            "areLibrariesMissing": false,
+            "experimental": {},
+            "libraries": {},
+            "enableEraVMExtensions": false,
+            "forceEVMLA": false
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/utils/Counters.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "PodcastContract"
+      ]
+    }
+  }
+}

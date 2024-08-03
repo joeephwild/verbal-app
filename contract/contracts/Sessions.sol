@@ -97,9 +97,8 @@ contract Sessions {
             session.isAccepted = false;
             // addressToSessions[session.student].isAccepted = true;
         } else {
-            payable(session.student).transfer(
-                fetchMentorsPrice(session.mentor)
-            );
+            (bool success, ) = payable(session.mentor).call{value: fetchMentorsPrice(session.mentor)}("");
+            require(success, "Transfer failed.");
             delete addressToSessions[msg.sender][_sessionId];
             delete uintToSession[_sessionId];
         }
@@ -119,7 +118,8 @@ contract Sessions {
         );
         require(session.isAccepted == false, "Already accepted");
         session.isAccepted = true;
-        payable(session.mentor).transfer(fetchMentorsPrice(session.mentor));
+          (bool success, ) = payable(session.mentor).call{value: fetchMentorsPrice(session.mentor)}("");
+            require(success, "Transfer failed.");
         sessionsMentoredCount[session.mentor] += 1;
         sessionsAttendedCount[session.student] += 1;
 

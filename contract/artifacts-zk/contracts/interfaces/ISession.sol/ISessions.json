@@ -1,0 +1,288 @@
+{
+  "_format": "hh-zksolc-artifact-1",
+  "contractName": "ISessions",
+  "sourceName": "contracts/interfaces/ISession.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "sessionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "SessionAccepted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "sessionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "SessionCancelled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "mentor",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "student",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "fee",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "meetingLink",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "SessionScheduled",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_sessionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptSession",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_sessionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelSession",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_addr",
+          "type": "address"
+        }
+      ],
+      "name": "fetchMentorsPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_sessionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSessionDetails",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "mentor",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "student",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "isAccepted",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timeStamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "meetingLink",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "paymentFee",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "sessionId",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ISessions.Session",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getUserSessions",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_timeStamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "isTimeFrameTaken",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "registerMentorPrice",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_mentor",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_meetingLink",
+          "type": "string"
+        }
+      ],
+      "name": "scheduleASession",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "sessionsAttendedCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "sessionsMentoredCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "factoryDeps": {}
+}

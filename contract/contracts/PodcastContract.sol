@@ -76,7 +76,8 @@ contract PodcastContract {
         require(msg.value == podcast.amount, "You must send the exact amount");
 
         podcast.totalSupport += msg.value;
-        payable(podcast.owner).transfer(msg.value);
+        (bool success, ) = payable(podcast.owner).call{value: msg.value}("");
+        require(success, "Transfer failed.");
         supportCount[msg.sender] += 1;
         podcast.supporters.push(msg.sender);
     }

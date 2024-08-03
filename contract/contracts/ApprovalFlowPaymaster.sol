@@ -25,7 +25,7 @@
         }
 
         constructor() {
-            allowedToken = 0x927488F48ffbc32112F1fF721759649A89721F8F;
+            allowedToken = 0xc6FBFA2a996db48953fbA218de19666CD3422Ab3;
         }
 
         function validateAndPayForPaymasterTransaction(
@@ -68,7 +68,7 @@
                 );
 
                 uint256 requiredETH = _transaction.gasLimit * _transaction.maxFeePerGas;
-                try IERC20(token).transferFrom(userAddress, thisAddress, amount) {} 
+                try IERC20(token).transferFrom(userAddress, thisAddress, amount) {}
                 catch (bytes memory revertReason) {
                     if (revertReason.length <= 4) {
                         revert("Failed to transferFrom from user's account");
